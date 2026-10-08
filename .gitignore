@@ -1,0 +1,30 @@
+# dependencias e builds
+node_modules/
+dist/
+out-tsc/
+.angular/
+tmp/
+*.log
+
+# segredos e credenciais
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+.npmrc
+.netrc
+secrets.json
+credentials.json
+serviceAccount*.json
+
+# arquivos temporarios do sistema e do Office
+Thumbs.db
+desktop.ini
+~$*

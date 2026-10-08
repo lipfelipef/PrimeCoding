@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrimeCoding - protótipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--alu:#E7E6E1;--alu2:#DCDBD4;--papel:#F6F5F1;--branco:#FFFFFF;--tinta:#16171A;--grafite:#25272C;
+--cinza:#5E6068;--linha:#C8C6BF;--linha2:#DEDCD5;--verde:#1A7F45;--verde2:#12603A;--ambar:#E8A317;
+--ambar2:#FBEFD2;--add:#DCEEDF;--vermelho:#A3402F;--vermelho2:#F5E1DC;--azul:#2F55C8;--azul2:#E2E8F7}
+body{background:#999;font-family:"Instrument Sans",sans-serif;color:var(--tinta);font-size:16px;line-height:1.45}
+.tela{width:1440px;background:var(--alu);margin:0 0 80px 0;display:flex;flex-direction:column}
+.tela.mob{width:390px}
+.mono{font-family:"JetBrains Mono",monospace}
+.cinza{color:var(--cinza)}
+.faixa{background:var(--grafite);color:#E7E6E1;font-family:"JetBrains Mono",monospace;font-size:12px;
+ display:flex;justify-content:center;gap:28px;padding:9px 0;letter-spacing:.2px}
+.faixa b{color:var(--ambar);font-weight:500}
+.cab{height:76px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--linha)}
+.mob .cab{padding:0 16px;height:64px}
+.logo{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:21px;letter-spacing:-.3px;display:flex;align-items:center;color:var(--tinta);text-decoration:none}
+.caret{display:inline-block;width:11px;height:23px;background:var(--ambar);margin-left:3px}
+.nav{display:flex;gap:34px;font-size:15px;font-weight:500}
+.nav a{color:var(--tinta);text-decoration:none}
+.nav a.ativo{border-bottom:2px solid var(--tinta);padding-bottom:4px}
+.cab-dir{display:flex;align-items:center;gap:18px}
+.atend{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza);display:flex;align-items:center;gap:8px}
+.led{width:8px;height:8px;border-radius:50%;background:#2DB863}
+.tecla{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:6px;
+ font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;border:1px solid}
+.tecla .k{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:500;opacity:.85;padding:1px 6px;border-radius:3px;border:1px solid currentColor}
+.t-verde{background:var(--verde);color:#fff;border-color:var(--verde2);box-shadow:inset 0 -3px 0 var(--verde2)}
+.t-escura{background:var(--grafite);color:#fff;border-color:#000;box-shadow:inset 0 -3px 0 #000}
+.t-clara{background:var(--papel);color:var(--tinta);border-color:var(--linha);box-shadow:inset 0 -3px 0 var(--linha)}
+.t-g{padding:16px 24px;font-size:16px}
+.t-p{padding:8px 12px;font-size:13px}
+.t-cheia{width:100%}
+.secao{padding:72px 120px;border-bottom:1px solid var(--linha)}
+.rot{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza);margin-bottom:18px}
+h1{font-size:64px;line-height:1.02;font-weight:600;letter-spacing:-2px}
+h2{font-size:40px;line-height:1.08;font-weight:600;letter-spacing:-1.2px}
+h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
+.lead{font-size:19px;color:#3A3C42;max-width:560px}
+.hero{display:flex;gap:64px;align-items:center;padding:80px 120px 72px}
+.hero-txt{flex:1;display:flex;flex-direction:column;gap:22px}
+.botoes{display:flex;gap:12px;flex-wrap:wrap}
+.term{width:500px;background:var(--papel);border:1px solid var(--linha);font-family:"JetBrains Mono",monospace;font-size:13px}
+.term-top{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--linha);color:var(--cinza);font-size:12px}
+.term-corpo{padding:18px 16px;display:flex;flex-direction:column;gap:7px}
+.term-l{display:flex}
+.term-l .n{width:28px;color:#A3A49F}
+.term-l .a{width:150px;color:var(--cinza)}
+.term-l .b{width:150px}
+.term-l .c{flex:1}
+.cmd{color:var(--tinta)} .cmd b{color:var(--verde);font-weight:500}
+.duo{display:flex;gap:24px}
+.prod{flex:1;background:var(--papel);border:1px solid var(--linha);display:flex;flex-direction:column}
+.prod-img{height:300px;background:var(--alu2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--linha);position:relative}
+.prod-img .tag{position:absolute;left:16px;top:14px}
+.etq{font-family:"JetBrains Mono",monospace;font-size:11px;padding:3px 8px;border:1px solid var(--linha);background:var(--papel);color:var(--cinza)}
+.prod-corpo{padding:28px;display:flex;flex-direction:column;gap:18px}
+.marca{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza)}
+.specs{display:flex;flex-direction:column;font-family:"JetBrains Mono",monospace;font-size:13px}
+.specs div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--linha2)}
+.specs span:first-child{color:var(--cinza)}
+.precos{display:flex;flex-direction:column;gap:2px}
+.preco{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:32px;letter-spacing:-1px}
+.pix{font-size:15px;color:var(--verde);font-weight:600}
+.parc{font-size:14px;color:var(--cinza)}
+.nb{display:flex;flex-direction:column;align-items:center}
+.nb-tela{width:300px;height:192px;border-radius:12px 12px 3px 3px;padding:9px;background:#141518;border:2px solid #3A3B40}
+.nb-tela .in{width:100%;height:100%;padding:14px 12px;display:flex;flex-direction:column;gap:7px;background:#1F232B}
+.gx .nb-tela{background:#2B2E33;border-color:#5B5F66;border-radius:8px 8px 2px 2px;padding:6px}
+.gx .nb-tela .in{background:#16204A}
+.ln{height:7px;border-radius:2px}
+.nb-base{width:364px;height:13px;border-radius:2px 2px 11px 11px;background:#3B3C41;display:flex;justify-content:center}
+.gx .nb-base{background:#6E7178;border-radius:2px 2px 8px 8px}
+.nb.g .nb-tela{width:420px;height:268px;padding:12px}.nb.g .nb-base{width:510px;height:17px}.nb.g .in{padding:20px 18px;gap:10px}.nb.g .ln{height:9px}
+.nb.p .nb-tela{width:190px;height:122px;padding:6px}.nb.p .nb-base{width:232px;height:9px}.nb.p .in{padding:9px 8px;gap:5px}.nb.p .ln{height:5px}
+.nb-base i{width:64px;height:4px;background:rgba(0,0,0,.35);border-radius:0 0 4px 4px}
+.ilus{font-family:"JetBrains Mono",monospace;font-size:10px;color:#8A8B86;position:absolute;right:14px;bottom:10px}
+.casos{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);background:var(--papel)}
+.caso{padding:26px 24px;border-right:1px solid var(--linha);display:flex;flex-direction:column;gap:12px}
+.caso:last-child{border-right:none}
+.caso .resp{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--verde);font-weight:500;margin-top:auto}
+.caso p{font-size:15px;color:#3A3C42}
+.lista5{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--tinta)}
+.l5{padding:20px 20px 0 0;display:flex;flex-direction:column;gap:8px}
+.l5 .num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza)}
+.l5 b{font-size:17px;font-weight:600;line-height:1.25}
+.l5 span{font-size:14px;color:var(--cinza)}
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.passo{border-top:3px solid var(--tinta);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.passo .num{font-family:"JetBrains Mono",monospace;font-size:13px}
+.passo p{font-size:15px;color:#3A3C42}
+.faq{display:flex;flex-direction:column;border-top:1px solid var(--linha)}
+.faq-i{padding:20px 0;border-bottom:1px solid var(--linha);display:flex;gap:24px}
+.faq-i .q{width:420px;font-weight:600;font-size:17px}
+.faq-i .r{flex:1;color:#3A3C42;font-size:16px}
+.faq-i .mais{font-family:"JetBrains Mono",monospace;color:var(--cinza)}
+.rod{background:var(--grafite);color:#D9D8D2;padding:48px 120px;display:flex;justify-content:space-between;gap:40px;font-size:14px}
+.rod .logo{color:#fff}
+.rod-col{display:flex;flex-direction:column;gap:8px}
+.rod-col b{color:#fff;font-weight:600}
+.rod .mini{font-family:"JetBrains Mono",monospace;font-size:12px;color:#9C9D98}
+.mob .rod{padding:32px 16px;flex-direction:column;gap:20px}
+.migalha{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza);padding:22px 120px 0}
+.migalha b{color:var(--tinta);font-weight:500}
+.pdp{display:flex;gap:56px;padding:28px 120px 64px}
+.galeria{width:640px;display:flex;flex-direction:column;gap:12px}
+.galeria .grande{height:470px;background:var(--alu2);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;position:relative}
+.miniaturas{display:flex;gap:12px}
+.miniaturas div{flex:1;height:92px;background:var(--alu2);border:1px solid var(--linha);font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--cinza);display:flex;align-items:flex-end;padding:8px}
+.miniaturas div.sel{border:2px solid var(--tinta)}
+.compra{flex:1;display:flex;flex-direction:column;gap:22px}
+.caixa{background:var(--papel);border:1px solid var(--linha);padding:24px;display:flex;flex-direction:column;gap:18px}
+.qtd{display:flex;align-items:center;gap:14px;font-size:15px}
+.stepper{display:flex;border:1px solid var(--linha);background:var(--branco)}
+.stepper span{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:16px}
+.stepper span:nth-child(2){border-left:1px solid var(--linha);border-right:1px solid var(--linha);font-weight:600}
+.estoque{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--verde)}
+.garantias{display:flex;flex-direction:column;gap:8px;font-size:14px;color:#3A3C42}
+.garantias div::before{content:"\2713  ";color:var(--verde);font-weight:700}
+.duas-col{display:flex;gap:56px;padding:64px 120px;border-top:1px solid var(--linha)}
+.ficha{flex:1}
+.ficha table{width:100%;border-collapse:collapse;font-size:15px}
+.ficha td{padding:12px 0;border-bottom:1px solid var(--linha2);vertical-align:top}
+.ficha td:first-child{width:170px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza);padding-top:14px}
+.pratica{width:500px;display:flex;flex-direction:column;gap:14px}
+.pr-i{background:var(--papel);border:1px solid var(--linha);padding:18px 20px;display:flex;gap:16px}
+.pr-i .ok{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--verde);font-weight:600;width:28px}
+.pr-i p{font-size:15px}
+.pr-i p b{font-weight:600}
+.diff{width:100%;border-collapse:collapse;background:var(--papel);border:1px solid var(--linha);font-size:15px}
+.diff th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:500;padding:14px 16px;border-bottom:1px solid var(--linha);background:var(--alu2)}
+.diff td{padding:13px 16px;border-bottom:1px solid var(--linha2);vertical-align:top}
+.diff td.n{width:48px;font-family:"JetBrains Mono",monospace;font-size:12px;color:#A3A49F;text-align:right;border-right:1px solid var(--linha2);padding-right:12px}
+.diff td.at{width:190px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza)}
+.diff td.mais{background:var(--add)}
+.diff td.mais::before{content:"+ ";font-family:"JetBrains Mono",monospace;color:var(--verde);font-weight:700}
+.diff tr.fim td{border-bottom:none;padding:20px 16px}
+.passos-pedido{display:flex;gap:0;font-family:"JetBrains Mono",monospace;font-size:13px;border:1px solid var(--linha);background:var(--papel);width:fit-content}
+.passos-pedido div{padding:10px 18px;border-right:1px solid var(--linha);color:var(--cinza)}
+.passos-pedido div:last-child{border-right:none}
+.passos-pedido div.at{background:var(--tinta);color:#fff}
+.checkout{display:flex;gap:40px;padding:36px 120px 72px;align-items:flex-start}
+.form{flex:1;display:flex;flex-direction:column;gap:30px}
+.grupo{display:flex;flex-direction:column;gap:16px}
+.linha-campos{display:flex;gap:16px}
+.campo{flex:1;display:flex;flex-direction:column;gap:6px}
+.campo label{font-size:14px;font-weight:600}
+.campo label small{font-weight:400;color:var(--cinza)}
+.inp{height:46px;background:var(--branco);border:1px solid var(--linha);padding:0 14px;display:flex;align-items:center;font-size:15px}
+.inp.ph{color:#9A9B96}
+.inp.foco{border:2px solid var(--tinta)}
+.inp.erro{border:2px solid var(--vermelho)}
+.msg-erro{font-size:13px;color:var(--vermelho);font-family:"JetBrains Mono",monospace}
+.seg{display:flex;border:1px solid var(--linha);width:fit-content;background:var(--branco)}
+.seg span{padding:10px 18px;font-family:"JetBrains Mono",monospace;font-size:13px}
+.seg span.sel{background:var(--tinta);color:#fff}
+.opcoes{display:flex;gap:16px}
+.opc{flex:1;border:1px solid var(--linha);background:var(--papel);padding:18px;display:flex;gap:14px}
+.opc.sel{border:2px solid var(--tinta);background:var(--branco)}
+.radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--cinza);margin-top:3px;display:flex;align-items:center;justify-content:center}
+.opc.sel .radio{border-color:var(--tinta)}
+.opc.sel .radio i{width:8px;height:8px;border-radius:50%;background:var(--tinta)}
+.opc b{display:block;font-size:16px}
+.opc span{font-size:14px;color:var(--cinza)}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.cx{width:20px;height:20px;border:2px solid var(--tinta);background:var(--tinta);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.aviso{font-size:14px;color:#3A3C42;background:var(--papel);border-left:3px solid var(--ambar);padding:12px 16px}
+.resumo{width:420px;background:var(--papel);border:1px solid var(--linha);display:flex;flex-direction:column}
+.resumo-top{padding:20px 24px;border-bottom:1px solid var(--linha)}
+.resumo-item{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid var(--linha)}
+.mini-nb{width:92px;height:70px;background:var(--alu2);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center}
+.mini-nb div{width:56px;height:36px;background:#1F232B;border:3px solid #141518;border-radius:4px 4px 1px 1px}
+.contas{padding:20px 24px;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.contas div{display:flex;justify-content:space-between}
+.contas .tot{border-top:1px solid var(--linha);padding-top:14px;margin-top:4px;font-weight:600;font-size:18px}
+.contas .tot span:last-child{font-family:"JetBrains Mono",monospace}
+.ok-pg{display:flex;gap:56px;padding:64px 120px 72px;align-items:flex-start}
+.codigo{font-family:"JetBrains Mono",monospace;font-size:44px;font-weight:600;letter-spacing:-1px;background:var(--papel);border:1px solid var(--linha);padding:14px 22px;width:fit-content}
+.chat{width:470px;background:#EDE7DD;border:1px solid var(--linha);display:flex;flex-direction:column}
+.chat-top{background:var(--grafite);color:#fff;padding:14px 18px;display:flex;gap:12px;align-items:center}
+.av{width:36px;height:36px;background:var(--ambar);color:var(--tinta);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;border-radius:4px}
+.chat-top small{display:block;color:#B9BAB5;font-size:12px}
+.chat-corpo{padding:20px 18px;display:flex;flex-direction:column;gap:10px;min-height:260px}
+.bolha{background:#D7F0C9;padding:12px 14px;max-width:360px;align-self:flex-end;font-size:14px;line-height:1.5;border-radius:6px 0 6px 6px}
+.bolha .hora{display:block;text-align:right;font-size:11px;color:#6C7A63;margin-top:4px}
+.dica{align-self:center;font-family:"JetBrains Mono",monospace;font-size:11px;background:#FBF6E8;color:#6A6152;padding:5px 10px}
+.timeline{display:flex;flex-direction:column;gap:14px}
+.tl{display:flex;gap:16px}
+.tl>div:last-child{flex:1}
+.tl .pt{width:16px;height:16px;border:2px solid var(--linha);background:var(--alu);margin-top:3px;flex-shrink:0}
+.tl.feito .pt{background:var(--tinta);border-color:var(--tinta)}
+.tl.agora .pt{background:var(--ambar);border-color:var(--tinta)}
+.tl b{font-size:16px;display:block}
+.tl span{font-size:14px;color:var(--cinza)}
+.tl .q{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza)}
+.consulta{display:flex;gap:16px;align-items:flex-end;background:var(--papel);border:1px solid var(--linha);padding:24px}
+.adm{display:flex;min-height:900px}
+.lado{width:240px;background:var(--grafite);color:#D9D8D2;padding:24px 0;display:flex;flex-direction:column;gap:4px}
+.lado .logo{color:#fff;font-size:17px;padding:0 20px 24px}
+.lado .caret{height:19px;width:9px}
+.lado a{padding:11px 20px;color:#D9D8D2;text-decoration:none;font-size:15px;display:flex;justify-content:space-between}
+.lado a.ativo{background:#34363C;color:#fff;border-left:3px solid var(--ambar);padding-left:17px}
+.lado a span{font-family:"JetBrains Mono",monospace;font-size:12px;color:#9C9D98}
+.lado .sair{margin-top:auto}
+.adm-main{flex:1;padding:32px 40px;display:flex;flex-direction:column;gap:24px}
+.adm-top{display:flex;justify-content:space-between;align-items:center}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);background:var(--papel)}
+.kpi{padding:18px 20px;border-right:1px solid var(--linha);display:flex;flex-direction:column;gap:4px}
+.kpi:last-child{border-right:none}
+.kpi span{font-size:13px;color:var(--cinza)}
+.kpi b{font-family:"JetBrains Mono",monospace;font-size:24px;font-weight:600;letter-spacing:-.5px}
+.abas{display:flex;border-bottom:1px solid var(--linha);font-size:14px}
+.abas span{padding:10px 14px;color:var(--cinza)}
+.abas span i{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12px;margin-left:4px}
+.abas span.sel{color:var(--tinta);font-weight:600;border-bottom:2px solid var(--tinta)}
+.adm-corpo{display:flex;gap:24px;align-items:flex-start}
+.tab{flex:1;border-collapse:collapse;background:var(--papel);border:1px solid var(--linha);font-size:14px}
+.tab th{text-align:left;font-size:12px;font-family:"JetBrains Mono",monospace;font-weight:500;color:var(--cinza);padding:11px 12px;border-bottom:1px solid var(--linha);background:var(--alu2)}
+.tab td{padding:13px 10px;border-bottom:1px solid var(--linha2)}
+.tab td.m,.tab td.nw{white-space:nowrap}
+.tab td.m{font-family:"JetBrains Mono",monospace;font-size:13px}
+.tab tr.sel td{background:#FFFFFF}
+.tab tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--ambar)}
+.st{font-family:"JetBrains Mono",monospace;font-size:11px;padding:3px 7px;border:1px solid;white-space:nowrap}
+.st-at{background:var(--ambar2);border-color:#E1C27A;color:#6B4D07}
+.st-pg{background:var(--azul2);border-color:#B9C6EC;color:#23409A}
+.st-pago{background:var(--add);border-color:#A9D3B4;color:#165C34}
+.st-env{background:#E9E4F4;border-color:#C7BBE2;color:#4A3A7A}
+.st-ent{background:#E4E4E0;border-color:#C2C1BB;color:#3C3D41}
+.st-can{background:var(--vermelho2);border-color:#E3B6AC;color:#7E2E20}
+.detalhe{width:350px;background:var(--branco);border:1px solid var(--linha);display:flex;flex-direction:column}
+.det-sec{padding:18px 20px;border-bottom:1px solid var(--linha);display:flex;flex-direction:column;gap:8px;font-size:14px}
+.det-sec .rotm{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza)}
+.det-acoes{padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.login{flex:1;display:flex;align-items:center;justify-content:center;padding:120px 0 160px}
+.login-caixa{width:420px;background:var(--papel);border:1px solid var(--linha);padding:36px;display:flex;flex-direction:column;gap:20px}
+.prods-adm{display:flex;flex-direction:column;gap:20px}
+.pa{background:var(--papel);border:1px solid var(--linha);display:flex}
+.pa-img{width:280px;background:var(--alu2);border-right:1px solid var(--linha);display:flex;align-items:center;justify-content:center}
+.pa-tit{display:flex;justify-content:space-between;gap:24px}
+.pa-tit span{display:block;margin-top:4px}
+.pa-corpo{flex:1;padding:24px;display:flex;flex-direction:column;gap:18px}
+.pa-campos{display:flex;gap:16px;align-items:flex-end}
+.toggle{width:44px;height:24px;background:var(--verde);border-radius:12px;display:flex;justify-content:flex-end;padding:3px}
+.toggle i{width:18px;height:18px;background:#fff;border-radius:50%}
+.mob .hero{flex-direction:column;padding:32px 16px 28px;gap:24px;align-items:stretch}
+.mob h1{font-size:38px;letter-spacing:-1.2px}
+.mob .lead{font-size:16px}
+.mob .secao{padding:32px 16px}
+.mob .duo{flex-direction:column;gap:16px}
+.mob .prod-img{height:190px}
+.mob .prod-corpo{padding:20px;gap:14px}
+.mob .preco{font-size:28px}
+.barra-mob{position:relative;background:var(--papel);border-top:1px solid var(--linha);padding:12px 16px;display:flex;gap:10px}
+.chat-mob{flex:1;background:#EDE7DD;display:flex;flex-direction:column}
+.mob .chat-top{padding:12px 14px}
+.compor{background:var(--branco);margin:0 10px 10px;border:1px solid var(--linha);padding:12px 14px;font-size:14px;line-height:1.5;display:flex;gap:10px;align-items:flex-end}
+.compor .txt{flex:1}
+.enviar{width:42px;height:42px;border-radius:50%;background:var(--verde);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.estados{display:flex;gap:32px;padding:48px 120px 64px;align-items:flex-start}
+.estado{flex:1;display:flex;flex-direction:column;gap:14px}
+.esg{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--tinta);color:#fff;padding:4px 9px;width:fit-content}
+</style></head><body>
+<section class="tela" id="tela-01" data-nome="01 Home"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-1">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-2" class="ativo">Notebooks</a><a id="go-04-3">Comparar</a><a id="go-07-4">Acompanhar pedido</a><a id="go-01-5">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-6">WhatsApp</a></div></header>
+<div class="hero">
+  <div class="hero-txt">
+    <span class="rot">// dois notebooks. nenhum a mais.</span>
+    <h1>Dois notebooks.<br>Os dois certos para programar.</h1>
+    <p class="lead">MacBook Pro ou Galaxy Book6 Pro. A gente explica a diferença na prática, tira sua dúvida no WhatsApp e você fecha o pedido ali mesmo.</p>
+    <div class="botoes"><a class="tecla t-escura t-g" id="go-01-7">Ver os dois</a>
+    <a class="tecla t-verde t-g" id="go-12-8">Falar no WhatsApp <span class="k">enter</span></a></div>
+  </div>
+  <div class="term">
+    <div class="term-top"><span>primecoding --comparar</span><span>2 resultados</span></div>
+    <div class="term-corpo">
+      <div class="term-l cmd"><span class="n">$</span><span class="c">primecoding <b>--comparar</b> mac galaxy</span></div>
+      <div class="term-l"><span class="n">1</span><span class="a">sistema</span><span class="b">macOS</span><span class="c">Windows 11</span></div>
+      <div class="term-l"><span class="n">2</span><span class="a">memória</span><span class="b">24 GB</span><span class="c">32 GB</span></div>
+      <div class="term-l"><span class="n">3</span><span class="a">ssd</span><span class="b">1 TB</span><span class="c">1 TB</span></div>
+      <div class="term-l"><span class="n">4</span><span class="a">xcode (iOS)</span><span class="b">sim</span><span class="c">não</span></div>
+      <div class="term-l"><span class="n">5</span><span class="a">wsl / .net</span><span class="b">.net sim</span><span class="c">sim</span></div>
+      <div class="term-l"><span class="n">6</span><span class="a">preço</span><span class="b">R$ 30.999</span><span class="c">R$ 13.999</span></div>
+      <div class="term-l"><span class="n">7</span><span class="a">no pix</span><span class="b">R$ 27.899</span><span class="c">R$ 12.599</span></div>
+    </div>
+  </div>
+</div>
+<div class="secao">
+  <p class="rot">// 01 · os dois notebooks</p>
+  <div class="duo"><article class="prod"><div class="prod-img"><span class="etq tag">macbook-pro-14</span><div class="nb"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Apple · macOS</span><h3>MacBook Pro 14 (M5 Pro)</h3><p class="cinza" style="font-size:15px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</p><div class="specs"><div><span>chip</span><span>M5 Pro · CPU 15 núcleos</span></div><div><span>memória</span><span>24 GB unificada</span></div><div><span>ssd</span><span>1 TB</span></div><div><span>tela</span><span>14,2" Liquid Retina XDR</span></div><div><span>sistema</span><span>macOS</span></div></div><div class="precos"><span class="preco">R$ 30.999,00</span><span class="pix">R$ 27.899,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 2.583,25 sem juros</span></div><div class="botoes"><a class="tecla t-clara" id="go-02-9">Ver detalhes</a><a class="tecla t-verde" id="go-05-10">Pedir pelo WhatsApp <span class="k">enter</span></a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">galaxy-book6-pro-14</span><div class="nb gx"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Samsung · Windows 11</span><h3>Galaxy Book6 Pro 14</h3><p class="cinza" style="font-size:15px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</p><div class="specs"><div><span>cpu</span><span>Core Ultra X7 358H · 16 núcleos</span></div><div><span>memória</span><span>32 GB LPDDR5X</span></div><div><span>ssd</span><span>1 TB</span></div><div><span>tela</span><span>14" AMOLED 120 Hz touch</span></div><div><span>sistema</span><span>Windows 11 Home</span></div></div><div class="precos"><span class="preco">R$ 13.999,00</span><span class="pix">R$ 12.599,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 1.166,58 sem juros</span></div><div class="botoes"><a class="tecla t-clara" id="go-03-11">Ver detalhes</a><a class="tecla t-verde" id="go-05-12">Pedir pelo WhatsApp <span class="k">enter</span></a></div></div></article></div>
+</div>
+<div class="secao">
+  <p class="rot">// 02 · qual é o seu caso?</p>
+  <h2 style="margin-bottom:28px">Escolha pelo que você faz, não pela ficha.</h2>
+  <div class="casos">
+    <div class="caso"><span class="etq" style="width:fit-content">ios · macos</span><h3>Apps para iPhone e Mac</h3><p>O Xcode e o simulador de iPhone só rodam no macOS.</p><a class="resp" id="go-02-13">→ MacBook Pro 14</a></div>
+    <div class="caso"><span class="etq" style="width:fit-content">windows · .net · wsl</span><h3>Ecossistema Microsoft</h3><p>Visual Studio e SQL Server nativos, e Linux pelo WSL2.</p><a class="resp" id="go-03-14">→ Galaxy Book6 Pro 14</a></div>
+    <div class="caso"><span class="etq" style="width:fit-content">back-end · docker</span><h3>Containers e APIs</h3><p>Os dois rodam. O Galaxy tem 32 GB e custa menos da metade; o Mac vai mais longe na bateria.</p><a class="resp" id="go-04-15">→ comparar os dois</a></div>
+    <div class="caso"><span class="etq" style="width:fit-content">faculdade de ti</span><h3>Estudar e levar todo dia</h3><p>1,24 kg na mochila e cabe no parcelamento em 12x.</p><a class="resp" id="go-03-16">→ Galaxy Book6 Pro 14</a></div>
+  </div>
+</div>
+<div class="secao">
+  <p class="rot">// 03 · por que comprar aqui</p>
+  <div class="lista5">
+    <div class="l5"><span class="num">01</span><b>Nota fiscal no CPF ou no CNPJ</b><span>Você escolhe no pedido.</span></div>
+    <div class="l5"><span class="num">02</span><b>Garantia oficial de 1 ano</b><span>Apple Brasil ou Samsung Brasil.</span></div>
+    <div class="l5"><span class="num">03</span><b>Novo e lacrado</b><span>Teclado ABNT2, com ç.</span></div>
+    <div class="l5"><span class="num">04</span><b>Frete grátis com seguro</b><span>Envio em até 2 dias úteis após o pagamento.</span></div>
+    <div class="l5"><span class="num">05</span><b>7 dias para desistir</b><span>Contados do recebimento.</span></div>
+  </div>
+</div>
+<div class="secao">
+  <p class="rot">// 04 · como funciona o pedido</p>
+  <div class="passos">
+    <div class="passo"><span class="num">1</span><h3>Escolha o notebook</h3><p>Compare os dois e decida. Ficou dúvida, chama no WhatsApp.</p></div>
+    <div class="passo"><span class="num">2</span><h3>Preencha um formulário curto</h3><p>Nome, WhatsApp, CPF ou CNPJ e endereço. Sem criar conta.</p></div>
+    <div class="passo"><span class="num">3</span><h3>O WhatsApp abre com o pedido</h3><p>A mensagem já vem pronta com o código do pedido. É só enviar.</p></div>
+    <div class="passo"><span class="num">4</span><h3>Pague e receba o rastreio</h3><p>Chave PIX ou link do cartão na conversa. O rastreio chega por lá.</p></div>
+  </div>
+</div>
+<div class="secao">
+  <p class="rot">// 05 · dúvidas</p>
+  <div class="faq">
+    <div class="faq-i"><span class="q">Os notebooks são novos e com nota fiscal?</span><span class="r">Sim. Novos, lacrados, com nota no seu CPF ou CNPJ e garantia oficial de 1 ano no Brasil.</span><span class="mais">-</span></div>
+    <div class="faq-i"><span class="q">Como eu pago?</span><span class="r">Pela conversa no WhatsApp: chave PIX com 10% de desconto ou link do cartão em até 12x sem juros.</span><span class="mais">-</span></div>
+    <div class="faq-i"><span class="q">Preciso criar conta?</span><span class="r">Não. Seu pedido fica ligado ao número de WhatsApp que você informar.</span><span class="mais">-</span></div>
+    <div class="faq-i"><span class="q">E se eu me arrepender?</span><span class="r">Você tem 7 dias, contados do recebimento, para desistir da compra.</span><span class="mais">-</span></div>
+  </div>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-02" data-nome="02 Produto - MacBook Pro 14"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-17">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-18" class="ativo">Notebooks</a><a id="go-04-19">Comparar</a><a id="go-07-20">Acompanhar pedido</a><a id="go-01-21">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-22">WhatsApp</a></div></header>
+<div class="migalha"><a id="go-01-23">notebooks</a> / <b>macbook-pro-14</b></div>
+<div class="pdp">
+  <div class="galeria">
+    <div class="grande"><div class="nb g"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div>
+    <div class="miniaturas"><div class="sel">aberto</div><div>fechado</div><div>lateral</div><div>teclado</div></div>
+  </div>
+  <div class="compra">
+    <span class="marca">Apple · macOS</span>
+    <h2>MacBook Pro 14 (M5 Pro)</h2>
+    <p class="lead" style="font-size:17px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</p>
+    <div class="caixa">
+      <div class="precos"><span class="preco" style="font-size:38px">R$ 30.999,00</span><span class="pix">R$ 27.899,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 2.583,25 sem juros</span></div>
+      <div class="qtd"><span>Quantidade</span><div class="stepper"><span>-</span><span>1</span><span>+</span></div><span class="cinza mono" style="font-size:12px">máx. 3 por pedido</span></div>
+      <span class="estoque">● em estoque · 5 unidades</span>
+      <a class="tecla t-verde t-g t-cheia" id="go-05-24">Pedir pelo WhatsApp <span class="k">enter</span></a>
+      <a class="tecla t-clara t-cheia" id="go-12-25">Tirar uma dúvida antes</a>
+    </div>
+    <div class="garantias"><div>Nota fiscal no CPF ou no CNPJ</div><div>Garantia de 1 ano Apple Brasil</div><div>Frete grátis com seguro · envio em até 2 dias úteis</div></div>
+  </div>
+</div>
+<div class="duas-col">
+  <div class="ficha"><p class="rot">// ficha técnica</p><table><tr><td>processador</td><td>Apple M5 Pro, CPU de 15 núcleos</td></tr><tr><td>gráfico</td><td>GPU de 16 núcleos integrada</td></tr><tr><td>memória</td><td>24 GB unificada</td></tr><tr><td>armazenamento</td><td>SSD de 1 TB</td></tr><tr><td>tela</td><td>Liquid Retina XDR de 14,2 polegadas</td></tr><tr><td>portas</td><td>3 Thunderbolt 5, HDMI, leitor SDXC, MagSafe 3 e fone 3,5 mm</td></tr><tr><td>conexão</td><td>Wi-Fi 7 e Bluetooth 6</td></tr><tr><td>sistema</td><td>macOS</td></tr><tr><td>teclado</td><td>ABNT2 (português do Brasil)</td></tr><tr><td>cor</td><td>Preto-espacial</td></tr><tr><td>garantia</td><td>1 ano, Apple Brasil</td></tr><tr><td>na caixa</td><td>MacBook Pro, cabo USB-C para MagSafe 3 e adaptador de energia USB-C</td></tr></table></div>
+  <div class="pratica"><p class="rot">// na prática, para quem programa</p><div class="pr-i"><span class="ok">ok</span><p><b>Xcode e simulador de iPhone.</b> Só rodam no macOS: para app iOS, é este.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Docker, banco local, IDE e navegador juntos.</b> 24 GB de memória unificada para tudo aberto ao mesmo tempo.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Monitor externo sem adaptador.</b> HDMI e 3 portas Thunderbolt 5.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Teclado ABNT2.</b> Com ç e acentos no lugar de sempre.</p></div>
+    <a class="tecla t-clara" style="width:fit-content" id="go-04-26">Comparar com o Galaxy Book6 Pro</a></div>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-03" data-nome="03 Produto - Galaxy Book6 Pro 14"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-27">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-28" class="ativo">Notebooks</a><a id="go-04-29">Comparar</a><a id="go-07-30">Acompanhar pedido</a><a id="go-01-31">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-32">WhatsApp</a></div></header>
+<div class="migalha"><a id="go-01-33">notebooks</a> / <b>galaxy-book6-pro-14</b></div>
+<div class="pdp">
+  <div class="galeria">
+    <div class="grande"><div class="nb gx g"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div>
+    <div class="miniaturas"><div class="sel">aberto</div><div>fechado</div><div>lateral</div><div>teclado</div></div>
+  </div>
+  <div class="compra">
+    <span class="marca">Samsung · Windows 11</span>
+    <h2>Galaxy Book6 Pro 14</h2>
+    <p class="lead" style="font-size:17px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</p>
+    <div class="caixa">
+      <div class="precos"><span class="preco" style="font-size:38px">R$ 13.999,00</span><span class="pix">R$ 12.599,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 1.166,58 sem juros</span></div>
+      <div class="qtd"><span>Quantidade</span><div class="stepper"><span>-</span><span>1</span><span>+</span></div><span class="cinza mono" style="font-size:12px">máx. 3 por pedido</span></div>
+      <span class="estoque">● em estoque · 8 unidades</span>
+      <a class="tecla t-verde t-g t-cheia" id="go-05-34">Pedir pelo WhatsApp <span class="k">enter</span></a>
+      <a class="tecla t-clara t-cheia" id="go-12-35">Tirar uma dúvida antes</a>
+    </div>
+    <div class="garantias"><div>Nota fiscal no CPF ou no CNPJ</div><div>Garantia de 1 ano Samsung Brasil</div><div>Frete grátis com seguro · envio em até 2 dias úteis</div></div>
+  </div>
+</div>
+<div class="duas-col">
+  <div class="ficha"><p class="rot">// ficha técnica</p><table><tr><td>processador</td><td>Intel Core Ultra X7 358H, 16 núcleos, até 4,8 GHz</td></tr><tr><td>gráfico</td><td>Intel Arc B390 integrada</td></tr><tr><td>memória</td><td>32 GB LPDDR5X</td></tr><tr><td>armazenamento</td><td>SSD de 1 TB</td></tr><tr><td>tela</td><td>AMOLED de 14 polegadas, 2880 x 1800, 120 Hz, touch</td></tr><tr><td>portas</td><td>2 Thunderbolt 4, USB-A, HDMI 2.1 e fone 3,5 mm</td></tr><tr><td>conexão</td><td>Wi-Fi 7 e Bluetooth 5.4</td></tr><tr><td>sistema</td><td>Windows 11 Home</td></tr><tr><td>teclado</td><td>ABNT2 (português do Brasil)</td></tr><tr><td>cor</td><td>Grafite</td></tr><tr><td>peso</td><td>1,24 kg</td></tr><tr><td>garantia</td><td>1 ano, Samsung Brasil</td></tr></table></div>
+  <div class="pratica"><p class="rot">// na prática, para quem programa</p><div class="pr-i"><span class="ok">ok</span><p><b>Windows 11 com WSL2.</b> Linux dentro do Windows para Docker e scripts.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Visual Studio, .NET e SQL Server.</b> Rodam nativos, sem máquina virtual.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>32 GB de RAM.</b> Máquinas virtuais e containers com folga.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>1,24 kg e tela AMOLED de 120 Hz.</b> Dá para levar para a faculdade todo dia.</p></div>
+    <a class="tecla t-clara" style="width:fit-content" id="go-04-36">Comparar com o MacBook Pro</a></div>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-04" data-nome="04 Comparar"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-37">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-38">Notebooks</a><a id="go-04-39" class="ativo">Comparar</a><a id="go-07-40">Acompanhar pedido</a><a id="go-01-41">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-42">WhatsApp</a></div></header>
+<div class="secao" style="border-bottom:none;padding-bottom:28px">
+  <p class="rot">$ diff macbook-pro-14 galaxy-book6-pro-14</p>
+  <h2>Os dois, linha a linha.</h2>
+  <p class="lead" style="margin-top:12px">Em verde, onde cada um leva vantagem. O que não está marcado é empate ou depende do seu uso.</p>
+</div>
+<div style="padding:0 120px 72px">
+<table class="diff">
+  <tr><th></th><th>atributo</th><th>macbook-pro-14</th><th>galaxy-book6-pro-14</th></tr>
+  <tr><td class="n">1</td><td class="at">sistema</td><td>macOS</td><td>Windows 11 Home</td></tr><tr><td class="n">2</td><td class="at">processador</td><td>Apple M5 Pro, CPU de 15 núcleos</td><td>Intel Core Ultra X7 358H, 16 núcleos</td></tr><tr><td class="n">3</td><td class="at">gráfico</td><td>GPU de 16 núcleos</td><td>Intel Arc B390</td></tr><tr><td class="n">4</td><td class="at">memória</td><td>24 GB unificada</td><td class=mais>32 GB LPDDR5X</td></tr><tr><td class="n">5</td><td class="at">armazenamento</td><td>SSD de 1 TB</td><td>SSD de 1 TB</td></tr><tr><td class="n">6</td><td class="at">tela</td><td>Liquid Retina XDR 14,2"</td><td>AMOLED 14", 120 Hz, touch</td></tr><tr><td class="n">7</td><td class="at">portas</td><td class=mais>3 Thunderbolt 5, HDMI, SDXC, MagSafe 3</td><td>2 Thunderbolt 4, USB-A, HDMI 2.1</td></tr><tr><td class="n">8</td><td class="at">xcode (apps iOS)</td><td class=mais>Sim</td><td>Não roda</td></tr><tr><td class="n">9</td><td class="at">wsl2 / visual studio</td><td>Não (.NET roda pelo VS Code)</td><td class=mais>Sim, nativo</td></tr><tr><td class="n">10</td><td class="at">peso</td><td>-</td><td>1,24 kg</td></tr><tr><td class="n">11</td><td class="at">teclado</td><td>ABNT2</td><td>ABNT2</td></tr><tr><td class="n">12</td><td class="at">preço</td><td>R$ 30.999,00</td><td class=mais>R$ 13.999,00</td></tr><tr><td class="n">13</td><td class="at">no pix (10% off)</td><td>R$ 27.899,10</td><td class=mais>R$ 12.599,10</td></tr><tr><td class="n">14</td><td class="at">12x sem juros</td><td>R$ 2.583,25</td><td class=mais>R$ 1.166,58</td></tr>
+  <tr class="fim"><td class="n"></td><td></td>
+    <td><div class="botoes"><a class="tecla t-verde" id="go-05-43">Pedir o MacBook <span class="k">enter</span></a><a class="tecla t-clara" id="go-02-44">Detalhes</a></div></td>
+    <td><div class="botoes"><a class="tecla t-verde" id="go-05-45">Pedir o Galaxy <span class="k">enter</span></a><a class="tecla t-clara" id="go-03-46">Detalhes</a></div></td></tr>
+</table>
+<div class="aviso" style="margin-top:24px">Ainda em dúvida? Conta no WhatsApp o que você programa e a gente diz qual dos dois atende melhor. <a id="go-12-47" style="font-weight:600;color:var(--tinta)">Chamar no WhatsApp →</a></div>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-05" data-nome="05 Finalizar pedido"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-48">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-49">Notebooks</a><a id="go-04-50">Comparar</a><a id="go-07-51">Acompanhar pedido</a><a id="go-01-52">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-53">WhatsApp</a></div></header>
+<div class="migalha"><a id="go-02-54">macbook-pro-14</a> / <b>finalizar pedido</b></div>
+<div class="checkout">
+  <div class="form">
+    <div class="passos-pedido"><div class="at">1 dados</div><div class="at">2 entrega</div><div class="at">3 pagamento</div><div>4 whatsapp</div></div>
+    <h2>Finalizar pedido</h2>
+    <div class="grupo"><p class="rot" style="margin:0">// seus dados · sem criar conta</p>
+      <div class="linha-campos"><div class="campo"><label>Nome completo</label><div class="inp">Lucas Martins</div></div><div class="campo"><label>WhatsApp com DDD</label><div class="inp">(11) 90000-0001</div></div></div>
+      <div class="linha-campos"><div class="campo"><label>E-mail <small>(opcional)</small></label><div class="inp ph">seuemail@exemplo.com</div></div>
+        <div class="campo"><label>Nota fiscal em</label><div class="seg"><span>CPF</span><span class="sel">CNPJ</span></div></div>
+        <div class="campo"><label>CNPJ</label><div class="inp foco">00.000.000/0001-00</div></div></div>
+    </div>
+    <div class="grupo"><p class="rot" style="margin:0">// entrega · frete grátis com seguro</p>
+      <div class="linha-campos"><div class="campo" style="flex:0 0 200px"><label>CEP</label><div class="inp">01000-000</div></div><div class="campo"><label>Rua</label><div class="inp">Rua Exemplo</div></div><div class="campo" style="flex:0 0 120px"><label>Número</label><div class="inp">100</div></div></div>
+      <div class="linha-campos"><div class="campo"><label>Complemento <small>(opcional)</small></label><div class="inp ph">Apto, bloco...</div></div><div class="campo"><label>Bairro</label><div class="inp">Centro</div></div><div class="campo"><label>Cidade</label><div class="inp">São Paulo</div></div><div class="campo" style="flex:0 0 90px"><label>UF</label><div class="inp">SP</div></div></div>
+    </div>
+    <div class="grupo"><p class="rot" style="margin:0">// pagamento</p>
+      <div class="opcoes">
+        <div class="opc sel"><div class="radio"><i></i></div><div><b>PIX · 10% de desconto</b><span>R$ 27.899,10 à vista</span></div></div>
+        <div class="opc"><div class="radio"></div><div><b>Cartão em até 12x sem juros</b><span>12x de R$ 2.583,25</span></div></div>
+      </div>
+      <div class="aviso">O site não cobra nada. Depois que você enviar, a chave PIX ou o link do cartão chegam pela conversa no WhatsApp.</div>
+    </div>
+    <div class="check"><div class="cx">✓</div><span>Li e aceito a política de privacidade. Meus dados são usados só para a venda, a nota fiscal e a entrega.</span></div>
+    <a class="tecla t-verde t-g" style="width:fit-content" id="go-06-55">Enviar pedido pelo WhatsApp <span class="k">enter</span></a>
+  </div>
+  <aside class="resumo">
+    <div class="resumo-top"><span class="rot" style="margin:0">// resumo do pedido</span></div>
+    <div class="resumo-item"><div class="mini-nb"><div></div></div><div style="flex:1;display:flex;flex-direction:column;gap:8px">
+      <b>MacBook Pro 14 (M5 Pro)</b><span class="cinza" style="font-size:13px">24 GB · 1 TB · preto-espacial</span>
+      <div class="stepper" style="width:fit-content"><span>-</span><span>1</span><span>+</span></div></div></div>
+    <div class="contas">
+      <div><span>Subtotal</span><span class="mono">R$ 30.999,00</span></div>
+      <div style="color:var(--verde)"><span>Desconto PIX (10%)</span><span class="mono">- R$ 3.099,90</span></div>
+      <div><span>Frete com seguro</span><span class="mono">grátis</span></div>
+      <div class="tot"><span>Total</span><span>R$ 27.899,10</span></div>
+      <span class="cinza" style="font-size:13px">Preço garantido por 48 horas depois do envio do pedido.</span>
+    </div>
+  </aside>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-06" data-nome="06 Pedido enviado"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-56">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-57">Notebooks</a><a id="go-04-58">Comparar</a><a id="go-07-59">Acompanhar pedido</a><a id="go-01-60">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-61">WhatsApp</a></div></header>
+<div class="ok-pg">
+  <div style="flex:1;display:flex;flex-direction:column;gap:22px">
+    <span class="rot" style="margin:0">// pedido registrado</span>
+    <div class="codigo">PC-2026-0042</div>
+    <h2>Pedido enviado.<br>Agora é no WhatsApp.</h2>
+    <p class="lead">Abrimos o WhatsApp da PrimeCoding com a mensagem do seu pedido. É só tocar em enviar que a gente responde com a chave PIX.</p>
+    <div class="botoes"><a class="tecla t-verde t-g" id="go-12-62">Abrir o WhatsApp de novo <span class="k">enter</span></a>
+      <a class="tecla t-clara t-g" id="go-07-63">Acompanhar pedido</a></div>
+    <div class="aviso">Preço garantido até 10/10/2026, 10:40. Guarde o código: com ele e o seu WhatsApp você acompanha o pedido aqui no site.</div>
+    <div class="timeline" style="margin-top:8px">
+      <div class="tl agora"><div class="pt"></div><div><b>Aguardando atendimento</b><span>agora · a loja confere o pedido</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Aguardando pagamento</b><span>você recebe a chave PIX ou o link do cartão</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Pago</b><span>a nota fiscal sai no CNPJ informado</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Enviado</b><span>em até 2 dias úteis, com rastreio no WhatsApp</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Entregue</b><span>7 dias para desistir, se precisar</span></div></div>
+    </div>
+  </div>
+  <div class="chat">
+    <div class="chat-top"><div class="av">pc_</div><div><b>PrimeCoding</b><small>conta comercial · responde em minutos</small></div></div>
+    <div class="chat-corpo">
+      <span class="dica">mensagem pronta, é só enviar</span>
+      <div class="bolha">Olá! Quero fechar o pedido <b>PC-2026-0042</b>.<br>1x MacBook Pro 14 (M5 Pro)<br>Pagamento: PIX (10% de desconto)<br>Total: R$ 27.899,10<br>Nota fiscal no CNPJ<br>Entrega: CEP 01000-000<span class="hora">10:40</span></div>
+    </div>
+  </div>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-07" data-nome="07 Acompanhar pedido"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-64">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-65">Notebooks</a><a id="go-04-66">Comparar</a><a id="go-07-67" class="ativo">Acompanhar pedido</a><a id="go-01-68">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-69">WhatsApp</a></div></header>
+<div class="secao" style="border-bottom:none;padding-bottom:24px">
+  <p class="rot">// acompanhar pedido</p>
+  <h2>Onde está meu notebook?</h2>
+  <p class="lead" style="margin-top:12px">Informe o código do pedido e o WhatsApp usado na compra. Os dois precisam ser do mesmo pedido.</p>
+</div>
+<div style="padding:0 120px;display:flex;flex-direction:column;gap:24px">
+  <div class="consulta"><div class="campo"><label>Código do pedido</label><div class="inp">PC-2026-0039</div></div><div class="campo"><label>WhatsApp do pedido</label><div class="inp">(11) 90000-0004</div></div>
+    <a class="tecla t-escura" style="height:46px">Consultar</a></div>
+  <div style="display:flex;gap:24px;align-items:flex-start;padding-bottom:72px">
+    <div class="caixa" style="flex:1">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:20px;font-weight:600">PC-2026-0039</span><span class="st st-env">ENVIADO</span></div>
+      <div class="timeline">
+        <div class="tl feito"><div class="pt"></div><div><b>Aguardando atendimento</b><span class="q">06/10/2026 · 14:12</span></div></div>
+        <div class="tl feito"><div class="pt"></div><div><b>Aguardando pagamento</b><span class="q">06/10/2026 · 14:30 · link do cartão enviado</span></div></div>
+        <div class="tl feito"><div class="pt"></div><div><b>Pago</b><span class="q">06/10/2026 · 15:02 · cartão em 10x</span></div></div>
+        <div class="tl agora"><div class="pt"></div><div><b>Enviado</b><span class="q">07/10/2026 · 09:15 · rastreio XX000000000BR</span></div></div>
+        <div class="tl"><div class="pt"></div><div><b>Entregue</b><span class="q">previsão: 10/10/2026</span></div></div>
+      </div>
+    </div>
+    <div class="caixa" style="width:420px">
+      <span class="rot" style="margin:0">// itens</span>
+      <div style="display:flex;justify-content:space-between"><span>1x MacBook Pro 14 (M5 Pro)</span><span class="mono">R$ 30.999,00</span></div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--linha);padding-top:12px;font-weight:600"><span>Total no cartão</span><span class="mono">R$ 30.999,00</span></div>
+      <span class="cinza" style="font-size:14px">Entrega: São Paulo/SP · frete grátis com seguro</span>
+      <a class="tecla t-clara" id="go-12-70">Falar sobre este pedido</a>
+    </div>
+  </div>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-08" data-nome="08 Admin - Login">
+<div class="login"><div class="login-caixa">
+  <span class="logo">prime_coding<span class="caret"></span></span>
+  <div><h3>Painel da loja</h3><p class="cinza" style="font-size:14px;margin-top:4px">Acesso restrito à equipe da PrimeCoding.</p></div>
+  <div class="campo"><label>E-mail</label><div class="inp">admin@primecoding.com.br</div></div>
+  <div class="campo"><label>Senha</label><div class="inp foco">••••••••••</div></div>
+  <a class="tecla t-escura t-cheia" id="go-09-71">Entrar</a>
+  <span class="cinza mono" style="font-size:12px">Esqueceu a senha? Fale com o responsável pelo sistema.</span>
+</div></div>
+</section><section class="tela" id="tela-09" data-nome="09 Admin - Pedidos"><div class="adm"><aside class="lado"><span class="logo">prime_coding<span class="caret"></span></span><a id="go-09-72" class=ativo>Pedidos<span>1 novo</span></a><a id="go-10-73">Produtos<span>2</span></a><a id="go-09-74">Vendas<span></span></a><a class="sair" id="go-08-75">Sair<span>admin</span></a></aside>
+<div class="adm-main">
+  <div class="adm-top"><div><span class="rot" style="margin:0">// painel</span><h2 style="font-size:32px">Pedidos</h2></div>
+    <div class="inp ph" style="width:320px">Buscar por código, nome ou WhatsApp</div></div>
+  <div class="kpis">
+    <div class="kpi"><span>Vendido em outubro (pagos)</span><b>R$ 96.695,40</b></div>
+    <div class="kpi"><span>Pedidos em outubro</span><b>6</b></div>
+    <div class="kpi"><span>Esperando atendimento</span><b style="color:#8A6408">1</b></div>
+    <div class="kpi"><span>Estoque · MacBook / Galaxy</span><b>5 / 8</b></div>
+  </div>
+  <p class="cinza mono" style="font-size:12px;margin-top:-12px">status ATENDIMENTO = aguardando atendimento · PAGAMENTO = aguardando pagamento · prazo = 48 h para pagar</p>
+  <div class="abas"><span class="sel">Todos<i>6</i></span><span>Aguard. atendimento<i>1</i></span><span>Aguard. pagamento<i>1</i></span><span>Pago<i>1</i></span><span>Enviado<i>1</i></span><span>Entregue<i>1</i></span><span>Cancelado<i>1</i></span></div>
+  <div class="adm-corpo">
+    <table class="tab"><tr><th>código</th><th>cliente</th><th>itens</th><th>pagamento</th><th>total</th><th>status</th><th>prazo</th></tr><tr class=sel><td class="m">PC-2026-0042</td><td class="nw">Lucas Martins</td><td>1x MacBook</td><td class="nw">PIX</td><td class="m">R$ 27.899,10</td><td><span class="st st-at">ATENDIMENTO</span></td><td class="m">10/10 10:40</td></tr><tr><td class="m">PC-2026-0041</td><td class="nw">Mariana Souza</td><td>1x Galaxy</td><td class="nw">Cartão 12x</td><td class="m">R$ 13.999,00</td><td><span class="st st-pg">PAGAMENTO</span></td><td class="m">09/10 18:12</td></tr><tr><td class="m">PC-2026-0040</td><td class="nw">Rafael Lima</td><td>2x Galaxy</td><td class="nw">PIX</td><td class="m">R$ 25.198,20</td><td><span class="st st-pago">PAGO</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0039</td><td class="nw">Ana Rocha</td><td>1x MacBook</td><td class="nw">Cartão 10x</td><td class="m">R$ 30.999,00</td><td><span class="st st-env">ENVIADO</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0038</td><td class="nw">Pedro Alves</td><td>MacBook + Galaxy</td><td class="nw">PIX</td><td class="m">R$ 40.498,20</td><td><span class="st st-ent">ENTREGUE</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0037</td><td class="nw">Juliana Costa</td><td>1x Galaxy</td><td class="nw">PIX</td><td class="m">R$ 12.599,10</td><td><span class="st st-can">CANCELADO</span></td><td class="m">venceu</td></tr></table>
+    <div class="detalhe">
+      <div class="det-sec"><div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-weight:600;font-size:16px">PC-2026-0042</span><span class="st st-at">AGUARD. ATENDIMENTO</span></div>
+        <span class="cinza">criado em 08/10/2026 às 10:40 · vence em 10/10 às 10:40</span></div>
+      <div class="det-sec"><span class="rotm">cliente</span><b>Lucas Martins</b><span>WhatsApp (11) 90000-0001</span><span>CNPJ 00.000.000/0001-00</span><span class="cinza">Rua Exemplo, 100 · Centro · São Paulo/SP · 01000-000</span></div>
+      <div class="det-sec"><span class="rotm">itens</span><div style="display:flex;justify-content:space-between"><span>1x MacBook Pro 14 (M5 Pro)</span><span class="mono">R$ 30.999,00</span></div>
+        <div style="display:flex;justify-content:space-between;color:var(--verde)"><span>Desconto PIX</span><span class="mono">- R$ 3.099,90</span></div>
+        <div style="display:flex;justify-content:space-between;font-weight:600"><span>Total</span><span class="mono">R$ 27.899,10</span></div></div>
+      <div class="det-sec"><span class="rotm">histórico</span><span class="mono" style="font-size:12px">08/10 10:40 · pedido criado pelo site</span></div>
+      <div class="det-acoes">
+        <a class="tecla t-escura t-cheia">Mudar para Aguardando pagamento</a>
+        <a class="tecla t-verde t-cheia">Abrir conversa no WhatsApp</a>
+        <a class="tecla t-clara t-cheia" style="color:var(--vermelho)">Cancelar pedido</a>
+      </div>
+    </div>
+  </div>
+</div></div>
+</section><section class="tela" id="tela-10" data-nome="10 Admin - Produtos"><div class="adm"><aside class="lado"><span class="logo">prime_coding<span class="caret"></span></span><a id="go-09-76">Pedidos<span>1 novo</span></a><a id="go-10-77" class=ativo>Produtos<span>2</span></a><a id="go-09-78">Vendas<span></span></a><a class="sair" id="go-08-79">Sair<span>admin</span></a></aside>
+<div class="adm-main">
+  <div class="adm-top"><div><span class="rot" style="margin:0">// painel</span><h2 style="font-size:32px">Produtos</h2></div>
+    <span class="cinza" style="font-size:14px">A loja trabalha só com estes dois modelos. Dá para mudar preço, estoque, fotos e descrição.</span></div>
+  <div class="prods-adm">
+    <div class="pa"><div class="pa-img"><div class="nb p"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div></div><div class="pa-corpo">
+  <div class="pa-tit"><div><h3>MacBook Pro 14 (M5 Pro)</h3><span class="cinza" style="font-size:14px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</span></div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px">à venda<div class="toggle"><i></i></div></div></div>
+  <div class="pa-campos"><div class="campo" style="flex:0 0 220px"><label>Preço de tabela (R$)</label><div class="inp">30.999,00</div></div><div class="campo" style="flex:0 0 120px"><label>Estoque</label><div class="inp">5</div></div>
+    <div class="campo" style="flex:0 0 200px"><label>Imagem</label><div class="inp ph">trocar foto...</div></div><div class="campo"><label>Avisos de reposição</label><div class="inp" style="border:none;background:none;padding:0" ><span class="mono" style="font-size:14px">0 pessoas esperando</span></div></div></div>
+  <div class="campo"><label>Descrição</label><div class="inp" style="height:auto;padding:12px 14px;line-height:1.5">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</div></div>
+  <div class="botoes"><a class="tecla t-escura">Salvar alterações</a><a class="tecla t-clara">Editar ficha técnica</a></div>
+</div></div>
+    <div class="pa"><div class="pa-img"><div class="nb gx p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div></div><div class="pa-corpo">
+  <div class="pa-tit"><div><h3>Galaxy Book6 Pro 14</h3><span class="cinza" style="font-size:14px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</span></div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px">à venda<div class="toggle"><i></i></div></div></div>
+  <div class="pa-campos"><div class="campo" style="flex:0 0 220px"><label>Preço de tabela (R$)</label><div class="inp">13.999,00</div></div><div class="campo" style="flex:0 0 120px"><label>Estoque</label><div class="inp">8</div></div>
+    <div class="campo" style="flex:0 0 200px"><label>Imagem</label><div class="inp ph">trocar foto...</div></div><div class="campo"><label>Avisos de reposição</label><div class="inp" style="border:none;background:none;padding:0" ><span class="mono" style="font-size:14px">0 pessoas esperando</span></div></div></div>
+  <div class="campo"><label>Descrição</label><div class="inp" style="height:auto;padding:12px 14px;line-height:1.5">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</div></div>
+  <div class="botoes"><a class="tecla t-escura">Salvar alterações</a><a class="tecla t-clara">Editar ficha técnica</a></div>
+</div></div>
+  </div>
+  <div class="aviso">Estoque zerado deixa o produto como "Esgotado" no site e troca o botão de pedido por "Avise-me quando chegar". O estoque só baixa quando o pagamento é confirmado.</div>
+</div></div>
+</section><section class="tela mob" id="tela-11" data-nome="11 Mobile - Home">
+<div class="faixa" style="gap:14px;font-size:11px"><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros</span><span><b>frete</b> grátis</span></div>
+<header class="cab"><a class="logo" style="font-size:18px" id="go-11-80">prime_coding<span class="caret" style="height:20px;width:10px"></span></a>
+  <a class="tecla t-verde t-p" id="go-12-81">WhatsApp</a></header>
+<div class="hero"><div class="hero-txt" style="gap:16px"><span class="rot" style="margin:0">// dois notebooks. nenhum a mais.</span>
+  <h1>Dois notebooks. Os dois certos para programar.</h1>
+  <p class="lead">A gente explica a diferença, tira sua dúvida no WhatsApp e você fecha ali mesmo.</p></div></div>
+<div class="secao" style="padding-top:0"><div class="duo"><article class="prod"><div class="prod-img"><span class="etq tag">macbook-pro-14</span><div class="nb p"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Apple · macOS</span><h3>MacBook Pro 14 (M5 Pro)</h3><p class="cinza" style="font-size:15px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</p><div class="specs"><div><span>chip</span><span>M5 Pro · CPU 15 núcleos</span></div><div><span>memória</span><span>24 GB unificada</span></div><div><span>ssd</span><span>1 TB</span></div></div><div class="precos"><span class="preco">R$ 30.999,00</span><span class="pix">R$ 27.899,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 2.583,25 sem juros</span></div><div class="botoes"><a class="tecla t-clara t-p" id="go-02-84">Detalhes</a><a class="tecla t-verde t-p" id="go-12-85">Pedir no WhatsApp</a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">galaxy-book6-pro-14</span><div class="nb gx p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Samsung · Windows 11</span><h3>Galaxy Book6 Pro 14</h3><p class="cinza" style="font-size:15px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</p><div class="specs"><div><span>cpu</span><span>Core Ultra X7 358H · 16 núcleos</span></div><div><span>memória</span><span>32 GB LPDDR5X</span></div><div><span>ssd</span><span>1 TB</span></div></div><div class="precos"><span class="preco">R$ 13.999,00</span><span class="pix">R$ 12.599,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 1.166,58 sem juros</span></div><div class="botoes"><a class="tecla t-clara t-p" id="go-03-88">Detalhes</a><a class="tecla t-verde t-p" id="go-12-89">Pedir no WhatsApp</a></div></div></article></div></div>
+<div class="barra-mob"><a class="tecla t-clara" style="flex:1" id="go-04-90">Comparar</a><a class="tecla t-verde" style="flex:2" id="go-12-91">Falar no WhatsApp</a></div>
+</section><section class="tela mob" id="tela-12" data-nome="12 Mobile - Pedido no WhatsApp">
+<div class="chat-mob">
+  <div class="chat-top"><span style="font-size:22px">‹</span><div class="av">pc_</div><div><b>PrimeCoding</b><small>conta comercial · online</small></div></div>
+  <div class="chat-corpo" style="min-height:560px;justify-content:flex-end">
+    <span class="dica">hoje</span>
+    <div class="bolha" style="align-self:flex-start;background:#FFFFFF;border-radius:0 6px 6px 6px">Olá! Aqui é a PrimeCoding. Atendimento de seg a sex, das 9h às 18h.<span class="hora">10:40</span></div>
+    <span class="dica">a mensagem do pedido já vem escrita</span>
+  </div>
+  <div class="compor"><div class="txt">Olá! Quero fechar o pedido <b>PC-2026-0042</b>.<br>1x MacBook Pro 14 (M5 Pro)<br>Pagamento: PIX (10% de desconto)<br>Total: R$ 27.899,10<br>Nota fiscal no CNPJ<br>Entrega: CEP 01000-000</div>
+    <div class="enviar" id="go-06-92">➤</div></div>
+</div>
+</section><section class="tela" id="tela-13" data-nome="13 Estados">
+<div class="secao" style="padding-bottom:0;border-bottom:none"><p class="rot">// estados de tela</p><h2>Esgotado e erro no formulário</h2></div>
+<div class="estados">
+  <div class="estado"><span class="rot" style="margin:0">produto sem estoque</span>
+    <div class="caixa">
+      <span class="esg">ESGOTADO</span>
+      <div class="precos"><span class="preco" style="color:#8A8B86">R$ 13.999,00</span><span class="parc">Galaxy Book6 Pro 14</span></div>
+      <p style="font-size:15px">Este modelo acabou. Deixe seu WhatsApp e a gente avisa assim que chegar.</p>
+      <div class="campo"><label>Seu WhatsApp com DDD</label><div class="inp">(41) 90000-0002</div></div>
+      <a class="tecla t-escura t-cheia">Avise-me quando chegar</a>
+    </div></div>
+  <div class="estado"><span class="rot" style="margin:0">formulário com erro</span>
+    <div class="caixa">
+      <div class="campo"><label>WhatsApp com DDD</label><div class="inp erro">90000-0001</div><span class="msg-erro">falta o DDD: use (11) 90000-0001</span></div>
+      <div class="campo"><label>CNPJ</label><div class="inp erro">00.000.000/0001</div><span class="msg-erro">CNPJ incompleto: são 14 números</span></div>
+      <div class="campo"><label>Quantidade</label><div class="stepper" style="width:fit-content"><span>-</span><span>3</span><span style="color:#B5B6B1">+</span></div><span class="msg-erro" style="color:var(--cinza)">máximo de 3 unidades por produto</span></div>
+      <a class="tecla t-verde t-cheia" style="opacity:.45">Enviar pedido pelo WhatsApp</a>
+    </div></div>
+</div>
+</section>
+</body></html>
