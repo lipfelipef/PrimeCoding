@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+    container_name: primecoding-frontend
+    ports:
+      - "${FRONTEND_PORT:-4200}:80"
+    restart: unless-stopped

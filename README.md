@@ -32,6 +32,21 @@ Projeto de Análise e Desenvolvimento de Sistemas, Senac.
 
 O link do UniModeler abre para quem estiver logado no site.
 
+## Docker e deploy
+
+O projeto roda em Docker. O `docker-compose.yml` fica em [deploy](deploy) e o `Dockerfile` do front-end em [frontend](frontend). Hoje o container publica as telas do protótipo; o site, a API e o banco entram como novos serviços no mesmo compose.
+
+Publicado na Azure: http://172.195.104.176:4200
+
+Para rodar na sua máquina, com o Docker instalado:
+
+```bash
+cd deploy
+docker compose up -d --build
+```
+
+e abra http://localhost:4200. O passo a passo para publicar numa VM da Azure está em [deploy/README.md](deploy/README.md).
+
 ## Como abrir os arquivos
 
 - `.docx`: no Word ou no Google Docs.

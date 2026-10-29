@@ -9,6 +9,7 @@ tmp/
 # segredos e credenciais
 .env
 .env.*
+!.env.example
 *.pem
 *.key
 *.crt
