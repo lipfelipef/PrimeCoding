@@ -49,16 +49,17 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .term-corpo{padding:18px 16px;display:flex;flex-direction:column;gap:7px}
 .term-l{display:flex}
 .term-l .n{width:28px;color:#A3A49F}
-.term-l .a{width:150px;color:var(--cinza)}
-.term-l .b{width:150px}
+.term-l .a{width:100px;color:var(--cinza)}
+.term-l .b{width:190px}
 .term-l .c{flex:1}
 .cmd{color:var(--tinta)} .cmd b{color:var(--verde);font-weight:500}
 .duo{display:flex;gap:24px}
 .prod{flex:1;background:var(--papel);border:1px solid var(--linha);display:flex;flex-direction:column}
 .prod-img{height:300px;background:var(--alu2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--linha);position:relative}
+.tres .prod-img{height:240px}
 .prod-img .tag{position:absolute;left:16px;top:14px}
 .etq{font-family:"JetBrains Mono",monospace;font-size:11px;padding:3px 8px;border:1px solid var(--linha);background:var(--papel);color:var(--cinza)}
-.prod-corpo{padding:28px;display:flex;flex-direction:column;gap:18px}
+.prod-corpo{padding:28px;display:flex;flex-direction:column;gap:18px;flex:1}
 .marca{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza)}
 .specs{display:flex;flex-direction:column;font-family:"JetBrains Mono",monospace;font-size:13px}
 .specs div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--linha2)}
@@ -70,14 +71,18 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .nb{display:flex;flex-direction:column;align-items:center}
 .nb-tela{width:300px;height:192px;border-radius:12px 12px 3px 3px;padding:9px;background:#141518;border:2px solid #3A3B40}
 .nb-tela .in{width:100%;height:100%;padding:14px 12px;display:flex;flex-direction:column;gap:7px;background:#1F232B}
-.gx .nb-tela{background:#2B2E33;border-color:#5B5F66;border-radius:8px 8px 2px 2px;padding:6px}
-.gx .nb-tela .in{background:#16204A}
+.tp .nb-tela{background:#0E0E10;border-color:#2C2C30;border-radius:5px 5px 2px 2px;padding:7px}
+.tp .nb-tela .in{background:#1A1D23}
 .ln{height:7px;border-radius:2px}
 .nb-base{width:364px;height:13px;border-radius:2px 2px 11px 11px;background:#3B3C41;display:flex;justify-content:center}
-.gx .nb-base{background:#6E7178;border-radius:2px 2px 8px 8px}
+.tp .nb-base{background:#1F1F22;border-radius:2px 2px 5px 5px}
 .nb.g .nb-tela{width:420px;height:268px;padding:12px}.nb.g .nb-base{width:510px;height:17px}.nb.g .in{padding:20px 18px;gap:10px}.nb.g .ln{height:9px}
 .nb.p .nb-tela{width:190px;height:122px;padding:6px}.nb.p .nb-base{width:232px;height:9px}.nb.p .in{padding:9px 8px;gap:5px}.nb.p .ln{height:5px}
 .nb-base i{width:64px;height:4px;background:rgba(0,0,0,.35);border-radius:0 0 4px 4px}
+.dl .nb-tela{background:#26282C;border-color:#4C4F55;border-radius:6px 6px 2px 2px;padding:7px}
+.dl .nb-tela .in{background:#1C2028}
+.dl .nb-base{background:#55585E;border-radius:2px 2px 7px 7px}
+.tp .nb-base i{width:22px;height:3px;background:#C8102E;border-radius:0}
 .ilus{font-family:"JetBrains Mono",monospace;font-size:10px;color:#8A8B86;position:absolute;right:14px;bottom:10px}
 .casos{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);background:var(--papel)}
 .caso{padding:26px 24px;border-right:1px solid var(--linha);display:flex;flex-direction:column;gap:12px}
@@ -106,15 +111,14 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .mob .rod{padding:32px 16px;flex-direction:column;gap:20px}
 .migalha{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza);padding:22px 120px 0}
 .migalha b{color:var(--tinta);font-weight:500}
-.pdp{display:flex;gap:56px;padding:28px 120px 64px}
-.galeria{width:640px;display:flex;flex-direction:column;gap:12px}
+.pdp{display:flex;gap:56px;padding:28px 120px 64px;align-items:flex-start}
+.galeria{width:580px;flex-shrink:0;display:flex;flex-direction:column;gap:12px}
 .galeria .grande{height:470px;background:var(--alu2);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;position:relative}
 .miniaturas{display:flex;gap:12px}
 .miniaturas div{flex:1;height:92px;background:var(--alu2);border:1px solid var(--linha);font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--cinza);display:flex;align-items:flex-end;padding:8px}
 .miniaturas div.sel{border:2px solid var(--tinta)}
 .compra{flex:1;display:flex;flex-direction:column;gap:22px}
 .caixa{background:var(--papel);border:1px solid var(--linha);padding:24px;display:flex;flex-direction:column;gap:18px}
-.qtd{display:flex;align-items:center;gap:14px;font-size:15px}
 .stepper{display:flex;border:1px solid var(--linha);background:var(--branco)}
 .stepper span{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:16px}
 .stepper span:nth-child(2){border-left:1px solid var(--linha);border-right:1px solid var(--linha);font-weight:600}
@@ -135,7 +139,7 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .diff th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:500;padding:14px 16px;border-bottom:1px solid var(--linha);background:var(--alu2)}
 .diff td{padding:13px 16px;border-bottom:1px solid var(--linha2);vertical-align:top}
 .diff td.n{width:48px;font-family:"JetBrains Mono",monospace;font-size:12px;color:#A3A49F;text-align:right;border-right:1px solid var(--linha2);padding-right:12px}
-.diff td.at{width:190px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza)}
+.diff td.at{width:210px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cinza)}
 .diff td.mais{background:var(--add)}
 .diff td.mais::before{content:"+ ";font-family:"JetBrains Mono",monospace;color:var(--verde);font-weight:700}
 .diff tr.fim td{border-bottom:none;padding:20px 16px}
@@ -158,22 +162,28 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .seg{display:flex;border:1px solid var(--linha);width:fit-content;background:var(--branco)}
 .seg span{padding:10px 18px;font-family:"JetBrains Mono",monospace;font-size:13px}
 .seg span.sel{background:var(--tinta);color:#fff}
+.seg.kits span{padding:10px 12px;border-right:1px solid var(--linha2)}
+.seg.kits span:last-child{border-right:none}
 .opcoes{display:flex;gap:16px}
+.opcoes.col{flex-direction:column;gap:8px}
 .opc{flex:1;border:1px solid var(--linha);background:var(--papel);padding:18px;display:flex;gap:14px}
+.opcoes.col .opc{padding:12px 14px;background:var(--branco)}
 .opc.sel{border:2px solid var(--tinta);background:var(--branco)}
-.radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--cinza);margin-top:3px;display:flex;align-items:center;justify-content:center}
+.radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--cinza);margin-top:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .opc.sel .radio{border-color:var(--tinta)}
 .opc.sel .radio i{width:8px;height:8px;border-radius:50%;background:var(--tinta)}
 .opc b{display:block;font-size:16px}
+.opcoes.col .opc b{font-size:15px}
 .opc span{font-size:14px;color:var(--cinza)}
 .check{display:flex;gap:12px;align-items:flex-start;font-size:14px}
-.cx{width:20px;height:20px;border:2px solid var(--tinta);background:var(--tinta);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.cx{width:20px;height:20px;border:2px solid var(--tinta);background:var(--tinta);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.cx.vazio{background:var(--branco);border-color:var(--linha);color:transparent}
 .aviso{font-size:14px;color:#3A3C42;background:var(--papel);border-left:3px solid var(--ambar);padding:12px 16px}
 .resumo{width:420px;background:var(--papel);border:1px solid var(--linha);display:flex;flex-direction:column}
 .resumo-top{padding:20px 24px;border-bottom:1px solid var(--linha)}
 .resumo-item{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid var(--linha)}
-.mini-nb{width:92px;height:70px;background:var(--alu2);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center}
-.mini-nb div{width:56px;height:36px;background:#1F232B;border:3px solid #141518;border-radius:4px 4px 1px 1px}
+.mini-nb{width:92px;height:70px;background:var(--alu2);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mini-nb div{width:56px;height:36px;background:#1A1D23;border:3px solid #0E0E10;border-radius:3px 3px 1px 1px}
 .contas{padding:20px 24px;display:flex;flex-direction:column;gap:10px;font-size:15px}
 .contas div{display:flex;justify-content:space-between}
 .contas .tot{border-top:1px solid var(--linha);padding-top:14px;margin-top:4px;font-weight:600;font-size:18px}
@@ -185,7 +195,7 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .av{width:36px;height:36px;background:var(--ambar);color:var(--tinta);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;border-radius:4px}
 .chat-top small{display:block;color:#B9BAB5;font-size:12px}
 .chat-corpo{padding:20px 18px;display:flex;flex-direction:column;gap:10px;min-height:260px}
-.bolha{background:#D7F0C9;padding:12px 14px;max-width:360px;align-self:flex-end;font-size:14px;line-height:1.5;border-radius:6px 0 6px 6px}
+.bolha{background:#D7F0C9;padding:12px 14px;max-width:380px;align-self:flex-end;font-size:14px;line-height:1.5;border-radius:6px 0 6px 6px}
 .bolha .hora{display:block;text-align:right;font-size:11px;color:#6C7A63;margin-top:4px}
 .dica{align-self:center;font-family:"JetBrains Mono",monospace;font-size:11px;background:#FBF6E8;color:#6A6152;padding:5px 10px}
 .timeline{display:flex;flex-direction:column;gap:14px}
@@ -199,15 +209,15 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .tl .q{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza)}
 .consulta{display:flex;gap:16px;align-items:flex-end;background:var(--papel);border:1px solid var(--linha);padding:24px}
 .adm{display:flex;min-height:900px}
-.lado{width:240px;background:var(--grafite);color:#D9D8D2;padding:24px 0;display:flex;flex-direction:column;gap:4px}
+.lado{width:240px;background:var(--grafite);color:#D9D8D2;padding:24px 0;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
 .lado .logo{color:#fff;font-size:17px;padding:0 20px 24px}
 .lado .caret{height:19px;width:9px}
 .lado a{padding:11px 20px;color:#D9D8D2;text-decoration:none;font-size:15px;display:flex;justify-content:space-between}
 .lado a.ativo{background:#34363C;color:#fff;border-left:3px solid var(--ambar);padding-left:17px}
 .lado a span{font-family:"JetBrains Mono",monospace;font-size:12px;color:#9C9D98}
 .lado .sair{margin-top:auto}
-.adm-main{flex:1;padding:32px 40px;display:flex;flex-direction:column;gap:24px}
-.adm-top{display:flex;justify-content:space-between;align-items:center}
+.adm-main{flex:1;min-width:0;padding:32px 40px;display:flex;flex-direction:column;gap:24px}
+.adm-top{display:flex;justify-content:space-between;align-items:center;gap:24px}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);background:var(--papel)}
 .kpi{padding:18px 20px;border-right:1px solid var(--linha);display:flex;flex-direction:column;gap:4px}
 .kpi:last-child{border-right:none}
@@ -220,7 +230,7 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .adm-corpo{display:flex;gap:24px;align-items:flex-start}
 .tab{flex:1;border-collapse:collapse;background:var(--papel);border:1px solid var(--linha);font-size:14px}
 .tab th{text-align:left;font-size:12px;font-family:"JetBrains Mono",monospace;font-weight:500;color:var(--cinza);padding:11px 12px;border-bottom:1px solid var(--linha);background:var(--alu2)}
-.tab td{padding:13px 10px;border-bottom:1px solid var(--linha2)}
+.tab td{padding:13px 8px;border-bottom:1px solid var(--linha2)}
 .tab td.m,.tab td.nw{white-space:nowrap}
 .tab td.m{font-family:"JetBrains Mono",monospace;font-size:13px}
 .tab tr.sel td{background:#FFFFFF}
@@ -228,23 +238,18 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .st{font-family:"JetBrains Mono",monospace;font-size:11px;padding:3px 7px;border:1px solid;white-space:nowrap}
 .st-at{background:var(--ambar2);border-color:#E1C27A;color:#6B4D07}
 .st-pg{background:var(--azul2);border-color:#B9C6EC;color:#23409A}
+.st-prep{background:#FCE9D9;border-color:#E6BE98;color:#7A4513}
+.st-pronto{background:#DDF0EE;border-color:#9FCFCB;color:#155E58}
 .st-pago{background:var(--add);border-color:#A9D3B4;color:#165C34}
 .st-env{background:#E9E4F4;border-color:#C7BBE2;color:#4A3A7A}
 .st-ent{background:#E4E4E0;border-color:#C2C1BB;color:#3C3D41}
 .st-can{background:var(--vermelho2);border-color:#E3B6AC;color:#7E2E20}
-.detalhe{width:350px;background:var(--branco);border:1px solid var(--linha);display:flex;flex-direction:column}
+.detalhe{width:340px;background:var(--branco);border:1px solid var(--linha);display:flex;flex-direction:column;flex-shrink:0}
 .det-sec{padding:18px 20px;border-bottom:1px solid var(--linha);display:flex;flex-direction:column;gap:8px;font-size:14px}
 .det-sec .rotm{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza)}
 .det-acoes{padding:18px 20px;display:flex;flex-direction:column;gap:10px}
 .login{flex:1;display:flex;align-items:center;justify-content:center;padding:120px 0 160px}
 .login-caixa{width:420px;background:var(--papel);border:1px solid var(--linha);padding:36px;display:flex;flex-direction:column;gap:20px}
-.prods-adm{display:flex;flex-direction:column;gap:20px}
-.pa{background:var(--papel);border:1px solid var(--linha);display:flex}
-.pa-img{width:280px;background:var(--alu2);border-right:1px solid var(--linha);display:flex;align-items:center;justify-content:center}
-.pa-tit{display:flex;justify-content:space-between;gap:24px}
-.pa-tit span{display:block;margin-top:4px}
-.pa-corpo{flex:1;padding:24px;display:flex;flex-direction:column;gap:18px}
-.pa-campos{display:flex;gap:16px;align-items:flex-end}
 .toggle{width:44px;height:24px;background:var(--verde);border-radius:12px;display:flex;justify-content:flex-end;padding:3px}
 .toggle i{width:18px;height:18px;background:#fff;border-radius:50%}
 .mob .hero{flex-direction:column;padding:32px 16px 28px;gap:24px;align-items:stretch}
@@ -252,7 +257,7 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .mob .lead{font-size:16px}
 .mob .secao{padding:32px 16px}
 .mob .duo{flex-direction:column;gap:16px}
-.mob .prod-img{height:190px}
+.mob .prod-img{height:220px;padding:30px 0}
 .mob .prod-corpo{padding:20px;gap:14px}
 .mob .preco{font-size:28px}
 .barra-mob{position:relative;background:var(--papel);border-top:1px solid var(--linha);padding:12px 16px;display:flex;gap:10px}
@@ -264,142 +269,216 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
 .estados{display:flex;gap:32px;padding:48px 120px 64px;align-items:flex-start}
 .estado{flex:1;display:flex;flex-direction:column;gap:14px}
 .esg{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--tinta);color:#fff;padding:4px 9px;width:fit-content}
+.etapa{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza)}
+.unids{display:flex;flex-direction:column;border:1px solid var(--linha);background:var(--branco)}
+.unid{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--linha2);font-size:14px}
+.unid>*{flex-shrink:0}
+.unid .cic{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cinza);white-space:nowrap}
+.unid:last-child{border-bottom:none}
+.unid.sel{box-shadow:inset 3px 0 0 var(--ambar);background:#FFFCF3}
+.unid.off{color:#9A9B96}
+.unid .radio{margin-top:0}
+.unid.sel .radio{border-color:var(--tinta)}
+.unid.sel .radio i{width:8px;height:8px;border-radius:50%;background:var(--tinta)}
+.unid .sn{font-family:"JetBrains Mono",monospace;font-size:13px}
+.unid .pr{margin-left:auto;font-family:"JetBrains Mono",monospace;font-weight:600;font-size:14px;white-space:nowrap}
+.est{font-family:"JetBrains Mono",monospace;font-size:11px;padding:2px 7px;border:1px solid;white-space:nowrap}
+.est-a{background:var(--add);border-color:#A9D3B4;color:#165C34}
+.est-b{background:var(--ambar2);border-color:#E1C27A;color:#6B4D07}
+.bat{font-family:"JetBrains Mono",monospace;font-size:13px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.bat i{display:inline-block;width:30px;height:10px;border:1px solid var(--cinza)}
+.ferr{font-size:13px;color:var(--cinza)}
+.mods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mod{background:var(--papel);border:1px solid var(--linha);padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.mod-tit{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.mod-num{display:flex;gap:18px;font-size:13px;color:var(--cinza)}
+.mod-num b{font-family:"JetBrains Mono",monospace;color:var(--tinta);font-size:15px}
+.chk{display:flex;flex-direction:column;gap:8px;font-size:14px}
+.chk div{display:flex;gap:10px;align-items:center}
 </style></head><body>
-<section class="tela" id="tela-01" data-nome="01 Home"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-1">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-2" class="ativo">Notebooks</a><a id="go-04-3">Comparar</a><a id="go-07-4">Acompanhar pedido</a><a id="go-01-5">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-6">WhatsApp</a></div></header>
+<section class="tela" id="tela-01" data-nome="01 Home"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-1">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-2" class="ativo">Notebooks</a><a id="go-05-3">Comparar</a><a id="go-08-4">Acompanhar pedido</a><a id="go-08-5">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-6">WhatsApp</a></div></header>
 <div class="hero">
   <div class="hero-txt">
-    <span class="rot">// dois notebooks. nenhum a mais.</span>
-    <h1>Dois notebooks.<br>Os dois certos para programar.</h1>
-    <p class="lead">MacBook Pro ou Galaxy Book6 Pro. A gente explica a diferença na prática, tira sua dúvida no WhatsApp e você fecha o pedido ali mesmo.</p>
-    <div class="botoes"><a class="tecla t-escura t-g" id="go-01-7">Ver os dois</a>
-    <a class="tecla t-verde t-g" id="go-12-8">Falar no WhatsApp <span class="k">enter</span></a></div>
+    <span class="rot">// três notebooks seminovos. revisados um por um.</span>
+    <h1>Seminovo revisado,<br>pronto para programar.</h1>
+    <p class="lead">Três linhas, uma para cada momento: Entrada, Intermediário e Pro. Cada unidade tem fotos reais e bateria conferida, chega com o kit de setup que você escolher e tem 90 dias de garantia.</p>
+    <div class="botoes"><a class="tecla t-escura t-g" id="go-01-7">Ver as três linhas</a>
+    <a class="tecla t-verde t-g" id="go-13-8">Falar no WhatsApp <span class="k">enter</span></a></div>
   </div>
   <div class="term">
-    <div class="term-top"><span>primecoding --comparar</span><span>2 resultados</span></div>
+    <div class="term-top"><span>primecoding --listar</span><span>3 linhas · 6 unidades</span></div>
     <div class="term-corpo">
-      <div class="term-l cmd"><span class="n">$</span><span class="c">primecoding <b>--comparar</b> mac galaxy</span></div>
-      <div class="term-l"><span class="n">1</span><span class="a">sistema</span><span class="b">macOS</span><span class="c">Windows 11</span></div>
-      <div class="term-l"><span class="n">2</span><span class="a">memória</span><span class="b">24 GB</span><span class="c">32 GB</span></div>
-      <div class="term-l"><span class="n">3</span><span class="a">ssd</span><span class="b">1 TB</span><span class="c">1 TB</span></div>
-      <div class="term-l"><span class="n">4</span><span class="a">xcode (iOS)</span><span class="b">sim</span><span class="c">não</span></div>
-      <div class="term-l"><span class="n">5</span><span class="a">wsl / .net</span><span class="b">.net sim</span><span class="c">sim</span></div>
-      <div class="term-l"><span class="n">6</span><span class="a">preço</span><span class="b">R$ 30.999</span><span class="c">R$ 13.999</span></div>
-      <div class="term-l"><span class="n">7</span><span class="a">no pix</span><span class="b">R$ 27.899</span><span class="c">R$ 12.599</span></div>
+      <div class="term-l cmd"><span class="n">$</span><span class="c">primecoding <b>--listar</b> --disponiveis</span></div>
+      <div class="term-l"><span class="n">1</span><span class="a">entrada</span><span class="b">T14 Gen 2 · 16&nbsp;GB</span><span class="c">R$&nbsp;2.899 · 3 un.</span></div>
+      <div class="term-l"><span class="n">2</span><span class="a">interm.</span><span class="b">Latitude 5430 · 32&nbsp;GB</span><span class="c">R$&nbsp;4.999 · 2 un.</span></div>
+      <div class="term-l"><span class="n">3</span><span class="a">pro</span><span class="b">Air M2 · 16&nbsp;GB</span><span class="c">R$&nbsp;6.999 · 1 un.</span></div>
+      <div class="term-l cmd"><span class="n">$</span><span class="c">primecoding <b>--unidade</b> SN-ENT-0001</span></div>
+      <div class="term-l"><span class="n">4</span><span class="a">estado</span><span class="c">A · sem marcas de uso</span></div>
+      <div class="term-l"><span class="n">5</span><span class="a">bateria</span><span class="c">92% de saúde · 210 ciclos</span></div>
+      <div class="term-l"><span class="n">6</span><span class="a">fotos</span><span class="c">6 fotos reais da unidade</span></div>
     </div>
   </div>
 </div>
 <div class="secao">
-  <p class="rot">// 01 · os dois notebooks</p>
-  <div class="duo"><article class="prod"><div class="prod-img"><span class="etq tag">macbook-pro-14</span><div class="nb"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Apple · macOS</span><h3>MacBook Pro 14 (M5 Pro)</h3><p class="cinza" style="font-size:15px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</p><div class="specs"><div><span>chip</span><span>M5 Pro · CPU 15 núcleos</span></div><div><span>memória</span><span>24 GB unificada</span></div><div><span>ssd</span><span>1 TB</span></div><div><span>tela</span><span>14,2" Liquid Retina XDR</span></div><div><span>sistema</span><span>macOS</span></div></div><div class="precos"><span class="preco">R$ 30.999,00</span><span class="pix">R$ 27.899,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 2.583,25 sem juros</span></div><div class="botoes"><a class="tecla t-clara" id="go-02-9">Ver detalhes</a><a class="tecla t-verde" id="go-05-10">Pedir pelo WhatsApp <span class="k">enter</span></a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">galaxy-book6-pro-14</span><div class="nb gx"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Samsung · Windows 11</span><h3>Galaxy Book6 Pro 14</h3><p class="cinza" style="font-size:15px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</p><div class="specs"><div><span>cpu</span><span>Core Ultra X7 358H · 16 núcleos</span></div><div><span>memória</span><span>32 GB LPDDR5X</span></div><div><span>ssd</span><span>1 TB</span></div><div><span>tela</span><span>14" AMOLED 120 Hz touch</span></div><div><span>sistema</span><span>Windows 11 Home</span></div></div><div class="precos"><span class="preco">R$ 13.999,00</span><span class="pix">R$ 12.599,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 1.166,58 sem juros</span></div><div class="botoes"><a class="tecla t-clara" id="go-03-11">Ver detalhes</a><a class="tecla t-verde" id="go-05-12">Pedir pelo WhatsApp <span class="k">enter</span></a></div></div></article></div>
+  <p class="rot">// 01 · as três linhas</p>
+  <div class="duo tres"><article class="prod"><div class="prod-img"><span class="etq tag">linha entrada</span><div class="nb tp p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Lenovo · Windows 11 Pro</span><h3>ThinkPad T14 Gen 2</h3><p class="cinza" style="font-size:15px">Para quem está começando a faculdade de TI: robusto, com teclado ótimo e memória que dá para ampliar.</p><div class="specs"><div><span>cpu</span><span>Core i5-1145G7 · 4 núcleos</span></div><div><span>memória</span><span>16&nbsp;GB · vai a 32&nbsp;GB</span></div><div><span>ssd</span><span>512&nbsp;GB NVMe</span></div><div><span>tela</span><span>14" Full HD IPS</span></div></div><span class="estoque">● 3 unidades revisadas</span><div class="precos"><span class="preco">R$&nbsp;2.899,00</span><span class="pix">R$&nbsp;2.609,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;241,58 sem juros</span><span class="parc">estado B por R$&nbsp;2.699,00</span></div><div class="botoes"><a class="tecla t-clara" id="go-05-9">Comparar</a><a class="tecla t-verde" id="go-02-10">Ver unidades</a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">linha intermediário</span><div class="nb dl p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Dell · Windows 11 Pro</span><h3>Latitude 5430</h3><p class="cinza" style="font-size:15px">Para estágio e back-end: 32&nbsp;GB para Docker, máquinas virtuais e IDE abertos ao mesmo tempo.</p><div class="specs"><div><span>cpu</span><span>Core i7-1265U · 10 núcleos</span></div><div><span>memória</span><span>32&nbsp;GB DDR4</span></div><div><span>ssd</span><span>1&nbsp;TB NVMe</span></div><div><span>tela</span><span>14" Full HD</span></div></div><span class="estoque">● 2 unidades revisadas</span><div class="precos"><span class="preco">R$&nbsp;4.999,00</span><span class="pix">R$&nbsp;4.499,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;416,58 sem juros</span><span class="parc">estado B por R$&nbsp;4.799,00</span></div><div class="botoes"><a class="tecla t-clara" id="go-05-11">Comparar</a><a class="tecla t-verde" id="go-03-12">Ver unidades</a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">linha pro</span><div class="nb p"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Apple · macOS</span><h3>MacBook Air 13 (M2)</h3><p class="cinza" style="font-size:15px">Para quem quer bateria para o dia todo, silêncio total e desenvolvimento para iPhone com Xcode.</p><div class="specs"><div><span>chip</span><span>Apple M2 · 8 núcleos</span></div><div><span>memória</span><span>16&nbsp;GB unificada</span></div><div><span>ssd</span><span>512&nbsp;GB</span></div><div><span>tela</span><span>13,6" Liquid Retina</span></div></div><span class="estoque">● 1 unidade revisada</span><div class="precos"><span class="preco">R$&nbsp;6.999,00</span><span class="pix">R$&nbsp;6.299,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;583,25 sem juros</span><span class="parc">só estado A no momento</span></div><div class="botoes"><a class="tecla t-clara" id="go-05-13">Comparar</a><a class="tecla t-verde" id="go-04-14">Ver unidades</a></div></div></article></div>
 </div>
 <div class="secao">
   <p class="rot">// 02 · qual é o seu caso?</p>
-  <h2 style="margin-bottom:28px">Escolha pelo que você faz, não pela ficha.</h2>
+  <h2 style="margin-bottom:28px">Escolha pelo que você vai rodar.</h2>
   <div class="casos">
-    <div class="caso"><span class="etq" style="width:fit-content">ios · macos</span><h3>Apps para iPhone e Mac</h3><p>O Xcode e o simulador de iPhone só rodam no macOS.</p><a class="resp" id="go-02-13">→ MacBook Pro 14</a></div>
-    <div class="caso"><span class="etq" style="width:fit-content">windows · .net · wsl</span><h3>Ecossistema Microsoft</h3><p>Visual Studio e SQL Server nativos, e Linux pelo WSL2.</p><a class="resp" id="go-03-14">→ Galaxy Book6 Pro 14</a></div>
-    <div class="caso"><span class="etq" style="width:fit-content">back-end · docker</span><h3>Containers e APIs</h3><p>Os dois rodam. O Galaxy tem 32 GB e custa menos da metade; o Mac vai mais longe na bateria.</p><a class="resp" id="go-04-15">→ comparar os dois</a></div>
-    <div class="caso"><span class="etq" style="width:fit-content">faculdade de ti</span><h3>Estudar e levar todo dia</h3><p>1,24 kg na mochila e cabe no parcelamento em 12x.</p><a class="resp" id="go-03-16">→ Galaxy Book6 Pro 14</a></div>
+    <div class="caso"><span class="etq" style="width:fit-content">faculdade de ti</span><h3>Começando a faculdade</h3><p>IDE, banco de dados e os projetos das disciplinas, com orçamento curto.</p><a class="resp" id="go-02-15">→ linha Entrada</a></div>
+    <div class="caso"><span class="etq" style="width:fit-content">back-end · docker · vm</span><h3>Estágio e back-end</h3><p>Vários containers e uma máquina virtual abertos ao mesmo tempo.</p><a class="resp" id="go-03-16">→ linha Intermediário</a></div>
+    <div class="caso"><span class="etq" style="width:fit-content">ios · macos</span><h3>Apps para iPhone</h3><p>O Xcode e o simulador de iPhone só rodam no macOS.</p><a class="resp" id="go-04-17">→ linha Pro</a></div>
+    <div class="caso"><span class="etq" style="width:fit-content">android · flutter</span><h3>Apps Android</h3><p>O emulador pede memória: com 32&nbsp;GB roda com folga, com 16&nbsp;GB dá conta.</p><a class="resp" id="go-05-18">→ comparar as três</a></div>
   </div>
 </div>
 <div class="secao">
   <p class="rot">// 03 · por que comprar aqui</p>
   <div class="lista5">
-    <div class="l5"><span class="num">01</span><b>Nota fiscal no CPF ou no CNPJ</b><span>Você escolhe no pedido.</span></div>
-    <div class="l5"><span class="num">02</span><b>Garantia oficial de 1 ano</b><span>Apple Brasil ou Samsung Brasil.</span></div>
-    <div class="l5"><span class="num">03</span><b>Novo e lacrado</b><span>Teclado ABNT2, com ç.</span></div>
-    <div class="l5"><span class="num">04</span><b>Frete grátis com seguro</b><span>Envio em até 2 dias úteis após o pagamento.</span></div>
-    <div class="l5"><span class="num">05</span><b>7 dias para desistir</b><span>Contados do recebimento.</span></div>
+    <div class="l5"><span class="num">01</span><b>Revisado, com fotos reais</b><span>Você vê a unidade que vai receber.</span></div>
+    <div class="l5"><span class="num">02</span><b>Bateria a partir de 80%</b><span>Abaixo disso, a bateria é trocada.</span></div>
+    <div class="l5"><span class="num">03</span><b>Kit de setup grátis</b><span>Chega pronto para programar.</span></div>
+    <div class="l5"><span class="num">04</span><b>Garantia de 90 dias</b><span>Conserto ou troca em até 10 dias úteis.</span></div>
+    <div class="l5"><span class="num">05</span><b>Nota no CPF ou CNPJ</b><span>E 7 dias para desistir.</span></div>
   </div>
 </div>
 <div class="secao">
   <p class="rot">// 04 · como funciona o pedido</p>
   <div class="passos">
-    <div class="passo"><span class="num">1</span><h3>Escolha o notebook</h3><p>Compare os dois e decida. Ficou dúvida, chama no WhatsApp.</p></div>
-    <div class="passo"><span class="num">2</span><h3>Preencha um formulário curto</h3><p>Nome, WhatsApp, CPF ou CNPJ e endereço. Sem criar conta.</p></div>
-    <div class="passo"><span class="num">3</span><h3>O WhatsApp abre com o pedido</h3><p>A mensagem já vem pronta com o código do pedido. É só enviar.</p></div>
-    <div class="passo"><span class="num">4</span><h3>Pague e receba o rastreio</h3><p>Chave PIX ou link do cartão na conversa. O rastreio chega por lá.</p></div>
+    <div class="passo"><span class="num">1</span><h3>Escolha a unidade</h3><p>Veja as fotos, o estado e a bateria de cada notebook.</p></div>
+    <div class="passo"><span class="num">2</span><h3>Monte o pedido</h3><p>Kit de setup grátis e, se quiser, um upgrade. Sem criar conta.</p></div>
+    <div class="passo"><span class="num">3</span><h3>O WhatsApp abre com o pedido</h3><p>A mensagem vem pronta e a unidade fica reservada por 48 horas.</p></div>
+    <div class="passo"><span class="num">4</span><h3>Pague e receba pronto</h3><p>Preparo em até 2 dias úteis, fotos da revisão e envio com seguro.</p></div>
   </div>
 </div>
 <div class="secao">
   <p class="rot">// 05 · dúvidas</p>
   <div class="faq">
-    <div class="faq-i"><span class="q">Os notebooks são novos e com nota fiscal?</span><span class="r">Sim. Novos, lacrados, com nota no seu CPF ou CNPJ e garantia oficial de 1 ano no Brasil.</span><span class="mais">-</span></div>
+    <div class="faq-i"><span class="q">O notebook é usado?</span><span class="r">É seminovo: revisado, limpo por dentro e com a bateria conferida. O estado (A ou B) e as fotos reais estão na página de cada unidade.</span><span class="mais">-</span></div>
+    <div class="faq-i"><span class="q">E se der defeito?</span><span class="r">Garantia de 90 dias da loja para defeito de hardware: conserto ou troca por unidade equivalente em até 10 dias úteis. Queda, líquido e mau uso não entram.</span><span class="mais">-</span></div>
     <div class="faq-i"><span class="q">Como eu pago?</span><span class="r">Pela conversa no WhatsApp: chave PIX com 10% de desconto ou link do cartão em até 12x sem juros.</span><span class="mais">-</span></div>
     <div class="faq-i"><span class="q">Preciso criar conta?</span><span class="r">Não. Seu pedido fica ligado ao número de WhatsApp que você informar.</span><span class="mais">-</span></div>
-    <div class="faq-i"><span class="q">E se eu me arrepender?</span><span class="r">Você tem 7 dias, contados do recebimento, para desistir da compra.</span><span class="mais">-</span></div>
   </div>
 </div>
-<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-02" data-nome="02 Produto - MacBook Pro 14"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-17">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-18" class="ativo">Notebooks</a><a id="go-04-19">Comparar</a><a id="go-07-20">Acompanhar pedido</a><a id="go-01-21">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-22">WhatsApp</a></div></header>
-<div class="migalha"><a id="go-01-23">notebooks</a> / <b>macbook-pro-14</b></div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-02" data-nome="02 Produto - Entrada"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-19">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-20" class="ativo">Notebooks</a><a id="go-05-21">Comparar</a><a id="go-08-22">Acompanhar pedido</a><a id="go-08-23">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-24">WhatsApp</a></div></header>
+<div class="migalha"><a id="go-01-25">notebooks</a> / linha entrada / <b>thinkpad-t14-gen2</b></div>
 <div class="pdp">
   <div class="galeria">
-    <div class="grande"><div class="nb g"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div>
-    <div class="miniaturas"><div class="sel">aberto</div><div>fechado</div><div>lateral</div><div>teclado</div></div>
+    <div class="grande"><span class="etq" style="position:absolute;left:16px;top:14px">foto real · SN-ENT-0001</span><div class="nb tp g"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div>
+    <div class="miniaturas"><div class="sel">tampa</div><div>teclado</div><div>tela</div><div>bateria 92%</div></div>
+    <p class="cinza" style="font-size:14px">As fotos são da unidade escolhida. Trocou a unidade, trocam as fotos.</p>
   </div>
   <div class="compra">
-    <span class="marca">Apple · macOS</span>
-    <h2>MacBook Pro 14 (M5 Pro)</h2>
-    <p class="lead" style="font-size:17px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</p>
+    <span class="marca">Lenovo · Windows 11 Pro · linha Entrada</span>
+    <h2>ThinkPad T14 Gen 2</h2>
+    <p class="lead" style="font-size:17px">Para quem está começando a faculdade de TI: robusto, com teclado ótimo e memória que dá para ampliar.</p>
     <div class="caixa">
-      <div class="precos"><span class="preco" style="font-size:38px">R$ 30.999,00</span><span class="pix">R$ 27.899,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 2.583,25 sem juros</span></div>
-      <div class="qtd"><span>Quantidade</span><div class="stepper"><span>-</span><span>1</span><span>+</span></div><span class="cinza mono" style="font-size:12px">máx. 3 por pedido</span></div>
-      <span class="estoque">● em estoque · 5 unidades</span>
-      <a class="tecla t-verde t-g t-cheia" id="go-05-24">Pedir pelo WhatsApp <span class="k">enter</span></a>
-      <a class="tecla t-clara t-cheia" id="go-12-25">Tirar uma dúvida antes</a>
+      <span class="etapa">1 · escolha a unidade</span>
+      <div class="unids"><div class="unid sel"><span class="radio"><i></i></span><span class="sn">SN-ENT-0001</span><span class="est est-a">estado A</span><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 92%,transparent 92%)"></i>92%</span><span class="cic">210 ciclos</span><span class="pr">R$&nbsp;2.899,00</span></div><div class="unid"><span class="radio"></span><span class="sn">SN-ENT-0002</span><span class="est est-a">estado A</span><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 88%,transparent 88%)"></i>88%</span><span class="cic">340 ciclos</span><span class="pr">R$&nbsp;2.899,00</span></div><div class="unid"><span class="radio"></span><span class="sn">SN-ENT-0003</span><span class="est est-b">estado B</span><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 85%,transparent 85%)"></i>85%</span><span class="cic">410 ciclos</span><span class="pr">R$&nbsp;2.699,00</span></div></div>
+      <span class="etapa">2 · kit de setup (grátis)</span>
+      <div class="seg kits"><span>Estudante</span><span class=sel>Back-end</span><span>Front-end</span><span>Dados</span><span>Mobile</span></div>
+      <span class="ferr">Back-end: Git, Docker, WSL (no Windows), Java (JDK 21), Node.js, Postman e MySQL.</span>
+      <span class="etapa">3 · upgrade (opcional)</span>
+      <div class="opcoes col"><div class="opc"><div class="radio"></div><div><b>Sem upgrade</b><span></span></div></div><div class="opc sel"><div class="radio"><i></i></div><div><b>Memória para 32&nbsp;GB</b><span>+R$&nbsp;450,00 · instalada antes do envio · +1 dia útil</span></div></div><div class="opc"><div class="radio"></div><div><b>SSD de 1&nbsp;TB</b><span>+R$&nbsp;350,00 · instalado antes do envio · +1 dia útil</span></div></div></div>
+      <div class="precos" style="border-top:1px solid var(--linha);padding-top:16px"><span class="preco" style="font-size:36px">R$&nbsp;3.349,00</span><span class="pix">R$&nbsp;3.014,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;279,08 sem juros · notebook + upgrade</span></div>
+      <a class="tecla t-verde t-g t-cheia" id="go-06-26">Pedir pelo WhatsApp <span class="k">enter</span></a>
+      <a class="tecla t-clara t-cheia" id="go-13-27">Tirar uma dúvida antes</a>
     </div>
-    <div class="garantias"><div>Nota fiscal no CPF ou no CNPJ</div><div>Garantia de 1 ano Apple Brasil</div><div>Frete grátis com seguro · envio em até 2 dias úteis</div></div>
+    <div class="garantias"><div>Revisada, com fotos e checklist enviados antes do envio</div><div>Garantia de 90 dias da loja</div>
+      <div>Preparo em até 2 dias úteis (3 com upgrade) · frete grátis com seguro</div><div>Nota fiscal no CPF ou no CNPJ</div></div>
   </div>
 </div>
 <div class="duas-col">
-  <div class="ficha"><p class="rot">// ficha técnica</p><table><tr><td>processador</td><td>Apple M5 Pro, CPU de 15 núcleos</td></tr><tr><td>gráfico</td><td>GPU de 16 núcleos integrada</td></tr><tr><td>memória</td><td>24 GB unificada</td></tr><tr><td>armazenamento</td><td>SSD de 1 TB</td></tr><tr><td>tela</td><td>Liquid Retina XDR de 14,2 polegadas</td></tr><tr><td>portas</td><td>3 Thunderbolt 5, HDMI, leitor SDXC, MagSafe 3 e fone 3,5 mm</td></tr><tr><td>conexão</td><td>Wi-Fi 7 e Bluetooth 6</td></tr><tr><td>sistema</td><td>macOS</td></tr><tr><td>teclado</td><td>ABNT2 (português do Brasil)</td></tr><tr><td>cor</td><td>Preto-espacial</td></tr><tr><td>garantia</td><td>1 ano, Apple Brasil</td></tr><tr><td>na caixa</td><td>MacBook Pro, cabo USB-C para MagSafe 3 e adaptador de energia USB-C</td></tr></table></div>
-  <div class="pratica"><p class="rot">// na prática, para quem programa</p><div class="pr-i"><span class="ok">ok</span><p><b>Xcode e simulador de iPhone.</b> Só rodam no macOS: para app iOS, é este.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Docker, banco local, IDE e navegador juntos.</b> 24 GB de memória unificada para tudo aberto ao mesmo tempo.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Monitor externo sem adaptador.</b> HDMI e 3 portas Thunderbolt 5.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Teclado ABNT2.</b> Com ç e acentos no lugar de sempre.</p></div>
-    <a class="tecla t-clara" style="width:fit-content" id="go-04-26">Comparar com o Galaxy Book6 Pro</a></div>
+  <div class="ficha"><p class="rot">// ficha técnica</p><table><tr><td>processador</td><td>Intel Core i5-1145G7, 4 núcleos, até 4,4 GHz</td></tr><tr><td>memória</td><td>16&nbsp;GB DDR4 (ampliável para 32&nbsp;GB)</td></tr><tr><td>armazenamento</td><td>SSD NVMe de 512&nbsp;GB</td></tr><tr><td>tela</td><td>14 polegadas, Full HD (1920 x 1080), IPS</td></tr><tr><td>portas</td><td>2 USB-C (1 Thunderbolt 4), 2 USB-A, HDMI, rede RJ45 e fone</td></tr><tr><td>sistema</td><td>Windows 11 Pro</td></tr><tr><td>teclado</td><td>ABNT2 (português do Brasil)</td></tr><tr><td>garantia</td><td>90 dias da loja</td></tr></table></div>
+  <div class="pratica"><p class="rot">// na prática, para quem programa</p><div class="pr-i"><span class="ok">ok</span><p><b>IDE, banco local e Docker leve.</b> 16&nbsp;GB dão conta dos projetos da faculdade com tudo aberto.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Memória que dá para ampliar.</b> Peça 32&nbsp;GB no pedido e ela chega instalada.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Teclado ThinkPad e porta de rede.</b> Bom para digitar o dia todo e para o laboratório da faculdade.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Windows 11 Pro com WSL.</b> Linux dentro do Windows para os scripts e o terminal.</p></div>
+    <a class="tecla t-clara" style="width:fit-content" id="go-05-28">Comparar as três linhas</a></div>
 </div>
-<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-03" data-nome="03 Produto - Galaxy Book6 Pro 14"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-27">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-28" class="ativo">Notebooks</a><a id="go-04-29">Comparar</a><a id="go-07-30">Acompanhar pedido</a><a id="go-01-31">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-32">WhatsApp</a></div></header>
-<div class="migalha"><a id="go-01-33">notebooks</a> / <b>galaxy-book6-pro-14</b></div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-03" data-nome="03 Produto - Intermediário"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-29">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-30" class="ativo">Notebooks</a><a id="go-05-31">Comparar</a><a id="go-08-32">Acompanhar pedido</a><a id="go-08-33">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-34">WhatsApp</a></div></header>
+<div class="migalha"><a id="go-01-35">notebooks</a> / linha intermediário / <b>dell-latitude-5430</b></div>
 <div class="pdp">
   <div class="galeria">
-    <div class="grande"><div class="nb gx g"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div>
-    <div class="miniaturas"><div class="sel">aberto</div><div>fechado</div><div>lateral</div><div>teclado</div></div>
+    <div class="grande"><span class="etq" style="position:absolute;left:16px;top:14px">foto real · SN-INT-0001</span><div class="nb dl g"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div>
+    <div class="miniaturas"><div class="sel">tampa</div><div>teclado</div><div>tela</div><div>bateria 95%</div></div>
+    <p class="cinza" style="font-size:14px">As fotos são da unidade escolhida. Trocou a unidade, trocam as fotos.</p>
   </div>
   <div class="compra">
-    <span class="marca">Samsung · Windows 11</span>
-    <h2>Galaxy Book6 Pro 14</h2>
-    <p class="lead" style="font-size:17px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</p>
+    <span class="marca">Dell · Windows 11 Pro · linha Intermediário</span>
+    <h2>Latitude 5430</h2>
+    <p class="lead" style="font-size:17px">Para estágio e back-end: 32&nbsp;GB para Docker, máquinas virtuais e IDE abertos ao mesmo tempo.</p>
     <div class="caixa">
-      <div class="precos"><span class="preco" style="font-size:38px">R$ 13.999,00</span><span class="pix">R$ 12.599,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 1.166,58 sem juros</span></div>
-      <div class="qtd"><span>Quantidade</span><div class="stepper"><span>-</span><span>1</span><span>+</span></div><span class="cinza mono" style="font-size:12px">máx. 3 por pedido</span></div>
-      <span class="estoque">● em estoque · 8 unidades</span>
-      <a class="tecla t-verde t-g t-cheia" id="go-05-34">Pedir pelo WhatsApp <span class="k">enter</span></a>
-      <a class="tecla t-clara t-cheia" id="go-12-35">Tirar uma dúvida antes</a>
+      <span class="etapa">1 · escolha a unidade</span>
+      <div class="unids"><div class="unid sel"><span class="radio"><i></i></span><span class="sn">SN-INT-0001</span><span class="est est-a">estado A</span><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 95%,transparent 95%)"></i>95%</span><span class="cic">120 ciclos</span><span class="pr">R$&nbsp;4.999,00</span></div><div class="unid"><span class="radio"></span><span class="sn">SN-INT-0002</span><span class="est est-b">estado B</span><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 90%,transparent 90%)"></i>90%</span><span class="cic">260 ciclos</span><span class="pr">R$&nbsp;4.799,00</span></div></div>
+      <span class="etapa">2 · kit de setup (grátis)</span>
+      <div class="seg kits"><span>Estudante</span><span class=sel>Back-end</span><span>Front-end</span><span>Dados</span><span>Mobile</span></div>
+      <span class="ferr">Back-end: Git, Docker, WSL (no Windows), Java (JDK 21), Node.js, Postman e MySQL.</span>
+      <span class="etapa">3 · upgrade (opcional)</span>
+      <div class="opcoes col"><div class="opc sel"><div class="radio"><i></i></div><div><b>Sem upgrade</b><span></span></div></div><div class="opc"><div class="radio"></div><div><b>SSD de 2&nbsp;TB</b><span>+R$&nbsp;650,00 · instalado antes do envio · +1 dia útil</span></div></div></div>
+      <div class="precos" style="border-top:1px solid var(--linha);padding-top:16px"><span class="preco" style="font-size:36px">R$&nbsp;4.999,00</span><span class="pix">R$&nbsp;4.499,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;416,58 sem juros</span></div>
+      <a class="tecla t-verde t-g t-cheia" id="go-06-36">Pedir pelo WhatsApp <span class="k">enter</span></a>
+      <a class="tecla t-clara t-cheia" id="go-13-37">Tirar uma dúvida antes</a>
     </div>
-    <div class="garantias"><div>Nota fiscal no CPF ou no CNPJ</div><div>Garantia de 1 ano Samsung Brasil</div><div>Frete grátis com seguro · envio em até 2 dias úteis</div></div>
+    <div class="garantias"><div>Revisada, com fotos e checklist enviados antes do envio</div><div>Garantia de 90 dias da loja</div>
+      <div>Preparo em até 2 dias úteis (3 com upgrade) · frete grátis com seguro</div><div>Nota fiscal no CPF ou no CNPJ</div></div>
   </div>
 </div>
 <div class="duas-col">
-  <div class="ficha"><p class="rot">// ficha técnica</p><table><tr><td>processador</td><td>Intel Core Ultra X7 358H, 16 núcleos, até 4,8 GHz</td></tr><tr><td>gráfico</td><td>Intel Arc B390 integrada</td></tr><tr><td>memória</td><td>32 GB LPDDR5X</td></tr><tr><td>armazenamento</td><td>SSD de 1 TB</td></tr><tr><td>tela</td><td>AMOLED de 14 polegadas, 2880 x 1800, 120 Hz, touch</td></tr><tr><td>portas</td><td>2 Thunderbolt 4, USB-A, HDMI 2.1 e fone 3,5 mm</td></tr><tr><td>conexão</td><td>Wi-Fi 7 e Bluetooth 5.4</td></tr><tr><td>sistema</td><td>Windows 11 Home</td></tr><tr><td>teclado</td><td>ABNT2 (português do Brasil)</td></tr><tr><td>cor</td><td>Grafite</td></tr><tr><td>peso</td><td>1,24 kg</td></tr><tr><td>garantia</td><td>1 ano, Samsung Brasil</td></tr></table></div>
-  <div class="pratica"><p class="rot">// na prática, para quem programa</p><div class="pr-i"><span class="ok">ok</span><p><b>Windows 11 com WSL2.</b> Linux dentro do Windows para Docker e scripts.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Visual Studio, .NET e SQL Server.</b> Rodam nativos, sem máquina virtual.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>32 GB de RAM.</b> Máquinas virtuais e containers com folga.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>1,24 kg e tela AMOLED de 120 Hz.</b> Dá para levar para a faculdade todo dia.</p></div>
-    <a class="tecla t-clara" style="width:fit-content" id="go-04-36">Comparar com o MacBook Pro</a></div>
+  <div class="ficha"><p class="rot">// ficha técnica</p><table><tr><td>processador</td><td>Intel Core i7-1265U, 10 núcleos, até 4,8 GHz</td></tr><tr><td>memória</td><td>32&nbsp;GB DDR4</td></tr><tr><td>armazenamento</td><td>SSD NVMe de 1&nbsp;TB</td></tr><tr><td>tela</td><td>14 polegadas, Full HD (1920 x 1080)</td></tr><tr><td>portas</td><td>2 USB-C Thunderbolt 4, 2 USB-A, HDMI, rede RJ45, leitor microSD e fone</td></tr><tr><td>sistema</td><td>Windows 11 Pro</td></tr><tr><td>teclado</td><td>ABNT2 (português do Brasil)</td></tr><tr><td>garantia</td><td>90 dias da loja</td></tr></table></div>
+  <div class="pratica"><p class="rot">// na prática, para quem programa</p><div class="pr-i"><span class="ok">ok</span><p><b>Vários containers e uma VM juntos.</b> 32&nbsp;GB para Docker, máquina virtual e IDE abertos ao mesmo tempo.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Android Studio com emulador.</b> O i7 de 10 núcleos segura o emulador sem engasgar.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>SSD de 1&nbsp;TB.</b> Espaço para imagens Docker, SDKs e projetos. Dá para pedir 2&nbsp;TB.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Duas Thunderbolt 4 e HDMI.</b> Monitores externos no estágio sem adaptador estranho.</p></div>
+    <a class="tecla t-clara" style="width:fit-content" id="go-05-38">Comparar as três linhas</a></div>
 </div>
-<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-04" data-nome="04 Comparar"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-37">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-38">Notebooks</a><a id="go-04-39" class="ativo">Comparar</a><a id="go-07-40">Acompanhar pedido</a><a id="go-01-41">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-42">WhatsApp</a></div></header>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-04" data-nome="04 Produto - Pro"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-39">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-40" class="ativo">Notebooks</a><a id="go-05-41">Comparar</a><a id="go-08-42">Acompanhar pedido</a><a id="go-08-43">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-44">WhatsApp</a></div></header>
+<div class="migalha"><a id="go-01-45">notebooks</a> / linha pro / <b>macbook-air-m2</b></div>
+<div class="pdp">
+  <div class="galeria">
+    <div class="grande"><span class="etq" style="position:absolute;left:16px;top:14px">foto real · SN-PRO-0001</span><div class="nb g"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div>
+    <div class="miniaturas"><div class="sel">tampa</div><div>teclado</div><div>tela</div><div>bateria 96%</div></div>
+    <p class="cinza" style="font-size:14px">As fotos são da unidade escolhida. Trocou a unidade, trocam as fotos.</p>
+  </div>
+  <div class="compra">
+    <span class="marca">Apple · macOS · linha Pro</span>
+    <h2>MacBook Air 13 (M2)</h2>
+    <p class="lead" style="font-size:17px">Para quem quer bateria para o dia todo, silêncio total e desenvolvimento para iPhone com Xcode.</p>
+    <div class="caixa">
+      <span class="etapa">1 · escolha a unidade</span>
+      <div class="unids"><div class="unid sel"><span class="radio"><i></i></span><span class="sn">SN-PRO-0001</span><span class="est est-a">estado A</span><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 96%,transparent 96%)"></i>96%</span><span class="cic">85 ciclos</span><span class="pr">R$&nbsp;6.999,00</span></div><div class="unid off"><span class="radio"></span><span class="sn">SN-PRO-0002</span><span class="est est-a">estado A</span><span class="cinza mono" style="font-size:13px">em revisão</span><span class="pr">em breve</span></div></div>
+      <span class="etapa">2 · kit de setup (grátis)</span>
+      <div class="seg kits"><span>Estudante</span><span>Back-end</span><span>Front-end</span><span>Dados</span><span class=sel>Mobile</span></div>
+      <span class="ferr">Mobile: Git, Android Studio, Flutter e, no MacBook, Xcode.</span>
+      <span class="etapa">3 · upgrade (opcional)</span>
+      <div class="aviso">O MacBook Air não tem upgrade: memória e SSD são soldados na placa. Escolha pensando nos próximos anos.</div>
+      <div class="precos" style="border-top:1px solid var(--linha);padding-top:16px"><span class="preco" style="font-size:36px">R$&nbsp;6.999,00</span><span class="pix">R$&nbsp;6.299,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;583,25 sem juros</span></div>
+      <a class="tecla t-verde t-g t-cheia" id="go-06-46">Pedir pelo WhatsApp <span class="k">enter</span></a>
+      <a class="tecla t-clara t-cheia" id="go-13-47">Tirar uma dúvida antes</a>
+    </div>
+    <div class="garantias"><div>Revisada, com fotos e checklist enviados antes do envio</div><div>Garantia de 90 dias da loja</div>
+      <div>Preparo em até 2 dias úteis (3 com upgrade) · frete grátis com seguro</div><div>Nota fiscal no CPF ou no CNPJ</div></div>
+  </div>
+</div>
+<div class="duas-col">
+  <div class="ficha"><p class="rot">// ficha técnica</p><table><tr><td>chip</td><td>Apple M2, CPU de 8 núcleos</td></tr><tr><td>memória</td><td>16&nbsp;GB unificada</td></tr><tr><td>armazenamento</td><td>SSD de 512&nbsp;GB</td></tr><tr><td>tela</td><td>Liquid Retina de 13,6 polegadas</td></tr><tr><td>portas</td><td>2 Thunderbolt / USB 4, MagSafe 3 e fone</td></tr><tr><td>sistema</td><td>macOS</td></tr><tr><td>teclado</td><td>ABNT2 (português do Brasil)</td></tr><tr><td>garantia</td><td>90 dias da loja</td></tr></table></div>
+  <div class="pratica"><p class="rot">// na prática, para quem programa</p><div class="pr-i"><span class="ok">ok</span><p><b>Xcode e simulador de iPhone.</b> Só rodam no macOS: para app iOS, é este.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Bateria para o dia todo.</b> O M2 não tem ventoinha e trabalha em silêncio.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Docker e back-end também.</b> 16&nbsp;GB de memória unificada para os projetos do dia a dia.</p></div><div class="pr-i"><span class="ok">ok</span><p><b>Sem upgrade depois.</b> Memória e SSD são soldados: escolha pensando nos próximos anos.</p></div>
+    <a class="tecla t-clara" style="width:fit-content" id="go-05-48">Comparar as três linhas</a></div>
+</div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-05" data-nome="05 Comparar"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-49">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-50">Notebooks</a><a id="go-05-51" class="ativo">Comparar</a><a id="go-08-52">Acompanhar pedido</a><a id="go-08-53">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-54">WhatsApp</a></div></header>
 <div class="secao" style="border-bottom:none;padding-bottom:28px">
-  <p class="rot">$ diff macbook-pro-14 galaxy-book6-pro-14</p>
-  <h2>Os dois, linha a linha.</h2>
-  <p class="lead" style="margin-top:12px">Em verde, onde cada um leva vantagem. O que não está marcado é empate ou depende do seu uso.</p>
+  <p class="rot">$ diff entrada intermediario pro</p>
+  <h2>As três linhas, lado a lado.</h2>
+  <p class="lead" style="margin-top:12px">Em verde, onde cada uma leva vantagem. O que não está marcado é empate ou depende do seu uso.</p>
 </div>
 <div style="padding:0 120px 72px">
 <table class="diff">
-  <tr><th></th><th>atributo</th><th>macbook-pro-14</th><th>galaxy-book6-pro-14</th></tr>
-  <tr><td class="n">1</td><td class="at">sistema</td><td>macOS</td><td>Windows 11 Home</td></tr><tr><td class="n">2</td><td class="at">processador</td><td>Apple M5 Pro, CPU de 15 núcleos</td><td>Intel Core Ultra X7 358H, 16 núcleos</td></tr><tr><td class="n">3</td><td class="at">gráfico</td><td>GPU de 16 núcleos</td><td>Intel Arc B390</td></tr><tr><td class="n">4</td><td class="at">memória</td><td>24 GB unificada</td><td class=mais>32 GB LPDDR5X</td></tr><tr><td class="n">5</td><td class="at">armazenamento</td><td>SSD de 1 TB</td><td>SSD de 1 TB</td></tr><tr><td class="n">6</td><td class="at">tela</td><td>Liquid Retina XDR 14,2"</td><td>AMOLED 14", 120 Hz, touch</td></tr><tr><td class="n">7</td><td class="at">portas</td><td class=mais>3 Thunderbolt 5, HDMI, SDXC, MagSafe 3</td><td>2 Thunderbolt 4, USB-A, HDMI 2.1</td></tr><tr><td class="n">8</td><td class="at">xcode (apps iOS)</td><td class=mais>Sim</td><td>Não roda</td></tr><tr><td class="n">9</td><td class="at">wsl2 / visual studio</td><td>Não (.NET roda pelo VS Code)</td><td class=mais>Sim, nativo</td></tr><tr><td class="n">10</td><td class="at">peso</td><td>-</td><td>1,24 kg</td></tr><tr><td class="n">11</td><td class="at">teclado</td><td>ABNT2</td><td>ABNT2</td></tr><tr><td class="n">12</td><td class="at">preço</td><td>R$ 30.999,00</td><td class=mais>R$ 13.999,00</td></tr><tr><td class="n">13</td><td class="at">no pix (10% off)</td><td>R$ 27.899,10</td><td class=mais>R$ 12.599,10</td></tr><tr><td class="n">14</td><td class="at">12x sem juros</td><td>R$ 2.583,25</td><td class=mais>R$ 1.166,58</td></tr>
+  <tr><th></th><th>atributo</th><th>entrada</th><th>intermediário</th><th>pro</th></tr>
+  <tr><td class="n">1</td><td class="at">modelo</td><td>ThinkPad T14 Gen 2</td><td>Dell Latitude 5430</td><td>MacBook Air 13 (M2)</td></tr><tr><td class="n">2</td><td class="at">processador</td><td>Core i5-1145G7, 4 núcleos</td><td>Core i7-1265U, 10 núcleos</td><td>Apple M2, 8 núcleos</td></tr><tr><td class="n">3</td><td class="at">memória</td><td>16&nbsp;GB (vai a 32&nbsp;GB)</td><td class=mais>32&nbsp;GB</td><td>16&nbsp;GB unificada</td></tr><tr><td class="n">4</td><td class="at">armazenamento</td><td>SSD de 512&nbsp;GB</td><td class=mais>SSD de 1&nbsp;TB</td><td>SSD de 512&nbsp;GB</td></tr><tr><td class="n">5</td><td class="at">tela</td><td>14" Full HD, IPS</td><td>14" Full HD</td><td class=mais>13,6" Liquid Retina</td></tr><tr><td class="n">6</td><td class="at">sistema</td><td>Windows 11 Pro</td><td>Windows 11 Pro</td><td>macOS</td></tr><tr><td class="n">7</td><td class="at">xcode (apps iOS)</td><td>Não roda</td><td>Não roda</td><td class=mais>Sim</td></tr><tr><td class="n">8</td><td class="at">docker e máquina virtual</td><td>Docker leve</td><td class=mais>Os dois juntos, com folga</td><td>Docker sim; VM só ARM</td></tr><tr><td class="n">9</td><td class="at">upgrade no pedido</td><td class=mais>32&nbsp;GB ou SSD de 1&nbsp;TB</td><td>SSD de 2&nbsp;TB</td><td>Não tem (soldado)</td></tr><tr><td class="n">10</td><td class="at">estado e bateria</td><td>A ou B · a partir de 80%</td><td>A ou B · a partir de 80%</td><td>A ou B · a partir de 80%</td></tr><tr><td class="n">11</td><td class="at">kit de setup</td><td>grátis</td><td>grátis</td><td>grátis</td></tr><tr><td class="n">12</td><td class="at">garantia</td><td>90 dias da loja</td><td>90 dias da loja</td><td>90 dias da loja</td></tr><tr><td class="n">13</td><td class="at">preço (estado A)</td><td class=mais>R$&nbsp;2.899,00</td><td>R$&nbsp;4.999,00</td><td>R$&nbsp;6.999,00</td></tr><tr><td class="n">14</td><td class="at">no pix (10% off)</td><td class=mais>R$&nbsp;2.609,10</td><td>R$&nbsp;4.499,10</td><td>R$&nbsp;6.299,10</td></tr><tr><td class="n">15</td><td class="at">12x sem juros</td><td class=mais>R$&nbsp;241,58</td><td>R$&nbsp;416,58</td><td>R$&nbsp;583,25</td></tr>
   <tr class="fim"><td class="n"></td><td></td>
-    <td><div class="botoes"><a class="tecla t-verde" id="go-05-43">Pedir o MacBook <span class="k">enter</span></a><a class="tecla t-clara" id="go-02-44">Detalhes</a></div></td>
-    <td><div class="botoes"><a class="tecla t-verde" id="go-05-45">Pedir o Galaxy <span class="k">enter</span></a><a class="tecla t-clara" id="go-03-46">Detalhes</a></div></td></tr>
+    <td><a class="tecla t-verde" id="go-02-55">Ver unidades</a></td>
+    <td><a class="tecla t-verde" id="go-03-56">Ver unidades</a></td>
+    <td><a class="tecla t-verde" id="go-04-57">Ver unidades</a></td></tr>
 </table>
-<div class="aviso" style="margin-top:24px">Ainda em dúvida? Conta no WhatsApp o que você programa e a gente diz qual dos dois atende melhor. <a id="go-12-47" style="font-weight:600;color:var(--tinta)">Chamar no WhatsApp →</a></div>
+<div class="aviso" style="margin-top:24px">Ainda em dúvida? Conta no WhatsApp o que você programa e a gente diz qual linha atende melhor. <a id="go-13-58" style="font-weight:600;color:var(--tinta)">Chamar no WhatsApp →</a></div>
 </div>
-<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-05" data-nome="05 Finalizar pedido"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-48">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-49">Notebooks</a><a id="go-04-50">Comparar</a><a id="go-07-51">Acompanhar pedido</a><a id="go-01-52">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-53">WhatsApp</a></div></header>
-<div class="migalha"><a id="go-02-54">macbook-pro-14</a> / <b>finalizar pedido</b></div>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-06" data-nome="06 Finalizar pedido"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-59">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-60">Notebooks</a><a id="go-05-61">Comparar</a><a id="go-08-62">Acompanhar pedido</a><a id="go-08-63">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-64">WhatsApp</a></div></header>
+<div class="migalha"><a id="go-02-65">thinkpad-t14-gen2</a> / <b>finalizar pedido</b></div>
 <div class="checkout">
   <div class="form">
     <div class="passos-pedido"><div class="at">1 dados</div><div class="at">2 entrega</div><div class="at">3 pagamento</div><div>4 whatsapp</div></div>
@@ -416,57 +495,61 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
     </div>
     <div class="grupo"><p class="rot" style="margin:0">// pagamento</p>
       <div class="opcoes">
-        <div class="opc sel"><div class="radio"><i></i></div><div><b>PIX · 10% de desconto</b><span>R$ 27.899,10 à vista</span></div></div>
-        <div class="opc"><div class="radio"></div><div><b>Cartão em até 12x sem juros</b><span>12x de R$ 2.583,25</span></div></div>
+        <div class="opc sel"><div class="radio"><i></i></div><div><b>PIX · 10% de desconto</b><span>R$&nbsp;3.014,10 à vista</span></div></div>
+        <div class="opc"><div class="radio"></div><div><b>Cartão em até 12x sem juros</b><span>12x de R$&nbsp;279,08</span></div></div>
       </div>
       <div class="aviso">O site não cobra nada. Depois que você enviar, a chave PIX ou o link do cartão chegam pela conversa no WhatsApp.</div>
     </div>
-    <div class="check"><div class="cx">✓</div><span>Li e aceito a política de privacidade. Meus dados são usados só para a venda, a nota fiscal e a entrega.</span></div>
-    <a class="tecla t-verde t-g" style="width:fit-content" id="go-06-55">Enviar pedido pelo WhatsApp <span class="k">enter</span></a>
+    <div class="check"><div class="cx">✓</div><span>Li e aceito a política de privacidade. Meus dados são usados só para a venda, a nota fiscal, a entrega e a garantia.</span></div>
+    <a class="tecla t-verde t-g" style="width:fit-content" id="go-07-66">Enviar pedido pelo WhatsApp <span class="k">enter</span></a>
   </div>
   <aside class="resumo">
     <div class="resumo-top"><span class="rot" style="margin:0">// resumo do pedido</span></div>
-    <div class="resumo-item"><div class="mini-nb"><div></div></div><div style="flex:1;display:flex;flex-direction:column;gap:8px">
-      <b>MacBook Pro 14 (M5 Pro)</b><span class="cinza" style="font-size:13px">24 GB · 1 TB · preto-espacial</span>
-      <div class="stepper" style="width:fit-content"><span>-</span><span>1</span><span>+</span></div></div></div>
+    <div class="resumo-item"><div class="mini-nb"><div></div></div><div style="flex:1;display:flex;flex-direction:column;gap:6px">
+      <b>ThinkPad T14 Gen 2</b><span class="cinza mono" style="font-size:12px">SN-ENT-0001 · estado A · bateria 92%</span>
+      <div style="display:flex;justify-content:space-between;font-size:14px"><span>Notebook</span><span class="mono">R$&nbsp;2.899,00</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:14px"><span>Memória para 32&nbsp;GB</span><span class="mono">R$&nbsp;450,00</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:14px"><span>Kit Back-end</span><span class="mono">grátis</span></div></div></div>
+    <div class="resumo-item" style="padding:14px 24px"><a class="mono" style="font-size:13px;color:var(--cinza)" id="go-01-67">+ adicionar outro notebook · máx. 3 por pedido</a></div>
     <div class="contas">
-      <div><span>Subtotal</span><span class="mono">R$ 30.999,00</span></div>
-      <div style="color:var(--verde)"><span>Desconto PIX (10%)</span><span class="mono">- R$ 3.099,90</span></div>
+      <div><span>Subtotal</span><span class="mono">R$&nbsp;3.349,00</span></div>
+      <div style="color:var(--verde)"><span>Desconto PIX (10%)</span><span class="mono">- R$&nbsp;334,90</span></div>
       <div><span>Frete com seguro</span><span class="mono">grátis</span></div>
-      <div class="tot"><span>Total</span><span>R$ 27.899,10</span></div>
-      <span class="cinza" style="font-size:13px">Preço garantido por 48 horas depois do envio do pedido.</span>
+      <div class="tot"><span>Total</span><span>R$&nbsp;3.014,10</span></div>
+      <span class="cinza" style="font-size:13px">A unidade fica reservada por 48 horas depois do envio do pedido. Com upgrade, o preparo leva até 3 dias úteis após o pagamento.</span>
     </div>
   </aside>
 </div>
-<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-06" data-nome="06 Pedido enviado"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-56">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-57">Notebooks</a><a id="go-04-58">Comparar</a><a id="go-07-59">Acompanhar pedido</a><a id="go-01-60">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-61">WhatsApp</a></div></header>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-07" data-nome="07 Pedido enviado"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-68">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-69">Notebooks</a><a id="go-05-70">Comparar</a><a id="go-08-71">Acompanhar pedido</a><a id="go-08-72">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-73">WhatsApp</a></div></header>
 <div class="ok-pg">
   <div style="flex:1;display:flex;flex-direction:column;gap:22px">
     <span class="rot" style="margin:0">// pedido registrado</span>
     <div class="codigo">PC-2026-0042</div>
     <h2>Pedido enviado.<br>Agora é no WhatsApp.</h2>
     <p class="lead">Abrimos o WhatsApp da PrimeCoding com a mensagem do seu pedido. É só tocar em enviar que a gente responde com a chave PIX.</p>
-    <div class="botoes"><a class="tecla t-verde t-g" id="go-12-62">Abrir o WhatsApp de novo <span class="k">enter</span></a>
-      <a class="tecla t-clara t-g" id="go-07-63">Acompanhar pedido</a></div>
-    <div class="aviso">Preço garantido até 10/10/2026, 10:40. Guarde o código: com ele e o seu WhatsApp você acompanha o pedido aqui no site.</div>
+    <div class="botoes"><a class="tecla t-verde t-g" id="go-13-74">Abrir o WhatsApp de novo <span class="k">enter</span></a>
+      <a class="tecla t-clara t-g" id="go-08-75">Acompanhar pedido</a></div>
+    <div class="aviso">A unidade SN-ENT-0001 fica reservada para você até 31/10/2026, 10:40. Guarde o código: com ele e o seu WhatsApp você acompanha o pedido e aciona a garantia aqui no site.</div>
     <div class="timeline" style="margin-top:8px">
       <div class="tl agora"><div class="pt"></div><div><b>Aguardando atendimento</b><span>agora · a loja confere o pedido</span></div></div>
       <div class="tl"><div class="pt"></div><div><b>Aguardando pagamento</b><span>você recebe a chave PIX ou o link do cartão</span></div></div>
-      <div class="tl"><div class="pt"></div><div><b>Pago</b><span>a nota fiscal sai no CNPJ informado</span></div></div>
-      <div class="tl"><div class="pt"></div><div><b>Enviado</b><span>em até 2 dias úteis, com rastreio no WhatsApp</span></div></div>
-      <div class="tl"><div class="pt"></div><div><b>Entregue</b><span>7 dias para desistir, se precisar</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Em preparação</b><span>revisão final, upgrade e kit Back-end · até 3 dias úteis</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Pronto para envio</b><span>fotos e checklist da revisão no WhatsApp</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Enviado</b><span>frete com seguro e rastreio no WhatsApp</span></div></div>
+      <div class="tl"><div class="pt"></div><div><b>Entregue</b><span>garantia de 90 dias e 7 dias para desistir</span></div></div>
     </div>
   </div>
   <div class="chat">
-    <div class="chat-top"><div class="av">pc_</div><div><b>PrimeCoding</b><small>conta comercial · responde em minutos</small></div></div>
+    <div class="chat-top"><div class="av">pc_</div><div><b>PrimeCoding</b><small>revendedor · responde em minutos</small></div></div>
     <div class="chat-corpo">
       <span class="dica">mensagem pronta, é só enviar</span>
-      <div class="bolha">Olá! Quero fechar o pedido <b>PC-2026-0042</b>.<br>1x MacBook Pro 14 (M5 Pro)<br>Pagamento: PIX (10% de desconto)<br>Total: R$ 27.899,10<br>Nota fiscal no CNPJ<br>Entrega: CEP 01000-000<span class="hora">10:40</span></div>
+      <div class="bolha">Olá! Quero fechar o pedido <b>PC-2026-0042</b>.<br>1x ThinkPad T14 Gen 2 · SN-ENT-0001 (estado A, bateria 92%)<br>Upgrade: memória para 32&nbsp;GB<br>Kit de setup: Back-end<br>Pagamento: PIX (10% de desconto)<br>Total: R$&nbsp;3.014,10<br>Nota fiscal no CNPJ<br>Entrega: CEP 01000-000<span class="hora">10:40</span></div>
     </div>
   </div>
 </div>
-<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-07" data-nome="07 Acompanhar pedido"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>nota fiscal</b> no CPF ou CNPJ</span></div><header class="cab"><a class="logo" id="go-01-64">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-65">Notebooks</a><a id="go-04-66">Comparar</a><a id="go-07-67" class="ativo">Acompanhar pedido</a><a id="go-01-68">Dúvidas</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sex, 9h às 18h</span><a class="tecla t-verde t-p" id="go-12-69">WhatsApp</a></div></header>
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-08" data-nome="08 Acompanhar pedido e garantia"><div class="faixa"><span><b>frete grátis</b> com seguro para todo o Brasil</span><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros no cartão</span><span><b>90 dias</b> de garantia da loja</span></div><header class="cab"><a class="logo" id="go-01-76">prime_coding<span class="caret"></span></a><nav class="nav"><a id="go-01-77">Notebooks</a><a id="go-05-78">Comparar</a><a id="go-08-79" class="ativo">Acompanhar pedido</a><a id="go-08-80">Garantia</a></nav><div class="cab-dir"><span class="atend"><span class="led"></span>atendimento aberto · seg a sáb, 9h às 18h</span><a class="tecla t-verde t-p" id="go-13-81">WhatsApp</a></div></header>
 <div class="secao" style="border-bottom:none;padding-bottom:24px">
-  <p class="rot">// acompanhar pedido</p>
+  <p class="rot">// acompanhar pedido e garantia</p>
   <h2>Onde está meu notebook?</h2>
   <p class="lead" style="margin-top:12px">Informe o código do pedido e o WhatsApp usado na compra. Os dois precisam ser do mesmo pedido.</p>
 </div>
@@ -475,115 +558,135 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
     <a class="tecla t-escura" style="height:46px">Consultar</a></div>
   <div style="display:flex;gap:24px;align-items:flex-start;padding-bottom:72px">
     <div class="caixa" style="flex:1">
-      <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:20px;font-weight:600">PC-2026-0039</span><span class="st st-env">ENVIADO</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:20px;font-weight:600">PC-2026-0039</span><span class="st st-ent">ENTREGUE</span></div>
       <div class="timeline">
-        <div class="tl feito"><div class="pt"></div><div><b>Aguardando atendimento</b><span class="q">06/10/2026 · 14:12</span></div></div>
-        <div class="tl feito"><div class="pt"></div><div><b>Aguardando pagamento</b><span class="q">06/10/2026 · 14:30 · link do cartão enviado</span></div></div>
-        <div class="tl feito"><div class="pt"></div><div><b>Pago</b><span class="q">06/10/2026 · 15:02 · cartão em 10x</span></div></div>
-        <div class="tl agora"><div class="pt"></div><div><b>Enviado</b><span class="q">07/10/2026 · 09:15 · rastreio XX000000000BR</span></div></div>
-        <div class="tl"><div class="pt"></div><div><b>Entregue</b><span class="q">previsão: 10/10/2026</span></div></div>
+        <div class="tl feito"><div class="pt"></div><div><b>Aguardando atendimento</b><span class="q">20/10/2026 · 14:12</span></div></div>
+        <div class="tl feito"><div class="pt"></div><div><b>Aguardando pagamento</b><span class="q">20/10/2026 · 14:30 · link do cartão enviado</span></div></div>
+        <div class="tl feito"><div class="pt"></div><div><b>Em preparação</b><span class="q">20/10/2026 · 15:02 · pago no cartão em 10x</span></div></div>
+        <div class="tl feito"><div class="pt"></div><div><b>Pronto para envio</b><span class="q">22/10/2026 · 11:20 · fotos e checklist enviados</span></div></div>
+        <div class="tl feito"><div class="pt"></div><div><b>Enviado</b><span class="q">22/10/2026 · 16:05 · rastreio XX000000000BR</span></div></div>
+        <div class="tl agora"><div class="pt"></div><div><b>Entregue</b><span class="q">24/10/2026 · 13:40</span></div></div>
       </div>
     </div>
-    <div class="caixa" style="width:420px">
-      <span class="rot" style="margin:0">// itens</span>
-      <div style="display:flex;justify-content:space-between"><span>1x MacBook Pro 14 (M5 Pro)</span><span class="mono">R$ 30.999,00</span></div>
-      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--linha);padding-top:12px;font-weight:600"><span>Total no cartão</span><span class="mono">R$ 30.999,00</span></div>
-      <span class="cinza" style="font-size:14px">Entrega: São Paulo/SP · frete grátis com seguro</span>
-      <a class="tecla t-clara" id="go-12-70">Falar sobre este pedido</a>
+    <div style="width:420px;display:flex;flex-direction:column;gap:24px">
+      <div class="caixa">
+        <span class="rot" style="margin:0">// itens</span>
+        <div style="display:flex;justify-content:space-between"><span>1x Dell Latitude 5430</span><span class="mono">R$&nbsp;4.999,00</span></div>
+        <span class="cinza mono" style="font-size:12px">SN-INT-0003 · estado A · bateria 94% · kit Dados</span>
+        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--linha);padding-top:12px;font-weight:600"><span>Total no cartão</span><span class="mono">R$&nbsp;4.999,00</span></div>
+      </div>
+      <div class="caixa">
+        <span class="rot" style="margin:0">// garantia</span>
+        <div style="display:flex;justify-content:space-between"><span>Garantia da loja</span><span class="mono">até 22/01/2027</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Desistência (7 dias)</span><span class="mono">até 31/10/2026</span></div>
+        <span class="cinza" style="font-size:14px">Defeito de hardware: conserto ou troca por unidade equivalente em até 10 dias úteis.</span>
+        <a class="tecla t-escura t-cheia" id="go-13-82">Acionar garantia</a>
+        <a class="tecla t-clara t-cheia" id="go-13-83">Falar sobre este pedido</a>
+      </div>
     </div>
   </div>
 </div>
-<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sex, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Política de privacidade</span><span>Trocas e devoluções (7 dias)</span></div><div class="rod-col"><b>Empresa</b><span>PrimeCoding Comércio de Eletrônicos</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-08" data-nome="08 Admin - Login">
+<footer class="rod"><div class="rod-col"><span class="logo">prime_coding<span class="caret"></span></span><span class="mini">primecoding.com.br · projeto acadêmico</span></div><div class="rod-col"><b>Atendimento</b><span>WhatsApp (11) 90000-0000</span><span>seg a sáb, 9h às 18h</span></div><div class="rod-col"><b>Compra segura</b><span>Garantia de 90 dias</span><span>Trocas e devoluções (7 dias)</span><span>Política de privacidade</span></div><div class="rod-col"><b>Quem vende</b><span>PrimeCoding · revendedor autônomo (MEI)</span><span class="mini">CNPJ 00.000.000/0001-00 (fictício)</span></div></footer></section><section class="tela" id="tela-09" data-nome="09 Painel - Login">
 <div class="login"><div class="login-caixa">
   <span class="logo">prime_coding<span class="caret"></span></span>
-  <div><h3>Painel da loja</h3><p class="cinza" style="font-size:14px;margin-top:4px">Acesso restrito à equipe da PrimeCoding.</p></div>
-  <div class="campo"><label>E-mail</label><div class="inp">admin@primecoding.com.br</div></div>
+  <div><h3>Painel do revendedor</h3><p class="cinza" style="font-size:14px;margin-top:4px">Só o revendedor entra aqui. Cliente não tem login: o pedido é feito pelo site e fechado no WhatsApp.</p></div>
+  <div class="campo"><label>E-mail</label><div class="inp">revendedor@primecoding.com.br</div></div>
   <div class="campo"><label>Senha</label><div class="inp foco">••••••••••</div></div>
-  <a class="tecla t-escura t-cheia" id="go-09-71">Entrar</a>
-  <span class="cinza mono" style="font-size:12px">Esqueceu a senha? Fale com o responsável pelo sistema.</span>
+  <a class="tecla t-escura t-cheia" id="go-10-84">Entrar</a>
+  <span class="cinza mono" style="font-size:12px">Esqueceu a senha? Ela é redefinida pelo e-mail cadastrado.</span>
 </div></div>
-</section><section class="tela" id="tela-09" data-nome="09 Admin - Pedidos"><div class="adm"><aside class="lado"><span class="logo">prime_coding<span class="caret"></span></span><a id="go-09-72" class=ativo>Pedidos<span>1 novo</span></a><a id="go-10-73">Produtos<span>2</span></a><a id="go-09-74">Vendas<span></span></a><a class="sair" id="go-08-75">Sair<span>admin</span></a></aside>
+</section><section class="tela" id="tela-10" data-nome="10 Painel - Pedidos"><div class="adm"><aside class="lado"><span class="logo">prime_coding<span class="caret"></span></span><a id="go-10-85" class=ativo>Pedidos<span>1 novo</span></a><a id="go-11-86">Unidades e modelos<span>5</span></a><a id="go-10-87">Vendas<span></span></a><a class="sair" id="go-09-88">Sair<span>revendedor</span></a></aside>
 <div class="adm-main">
   <div class="adm-top"><div><span class="rot" style="margin:0">// painel</span><h2 style="font-size:32px">Pedidos</h2></div>
     <div class="inp ph" style="width:320px">Buscar por código, nome ou WhatsApp</div></div>
   <div class="kpis">
-    <div class="kpi"><span>Vendido em outubro (pagos)</span><b>R$ 96.695,40</b></div>
-    <div class="kpi"><span>Pedidos em outubro</span><b>6</b></div>
+    <div class="kpi"><span>Vendido em outubro (pagos)</span><b>R$&nbsp;18.696,20</b></div>
+    <div class="kpi"><span>Pedidos em outubro</span><b>7</b></div>
     <div class="kpi"><span>Esperando atendimento</span><b style="color:#8A6408">1</b></div>
-    <div class="kpi"><span>Estoque · MacBook / Galaxy</span><b>5 / 8</b></div>
+    <div class="kpi"><span>À venda · Entrada / Interm. / Pro</span><b>2 / 2 / 1</b></div>
   </div>
-  <p class="cinza mono" style="font-size:12px;margin-top:-12px">status ATENDIMENTO = aguardando atendimento · PAGAMENTO = aguardando pagamento · prazo = 48 h para pagar</p>
-  <div class="abas"><span class="sel">Todos<i>6</i></span><span>Aguard. atendimento<i>1</i></span><span>Aguard. pagamento<i>1</i></span><span>Pago<i>1</i></span><span>Enviado<i>1</i></span><span>Entregue<i>1</i></span><span>Cancelado<i>1</i></span></div>
+  <p class="cinza mono" style="font-size:12px;margin-top:-12px">prazo = fim da reserva de 48 h para pagar, ou o fim do preparo depois do pagamento</p>
+  <div class="abas"><span class="sel">Todos<i>7</i></span><span>Atendimento<i>1</i></span><span>Pagamento<i>1</i></span><span>Preparação<i>1</i></span><span>Pronto<i>1</i></span><span>Enviado<i>1</i></span><span>Entregue<i>1</i></span><span>Cancelado<i>1</i></span></div>
   <div class="adm-corpo">
-    <table class="tab"><tr><th>código</th><th>cliente</th><th>itens</th><th>pagamento</th><th>total</th><th>status</th><th>prazo</th></tr><tr class=sel><td class="m">PC-2026-0042</td><td class="nw">Lucas Martins</td><td>1x MacBook</td><td class="nw">PIX</td><td class="m">R$ 27.899,10</td><td><span class="st st-at">ATENDIMENTO</span></td><td class="m">10/10 10:40</td></tr><tr><td class="m">PC-2026-0041</td><td class="nw">Mariana Souza</td><td>1x Galaxy</td><td class="nw">Cartão 12x</td><td class="m">R$ 13.999,00</td><td><span class="st st-pg">PAGAMENTO</span></td><td class="m">09/10 18:12</td></tr><tr><td class="m">PC-2026-0040</td><td class="nw">Rafael Lima</td><td>2x Galaxy</td><td class="nw">PIX</td><td class="m">R$ 25.198,20</td><td><span class="st st-pago">PAGO</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0039</td><td class="nw">Ana Rocha</td><td>1x MacBook</td><td class="nw">Cartão 10x</td><td class="m">R$ 30.999,00</td><td><span class="st st-env">ENVIADO</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0038</td><td class="nw">Pedro Alves</td><td>MacBook + Galaxy</td><td class="nw">PIX</td><td class="m">R$ 40.498,20</td><td><span class="st st-ent">ENTREGUE</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0037</td><td class="nw">Juliana Costa</td><td>1x Galaxy</td><td class="nw">PIX</td><td class="m">R$ 12.599,10</td><td><span class="st st-can">CANCELADO</span></td><td class="m">venceu</td></tr></table>
+    <table class="tab"><tr><th>código</th><th>cliente</th><th>unidade</th><th>pagamento</th><th>total</th><th>status</th><th>prazo</th></tr><tr class=sel><td class="m">PC-2026-0042</td><td class="nw">Lucas Martins</td><td class="m">SN-ENT-0001</td><td class="nw">PIX</td><td class="m">R$&nbsp;3.014,10</td><td><span class="st st-at">ATENDIMENTO</span></td><td class="m">31/10 10:40</td></tr><tr><td class="m">PC-2026-0041</td><td class="nw">Mariana Souza</td><td class="m">SN-ENT-0004</td><td class="nw">Cartão 12x</td><td class="m">R$&nbsp;2.699,00</td><td><span class="st st-pg">PAGAMENTO</span></td><td class="m">30/10 18:12</td></tr><tr><td class="m">PC-2026-0040</td><td class="nw">Rafael Lima</td><td class="m">SN-INT-0004</td><td class="nw">PIX</td><td class="m">R$&nbsp;4.499,10</td><td><span class="st st-prep">PREPARAÇÃO</span></td><td class="m">até 30/10</td></tr><tr><td class="m">PC-2026-0039</td><td class="nw">Ana Rocha</td><td class="m">SN-INT-0003</td><td class="nw">Cartão 10x</td><td class="m">R$&nbsp;4.999,00</td><td><span class="st st-ent">ENTREGUE</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0038</td><td class="nw">Beatriz Nunes</td><td class="m">SN-PRO-0003</td><td class="nw">PIX</td><td class="m">R$&nbsp;6.299,10</td><td><span class="st st-env">ENVIADO</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0037</td><td class="nw">Pedro Alves</td><td class="m">SN-ENT-0005</td><td class="nw">Cartão 6x</td><td class="m">R$&nbsp;2.899,00</td><td><span class="st st-pronto">PRONTO</span></td><td class="m">-</td></tr><tr><td class="m">PC-2026-0036</td><td class="nw">Juliana Costa</td><td class="m">SN-PRO-0004</td><td class="nw">PIX</td><td class="m">R$&nbsp;6.299,10</td><td><span class="st st-can">CANCELADO</span></td><td class="m">venceu</td></tr></table>
     <div class="detalhe">
       <div class="det-sec"><div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-weight:600;font-size:16px">PC-2026-0042</span><span class="st st-at">AGUARD. ATENDIMENTO</span></div>
-        <span class="cinza">criado em 08/10/2026 às 10:40 · vence em 10/10 às 10:40</span></div>
+        <span class="cinza">criado em 29/10/2026 às 10:40 · unidade reservada até 31/10 às 10:40</span></div>
       <div class="det-sec"><span class="rotm">cliente</span><b>Lucas Martins</b><span>WhatsApp (11) 90000-0001</span><span>CNPJ 00.000.000/0001-00</span><span class="cinza">Rua Exemplo, 100 · Centro · São Paulo/SP · 01000-000</span></div>
-      <div class="det-sec"><span class="rotm">itens</span><div style="display:flex;justify-content:space-between"><span>1x MacBook Pro 14 (M5 Pro)</span><span class="mono">R$ 30.999,00</span></div>
-        <div style="display:flex;justify-content:space-between;color:var(--verde)"><span>Desconto PIX</span><span class="mono">- R$ 3.099,90</span></div>
-        <div style="display:flex;justify-content:space-between;font-weight:600"><span>Total</span><span class="mono">R$ 27.899,10</span></div></div>
-      <div class="det-sec"><span class="rotm">histórico</span><span class="mono" style="font-size:12px">08/10 10:40 · pedido criado pelo site</span></div>
+      <div class="det-sec"><span class="rotm">itens</span>
+        <div style="display:flex;justify-content:space-between"><span>ThinkPad T14 Gen 2</span><span class="mono">R$&nbsp;2.899,00</span></div>
+        <span class="cinza mono" style="font-size:12px">SN-ENT-0001 · estado A · bateria 92%</span>
+        <div style="display:flex;justify-content:space-between"><span>Memória para 32&nbsp;GB</span><span class="mono">R$&nbsp;450,00</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Kit Back-end</span><span class="mono">grátis</span></div>
+        <div style="display:flex;justify-content:space-between;color:var(--verde)"><span>Desconto PIX</span><span class="mono">- R$&nbsp;334,90</span></div>
+        <div style="display:flex;justify-content:space-between;font-weight:600"><span>Total</span><span class="mono">R$&nbsp;3.014,10</span></div></div>
+      <div class="det-sec"><span class="rotm">preparação · libera depois do pagamento</span>
+        <div class="chk"><div><span class="cx vazio">✓</span>Revisão final</div><div><span class="cx vazio">✓</span>Memória de 32&nbsp;GB instalada</div><div><span class="cx vazio">✓</span>Kit Back-end instalado</div><div><span class="cx vazio">✓</span>Fotos e checklist enviados</div></div></div>
       <div class="det-acoes">
         <a class="tecla t-escura t-cheia">Mudar para Aguardando pagamento</a>
         <a class="tecla t-verde t-cheia">Abrir conversa no WhatsApp</a>
-        <a class="tecla t-clara t-cheia" style="color:var(--vermelho)">Cancelar pedido</a>
+        <a class="tecla t-clara t-cheia" style="color:var(--vermelho)">Cancelar e liberar a unidade</a>
       </div>
     </div>
   </div>
 </div></div>
-</section><section class="tela" id="tela-10" data-nome="10 Admin - Produtos"><div class="adm"><aside class="lado"><span class="logo">prime_coding<span class="caret"></span></span><a id="go-09-76">Pedidos<span>1 novo</span></a><a id="go-10-77" class=ativo>Produtos<span>2</span></a><a id="go-09-78">Vendas<span></span></a><a class="sair" id="go-08-79">Sair<span>admin</span></a></aside>
+</section><section class="tela" id="tela-11" data-nome="11 Painel - Unidades e modelos"><div class="adm"><aside class="lado"><span class="logo">prime_coding<span class="caret"></span></span><a id="go-10-89">Pedidos<span>1 novo</span></a><a id="go-11-90" class=ativo>Unidades e modelos<span>5</span></a><a id="go-10-91">Vendas<span></span></a><a class="sair" id="go-09-92">Sair<span>revendedor</span></a></aside>
 <div class="adm-main">
-  <div class="adm-top"><div><span class="rot" style="margin:0">// painel</span><h2 style="font-size:32px">Produtos</h2></div>
-    <span class="cinza" style="font-size:14px">A loja trabalha só com estes dois modelos. Dá para mudar preço, estoque, fotos e descrição.</span></div>
-  <div class="prods-adm">
-    <div class="pa"><div class="pa-img"><div class="nb p"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div></div><div class="pa-corpo">
-  <div class="pa-tit"><div><h3>MacBook Pro 14 (M5 Pro)</h3><span class="cinza" style="font-size:14px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</span></div>
-    <div style="display:flex;align-items:center;gap:10px;font-size:14px">à venda<div class="toggle"><i></i></div></div></div>
-  <div class="pa-campos"><div class="campo" style="flex:0 0 220px"><label>Preço de tabela (R$)</label><div class="inp">30.999,00</div></div><div class="campo" style="flex:0 0 120px"><label>Estoque</label><div class="inp">5</div></div>
-    <div class="campo" style="flex:0 0 200px"><label>Imagem</label><div class="inp ph">trocar foto...</div></div><div class="campo"><label>Avisos de reposição</label><div class="inp" style="border:none;background:none;padding:0" ><span class="mono" style="font-size:14px">0 pessoas esperando</span></div></div></div>
-  <div class="campo"><label>Descrição</label><div class="inp" style="height:auto;padding:12px 14px;line-height:1.5">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</div></div>
-  <div class="botoes"><a class="tecla t-escura">Salvar alterações</a><a class="tecla t-clara">Editar ficha técnica</a></div>
-</div></div>
-    <div class="pa"><div class="pa-img"><div class="nb gx p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div></div><div class="pa-corpo">
-  <div class="pa-tit"><div><h3>Galaxy Book6 Pro 14</h3><span class="cinza" style="font-size:14px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</span></div>
-    <div style="display:flex;align-items:center;gap:10px;font-size:14px">à venda<div class="toggle"><i></i></div></div></div>
-  <div class="pa-campos"><div class="campo" style="flex:0 0 220px"><label>Preço de tabela (R$)</label><div class="inp">13.999,00</div></div><div class="campo" style="flex:0 0 120px"><label>Estoque</label><div class="inp">8</div></div>
-    <div class="campo" style="flex:0 0 200px"><label>Imagem</label><div class="inp ph">trocar foto...</div></div><div class="campo"><label>Avisos de reposição</label><div class="inp" style="border:none;background:none;padding:0" ><span class="mono" style="font-size:14px">0 pessoas esperando</span></div></div></div>
-  <div class="campo"><label>Descrição</label><div class="inp" style="height:auto;padding:12px 14px;line-height:1.5">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</div></div>
-  <div class="botoes"><a class="tecla t-escura">Salvar alterações</a><a class="tecla t-clara">Editar ficha técnica</a></div>
-</div></div>
+  <div class="adm-top"><div><span class="rot" style="margin:0">// painel</span><h2 style="font-size:32px">Unidades e modelos</h2></div>
+    <span class="cinza" style="font-size:14px;max-width:420px">A loja trabalha só com estas três linhas. Dá para mudar o preço e tirar uma linha da vitrine, mas não criar outra.</span></div>
+  <div class="mods">
+    <div class="mod"><div class="mod-tit"><div><b>ThinkPad T14 Gen 2</b><span class="cinza" style="display:block;font-size:13px">linha Entrada</span></div><div style="display:flex;align-items:center;gap:8px;font-size:13px">à venda<div class="toggle"><i></i></div></div></div><div class="campo"><label>Preço da linha (R$)</label><div class="inp">2.899,00</div></div><div class="mod-num"><span>à venda <b>2</b></span><span>avisos de reposição <b>0</b></span></div></div>
+    <div class="mod"><div class="mod-tit"><div><b>Dell Latitude 5430</b><span class="cinza" style="display:block;font-size:13px">linha Intermediário</span></div><div style="display:flex;align-items:center;gap:8px;font-size:13px">à venda<div class="toggle"><i></i></div></div></div><div class="campo"><label>Preço da linha (R$)</label><div class="inp">4.999,00</div></div><div class="mod-num"><span>à venda <b>2</b></span><span>avisos de reposição <b>0</b></span></div></div>
+    <div class="mod"><div class="mod-tit"><div><b>MacBook Air 13 (M2)</b><span class="cinza" style="display:block;font-size:13px">linha Pro</span></div><div style="display:flex;align-items:center;gap:8px;font-size:13px">à venda<div class="toggle"><i></i></div></div></div><div class="campo"><label>Preço da linha (R$)</label><div class="inp">6.999,00</div></div><div class="mod-num"><span>à venda <b>1</b></span><span>avisos de reposição <b>0</b></span></div></div>
   </div>
-  <div class="aviso">Estoque zerado deixa o produto como "Esgotado" no site e troca o botão de pedido por "Avise-me quando chegar". O estoque só baixa quando o pagamento é confirmado.</div>
+  <div class="adm-corpo">
+    <table class="tab"><tr><th>número de série</th><th>linha</th><th>estado</th><th>bateria</th><th>ciclos</th><th>preço</th><th>situação</th></tr><tr><td class="m">SN-ENT-0001</td><td class="nw">Entrada</td><td><span class="est est-a">estado A</span></td><td><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 92%,transparent 92%)"></i>92%</span></td><td class="m">210</td><td class="m">R$&nbsp;2.899,00</td><td><span class="st st-at">RESERVADA</span></td></tr><tr><td class="m">SN-ENT-0002</td><td class="nw">Entrada</td><td><span class="est est-a">estado A</span></td><td><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 88%,transparent 88%)"></i>88%</span></td><td class="m">340</td><td class="m">R$&nbsp;2.899,00</td><td><span class="st st-pago">DISPONÍVEL</span></td></tr><tr><td class="m">SN-ENT-0003</td><td class="nw">Entrada</td><td><span class="est est-b">estado B</span></td><td><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 85%,transparent 85%)"></i>85%</span></td><td class="m">410</td><td class="m">R$&nbsp;2.699,00</td><td><span class="st st-pago">DISPONÍVEL</span></td></tr><tr><td class="m">SN-INT-0001</td><td class="nw">Interm.</td><td><span class="est est-a">estado A</span></td><td><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 95%,transparent 95%)"></i>95%</span></td><td class="m">120</td><td class="m">R$&nbsp;4.999,00</td><td><span class="st st-pago">DISPONÍVEL</span></td></tr><tr><td class="m">SN-INT-0002</td><td class="nw">Interm.</td><td><span class="est est-b">estado B</span></td><td><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 90%,transparent 90%)"></i>90%</span></td><td class="m">260</td><td class="m">R$&nbsp;4.799,00</td><td><span class="st st-pago">DISPONÍVEL</span></td></tr><tr><td class="m">SN-PRO-0001</td><td class="nw">Pro</td><td><span class="est est-a">estado A</span></td><td><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 96%,transparent 96%)"></i>96%</span></td><td class="m">85</td><td class="m">R$&nbsp;6.999,00</td><td><span class="st st-pago">DISPONÍVEL</span></td></tr><tr><td class="m">SN-PRO-0002</td><td class="nw">Pro</td><td><span class="est est-a">estado A</span></td><td><span class="bat"><i style="background:linear-gradient(90deg,#1A7F45 91%,transparent 91%)"></i>91%</span></td><td class="m">150</td><td class="m">R$&nbsp;6.999,00</td><td><span class="st st-pg">EM REVISÃO</span></td></tr></table>
+    <div class="detalhe">
+      <div class="det-sec"><b style="font-size:16px">Cadastrar unidade revisada</b><span class="cinza">Estado B entra R$&nbsp;200 abaixo do preço da linha.</span></div>
+      <div class="det-sec">
+        <div class="campo"><label>Linha</label><div class="inp">Entrada · ThinkPad T14 Gen 2</div></div>
+        <div class="campo"><label>Número de série</label><div class="inp foco">SN-ENT-0006</div></div>
+        <div class="campo"><label>Estado</label><div class="seg"><span class="sel">A · sem marcas</span><span>B · marcas leves</span></div></div>
+        <div class="linha-campos"><div class="campo"><label>Saúde da bateria</label><div class="inp">87 %</div></div><div class="campo"><label>Ciclos</label><div class="inp">300</div></div></div>
+        <div class="campo"><label>Fotos reais</label><div class="inp">6 fotos enviadas</div></div>
+      </div>
+      <div class="det-sec"><span class="rotm">checklist da revisão</span>
+        <div class="chk"><div><span class="cx">✓</span>Teclado e touchpad</div><div><span class="cx">✓</span>Tela e dobradiças</div><div><span class="cx">✓</span>Portas, Wi-Fi e rede</div><div><span class="cx">✓</span>SSD sem erros</div><div><span class="cx">✓</span>Limpeza interna</div></div></div>
+      <div class="det-acoes">
+        <div class="aviso">Bateria abaixo de 80% não vai para a vitrine: troque a bateria antes de cadastrar.</div>
+        <a class="tecla t-escura t-cheia">Cadastrar e pôr à venda · R$&nbsp;2.899,00</a>
+      </div>
+    </div>
+  </div>
 </div></div>
-</section><section class="tela mob" id="tela-11" data-nome="11 Mobile - Home">
-<div class="faixa" style="gap:14px;font-size:11px"><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros</span><span><b>frete</b> grátis</span></div>
-<header class="cab"><a class="logo" style="font-size:18px" id="go-11-80">prime_coding<span class="caret" style="height:20px;width:10px"></span></a>
-  <a class="tecla t-verde t-p" id="go-12-81">WhatsApp</a></header>
-<div class="hero"><div class="hero-txt" style="gap:16px"><span class="rot" style="margin:0">// dois notebooks. nenhum a mais.</span>
-  <h1>Dois notebooks. Os dois certos para programar.</h1>
-  <p class="lead">A gente explica a diferença, tira sua dúvida no WhatsApp e você fecha ali mesmo.</p></div></div>
-<div class="secao" style="padding-top:0"><div class="duo"><article class="prod"><div class="prod-img"><span class="etq tag">macbook-pro-14</span><div class="nb p"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Apple · macOS</span><h3>MacBook Pro 14 (M5 Pro)</h3><p class="cinza" style="font-size:15px">Para quem desenvolve para iPhone e Mac, roda Docker e quer bateria longe da tomada.</p><div class="specs"><div><span>chip</span><span>M5 Pro · CPU 15 núcleos</span></div><div><span>memória</span><span>24 GB unificada</span></div><div><span>ssd</span><span>1 TB</span></div></div><div class="precos"><span class="preco">R$ 30.999,00</span><span class="pix">R$ 27.899,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 2.583,25 sem juros</span></div><div class="botoes"><a class="tecla t-clara t-p" id="go-02-84">Detalhes</a><a class="tecla t-verde t-p" id="go-12-85">Pedir no WhatsApp</a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">galaxy-book6-pro-14</span><div class="nb gx p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Samsung · Windows 11</span><h3>Galaxy Book6 Pro 14</h3><p class="cinza" style="font-size:15px">Para quem vive no Windows com WSL e .NET e quer um notebook leve, de 1,24 kg.</p><div class="specs"><div><span>cpu</span><span>Core Ultra X7 358H · 16 núcleos</span></div><div><span>memória</span><span>32 GB LPDDR5X</span></div><div><span>ssd</span><span>1 TB</span></div></div><div class="precos"><span class="preco">R$ 13.999,00</span><span class="pix">R$ 12.599,10 no PIX (10% off)</span><span class="parc">ou 12x de R$ 1.166,58 sem juros</span></div><div class="botoes"><a class="tecla t-clara t-p" id="go-03-88">Detalhes</a><a class="tecla t-verde t-p" id="go-12-89">Pedir no WhatsApp</a></div></div></article></div></div>
-<div class="barra-mob"><a class="tecla t-clara" style="flex:1" id="go-04-90">Comparar</a><a class="tecla t-verde" style="flex:2" id="go-12-91">Falar no WhatsApp</a></div>
-</section><section class="tela mob" id="tela-12" data-nome="12 Mobile - Pedido no WhatsApp">
+</section><section class="tela mob" id="tela-12" data-nome="12 Mobile - Home">
+<div class="faixa" style="gap:14px;font-size:11px"><span><b>10% off</b> no PIX</span><span><b>12x</b> sem juros</span><span><b>90 dias</b> de garantia</span></div>
+<header class="cab"><a class="logo" style="font-size:18px" id="go-12-93">prime_coding<span class="caret" style="height:20px;width:10px"></span></a>
+  <a class="tecla t-verde t-p" id="go-13-94">WhatsApp</a></header>
+<div class="hero"><div class="hero-txt" style="gap:16px"><span class="rot" style="margin:0">// seminovos revisados um por um</span>
+  <h1>Seminovo revisado, pronto para programar.</h1>
+  <p class="lead">Três linhas, fotos reais, bateria conferida e kit de setup grátis. Você fecha no WhatsApp.</p></div></div>
+<div class="secao" style="padding-top:0"><div class="duo"><article class="prod"><div class="prod-img"><span class="etq tag">linha entrada</span><div class="nb tp p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Lenovo · Windows 11 Pro</span><h3>ThinkPad T14 Gen 2</h3><p class="cinza" style="font-size:15px">Para quem está começando a faculdade de TI: robusto, com teclado ótimo e memória que dá para ampliar.</p><div class="specs"><div><span>cpu</span><span>Core i5-1145G7 · 4 núcleos</span></div><div><span>memória</span><span>16&nbsp;GB · vai a 32&nbsp;GB</span></div><div><span>ssd</span><span>512&nbsp;GB NVMe</span></div></div><span class="estoque">● 3 unidades revisadas</span><div class="precos"><span class="preco">R$&nbsp;2.899,00</span><span class="pix">R$&nbsp;2.609,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;241,58 sem juros</span><span class="parc">estado B por R$&nbsp;2.699,00</span></div><div class="botoes"><a class="tecla t-verde t-p" id="go-02-95">Ver unidades</a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">linha intermediário</span><div class="nb dl p"><div class="nb-tela"><div class="in"><div class="ln" style="width:46%;background:#9DB4FF;margin-left:0px"></div><div class="ln" style="width:58%;background:#E5C07B;margin-left:14px"></div><div class="ln" style="width:66%;background:#C9CEDB;margin-left:28px"></div><div class="ln" style="width:40%;background:#98C379;margin-left:0px"></div><div class="ln" style="width:52%;background:#C9CEDB;margin-left:14px"></div><div class="ln" style="width:34%;background:#9DB4FF;margin-left:28px"></div><div class="ln" style="width:60%;background:#E5C07B;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Dell · Windows 11 Pro</span><h3>Latitude 5430</h3><p class="cinza" style="font-size:15px">Para estágio e back-end: 32&nbsp;GB para Docker, máquinas virtuais e IDE abertos ao mesmo tempo.</p><div class="specs"><div><span>cpu</span><span>Core i7-1265U · 10 núcleos</span></div><div><span>memória</span><span>32&nbsp;GB DDR4</span></div><div><span>ssd</span><span>1&nbsp;TB NVMe</span></div></div><span class="estoque">● 2 unidades revisadas</span><div class="precos"><span class="preco">R$&nbsp;4.999,00</span><span class="pix">R$&nbsp;4.499,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;416,58 sem juros</span><span class="parc">estado B por R$&nbsp;4.799,00</span></div><div class="botoes"><a class="tecla t-verde t-p" id="go-03-96">Ver unidades</a></div></div></article><article class="prod"><div class="prod-img"><span class="etq tag">linha pro</span><div class="nb p"><div class="nb-tela"><div class="in"><div class="ln" style="width:38%;background:#7FA7D9;margin-left:0px"></div><div class="ln" style="width:62%;background:#C8A15A;margin-left:14px"></div><div class="ln" style="width:50%;background:#B0B3BA;margin-left:28px"></div><div class="ln" style="width:70%;background:#8FBF8F;margin-left:0px"></div><div class="ln" style="width:44%;background:#B0B3BA;margin-left:14px"></div><div class="ln" style="width:56%;background:#7FA7D9;margin-left:28px"></div><div class="ln" style="width:30%;background:#C8A15A;margin-left:0px"></div></div></div><div class="nb-base"><i></i></div></div><span class="ilus">imagem ilustrativa</span></div><div class="prod-corpo"><span class="marca">Apple · macOS</span><h3>MacBook Air 13 (M2)</h3><p class="cinza" style="font-size:15px">Para quem quer bateria para o dia todo, silêncio total e desenvolvimento para iPhone com Xcode.</p><div class="specs"><div><span>chip</span><span>Apple M2 · 8 núcleos</span></div><div><span>memória</span><span>16&nbsp;GB unificada</span></div><div><span>ssd</span><span>512&nbsp;GB</span></div></div><span class="estoque">● 1 unidade revisada</span><div class="precos"><span class="preco">R$&nbsp;6.999,00</span><span class="pix">R$&nbsp;6.299,10 no PIX (10% off)</span><span class="parc">ou 12x de R$&nbsp;583,25 sem juros</span><span class="parc">só estado A no momento</span></div><div class="botoes"><a class="tecla t-verde t-p" id="go-04-97">Ver unidades</a></div></div></article></div></div>
+<div class="barra-mob"><a class="tecla t-clara" style="flex:1" id="go-05-98">Comparar</a><a class="tecla t-verde" style="flex:2" id="go-13-99">Falar no WhatsApp</a></div>
+</section><section class="tela mob" id="tela-13" data-nome="13 Mobile - Pedido no WhatsApp">
 <div class="chat-mob">
-  <div class="chat-top"><span style="font-size:22px">‹</span><div class="av">pc_</div><div><b>PrimeCoding</b><small>conta comercial · online</small></div></div>
+  <div class="chat-top"><span style="font-size:22px">‹</span><div class="av">pc_</div><div><b>PrimeCoding</b><small>revendedor · online</small></div></div>
   <div class="chat-corpo" style="min-height:560px;justify-content:flex-end">
     <span class="dica">hoje</span>
-    <div class="bolha" style="align-self:flex-start;background:#FFFFFF;border-radius:0 6px 6px 6px">Olá! Aqui é a PrimeCoding. Atendimento de seg a sex, das 9h às 18h.<span class="hora">10:40</span></div>
+    <div class="bolha" style="align-self:flex-start;background:#FFFFFF;border-radius:0 6px 6px 6px">Olá! Aqui é a PrimeCoding. Atendimento de segunda a sábado, das 9h às 18h.<span class="hora">10:40</span></div>
     <span class="dica">a mensagem do pedido já vem escrita</span>
   </div>
-  <div class="compor"><div class="txt">Olá! Quero fechar o pedido <b>PC-2026-0042</b>.<br>1x MacBook Pro 14 (M5 Pro)<br>Pagamento: PIX (10% de desconto)<br>Total: R$ 27.899,10<br>Nota fiscal no CNPJ<br>Entrega: CEP 01000-000</div>
-    <div class="enviar" id="go-06-92">➤</div></div>
+  <div class="compor"><div class="txt">Olá! Quero fechar o pedido <b>PC-2026-0042</b>.<br>1x ThinkPad T14 Gen 2 · SN-ENT-0001 (estado A, bateria 92%)<br>Upgrade: memória para 32&nbsp;GB<br>Kit de setup: Back-end<br>Pagamento: PIX (10% de desconto)<br>Total: R$&nbsp;3.014,10<br>Nota fiscal no CNPJ<br>Entrega: CEP 01000-000</div>
+    <div class="enviar" id="go-07-100">➤</div></div>
 </div>
-</section><section class="tela" id="tela-13" data-nome="13 Estados">
-<div class="secao" style="padding-bottom:0;border-bottom:none"><p class="rot">// estados de tela</p><h2>Esgotado e erro no formulário</h2></div>
+</section><section class="tela" id="tela-14" data-nome="14 Estados">
+<div class="secao" style="padding-bottom:0;border-bottom:none"><p class="rot">// estados de tela</p><h2>Esgotado, erro no formulário e fora do horário</h2></div>
 <div class="estados">
-  <div class="estado"><span class="rot" style="margin:0">produto sem estoque</span>
+  <div class="estado"><span class="rot" style="margin:0">linha sem unidade disponível</span>
     <div class="caixa">
       <span class="esg">ESGOTADO</span>
-      <div class="precos"><span class="preco" style="color:#8A8B86">R$ 13.999,00</span><span class="parc">Galaxy Book6 Pro 14</span></div>
-      <p style="font-size:15px">Este modelo acabou. Deixe seu WhatsApp e a gente avisa assim que chegar.</p>
+      <div class="precos"><span class="preco" style="color:#8A8B86">R$&nbsp;4.999,00</span><span class="parc">Dell Latitude 5430 · linha Intermediário</span></div>
+      <p style="font-size:15px">As unidades desta linha acabaram. Deixe seu WhatsApp e a gente avisa quando chegar uma revisada.</p>
       <div class="campo"><label>Seu WhatsApp com DDD</label><div class="inp">(41) 90000-0002</div></div>
       <a class="tecla t-escura t-cheia">Avise-me quando chegar</a>
     </div></div>
@@ -591,8 +694,15 @@ h3{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.4px}
     <div class="caixa">
       <div class="campo"><label>WhatsApp com DDD</label><div class="inp erro">90000-0001</div><span class="msg-erro">falta o DDD: use (11) 90000-0001</span></div>
       <div class="campo"><label>CNPJ</label><div class="inp erro">00.000.000/0001</div><span class="msg-erro">CNPJ incompleto: são 14 números</span></div>
-      <div class="campo"><label>Quantidade</label><div class="stepper" style="width:fit-content"><span>-</span><span>3</span><span style="color:#B5B6B1">+</span></div><span class="msg-erro" style="color:var(--cinza)">máximo de 3 unidades por produto</span></div>
+      <div class="campo"><label>Notebooks no pedido</label><div class="stepper" style="width:fit-content"><span>-</span><span>3</span><span style="color:#B5B6B1">+</span></div><span class="msg-erro" style="color:var(--cinza)">máximo de 3 notebooks por pedido</span></div>
       <a class="tecla t-verde t-cheia" style="opacity:.45">Enviar pedido pelo WhatsApp</a>
+    </div></div>
+  <div class="estado"><span class="rot" style="margin:0">fora do horário de atendimento</span>
+    <div class="caixa">
+      <span class="atend"><span class="led" style="background:#B5B6B1"></span>atendimento fechado agora</span>
+      <p style="font-size:15px">O atendimento é de segunda a sábado, das 9h às 18h. Você pode enviar o pedido agora: ele fica registrado e a resposta vem no próximo dia útil.</p>
+      <div class="aviso">A reserva de 48 horas começa quando o pedido é enviado, mesmo fora do horário.</div>
+      <a class="tecla t-verde t-cheia">Enviar pedido mesmo assim</a>
     </div></div>
 </div>
 </section>

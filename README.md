@@ -1,8 +1,23 @@
 # PrimeCoding
 
-E-commerce acadêmico com só dois notebooks, um MacBook Pro e um Galaxy Book, para o público de TI. A venda é finalizada pelo WhatsApp.
+E-commerce acadêmico de um revendedor autônomo de notebooks seminovos revisados. São três linhas, Entrada, Intermediário e Pro, e cada unidade é vendida com fotos reais, bateria conferida, kit de setup para programar e 90 dias de garantia. A venda é fechada pelo WhatsApp.
 
 Projeto de Análise e Desenvolvimento de Sistemas, Senac.
+
+## Grupo 06
+
+- PAULO HENRIQUE DE CASTRO LIMA
+- EDUARDO ALMEIDA OLIVEIRA
+- FELIPE FARIA DA FONSECA
+- JOSE VICTOR SOUZA DE ABREU
+
+## Os três modelos
+
+| Linha | Notebook | Preço | No PIX |
+|---|---|---|---|
+| Entrada | ThinkPad T14 Gen 2, i5, 16 GB, SSD de 512 GB | R$ 2.899,00 | R$ 2.609,10 |
+| Intermediário | Dell Latitude 5430, i7, 32 GB, SSD de 1 TB | R$ 4.999,00 | R$ 4.499,10 |
+| Pro | MacBook Air 13 (M2), 16 GB, SSD de 512 GB | R$ 6.999,00 | R$ 6.299,10 |
 
 ## Entregáveis
 
@@ -19,6 +34,8 @@ O link do UniModeler abre para quem estiver logado no site.
 
 ## Como abrir os arquivos
 
+- `.docx`: no Word ou no Google Docs.
 - `.drawio`: em [app.diagrams.net](https://app.diagrams.net), no menu Arquivo > Abrir.
-- `.sql`: script para MySQL 8.
-- `.html`: as telas do protótipo, direto no navegador.
+- `.sql`: script para MySQL 8, com os três modelos, os kits, os upgrades e as unidades de exemplo.
+- `.js`: o modelo de dados no formato do UniModeler.
+- `.html`: as 14 telas do protótipo, direto no navegador.
