@@ -58,6 +58,8 @@ O link do UniModeler abre para quem estiver logado no site.
 
 Login de demonstração: `admin@admin.com` com a senha `admin`.
 
+O banco segue o modelo de dados de [04-modelagem-de-dados](04-modelagem-de-dados), com três diferenças que o site pediu: a tabela `foto_modelo` guarda a foto enviada pelo painel, o modelo ganhou a coluna `foto_versao`, e `item_pedido.id_unidade` não é única, para a unidade de um pedido cancelado poder ser vendida de novo.
+
 As fotos ilustrativas dos notebooks são do [Wikimedia Commons](https://commons.wikimedia.org), com licença livre, e o crédito aparece na página de cada notebook.
 
 ### Rodar sem Docker
