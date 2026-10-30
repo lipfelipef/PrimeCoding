@@ -49,6 +49,11 @@ export class Home implements OnInit {
     return this.loja.buscar(this.modelos, this.busca);
   }
 
+  // "Git, Docker, MySQL" vira ["Git", "Docker", "MySQL"], uma etiqueta para cada
+  ferramentas(kit: KitSetup): string[] {
+    return kit.ferramentas.split(',').map(f => f.trim()).filter(f => f != '');
+  }
+
   unidadesDo(modelo: Modelo): Unidade[] {
     return this.unidades.filter(u => u.modelo?.id == modelo.id);
   }

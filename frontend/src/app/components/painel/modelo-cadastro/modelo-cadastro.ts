@@ -26,10 +26,18 @@ export class ModeloCadastro implements OnInit {
     });
   }
 
+  novoItem(): void {
+    this.modelo?.especificacoes.push({ nome: '', valor: '' });
+  }
+
+  tirarItem(i: number): void {
+    this.modelo?.especificacoes.splice(i, 1);
+  }
+
   gravar(): void {
     this.erro = '';
     this.painel.atualizarModelo(this.modelo!).subscribe(() => {
-      this.router.navigate(['/painel/modelos']);
+      this.router.navigate(['/painel/notebooks']);
     }, (err) => {
       this.erro = this.painel.mensagemErro(err, 'Não foi possível gravar o modelo');
     });

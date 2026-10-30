@@ -1,12 +1,17 @@
-<a routerLink="/painel/modelos" class="voltar">Modelos</a>
+<a routerLink="/painel/notebooks" class="voltar">Notebooks</a>
 <p class="aviso erro" *ngIf="erro && !modelo">{{ erro }}</p>
 
 <div *ngIf="modelo">
-  <h1 class="titulo">{{ loja.nomeLinha(modelo.linha) }}: {{ loja.nomeCompleto(modelo) }}</h1>
+  <h1 class="titulo">Notebook da linha {{ loja.nomeLinha(modelo.linha) }}</h1>
+  <p class="subtitulo">Para trocar o notebook desta linha, mude a marca, o nome, a ficha técnica e o preço.</p>
+
   <form class="formulario caixa" (ngSubmit)="gravar()" novalidate>
     <fieldset>
-      <label class="campo largo">Nome
-        <input name="nome" [(ngModel)]="modelo.nome" maxlength="100" />
+      <label class="campo">Marca
+        <input name="marca" [(ngModel)]="modelo.marca" maxlength="30" placeholder="Lenovo" />
+      </label>
+      <label class="campo">Nome
+        <input name="nome" [(ngModel)]="modelo.nome" maxlength="100" placeholder="ThinkPad T14 Gen 2" />
       </label>
       <label class="campo largo">Descrição
         <textarea name="descricao" rows="3" [(ngModel)]="modelo.descricao" maxlength="500"></textarea>
@@ -21,17 +26,21 @@
         <input type="checkbox" name="ativo" [(ngModel)]="modelo.ativo" /> Aparece na loja
       </label>
     </fieldset>
+
+    <fieldset class="ficha-editavel">
+      <legend>Ficha técnica</legend>
+      <div class="item-ficha" *ngFor="let e of modelo.especificacoes; let i = index">
+        <input [name]="'ficha-nome-' + i" [(ngModel)]="e.nome" maxlength="40" placeholder="Processador" aria-label="Nome do item" />
+        <input [name]="'ficha-valor-' + i" [(ngModel)]="e.valor" maxlength="150" placeholder="Intel Core i5-1145G7" aria-label="Valor do item" />
+        <button type="button" class="link perigo" (click)="tirarItem(i)" [attr.aria-label]="'Tirar ' + (e.nome || 'item')">Tirar</button>
+      </div>
+      <button type="button" class="botao" (click)="novoItem()" *ngIf="modelo.especificacoes.length < 12">Adicionar item</button>
+    </fieldset>
+
     <p class="aviso erro" *ngIf="erro" role="alert">{{ erro }}</p>
     <div class="acoes-status">
       <button type="submit" class="botao botao-escuro">Gravar</button>
-      <a class="botao" routerLink="/painel/modelos">Cancelar</a>
+      <a class="botao" routerLink="/painel/notebooks">Cancelar</a>
     </div>
   </form>
-
-  <section class="caixa">
-    <h2>Ficha técnica</h2>
-    <table class="tabela">
-      <tr *ngFor="let e of modelo.especificacoes"><th>{{ e.nome }}</th><td>{{ e.valor }}</td></tr>
-    </table>
-  </section>
 </div>

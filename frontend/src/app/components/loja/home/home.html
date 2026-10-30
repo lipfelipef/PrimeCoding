@@ -62,7 +62,9 @@
       <div class="kit" *ngFor="let kit of kits">
         <strong>{{ kit.nome }}</strong>
         <span>{{ kit.descricao }}</span>
-        <code>{{ kit.ferramentas }}</code>
+        <ul class="ferramentas" [attr.aria-label]="'Vem instalado: ' + kit.ferramentas">
+          <li *ngFor="let f of ferramentas(kit)">{{ f }}</li>
+        </ul>
       </div>
     </div>
   </section>

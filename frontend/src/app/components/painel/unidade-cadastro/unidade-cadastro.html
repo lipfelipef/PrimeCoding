@@ -1,4 +1,4 @@
-<a routerLink="/painel/unidades" class="voltar">Unidades</a>
+<a routerLink="/painel/notebooks" class="voltar">Notebooks</a>
 <h1 class="titulo">{{ editando ? 'Editar unidade ' + unidade.numeroSerie : 'Nova unidade' }}</h1>
 
 <form class="formulario caixa" (ngSubmit)="gravar()" novalidate>
@@ -45,6 +45,6 @@
   <p class="aviso erro" *ngIf="erro" role="alert">{{ erro }}</p>
   <div class="acoes-status">
     <button type="submit" class="botao botao-escuro">Gravar</button>
-    <a class="botao" routerLink="/painel/unidades">Cancelar</a>
+    <a class="botao" routerLink="/painel/notebooks">Cancelar</a>
   </div>
 </form>

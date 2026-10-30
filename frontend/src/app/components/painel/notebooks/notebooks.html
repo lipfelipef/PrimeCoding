@@ -1,0 +1,46 @@
+<div class="barra">
+  <div>
+    <h1 class="titulo">Notebooks</h1>
+    <p class="subtitulo">{{ unidades.length }} unidades no estoque, {{ naVitrine() }} na vitrine</p>
+  </div>
+</div>
+
+<p class="aviso erro" *ngIf="erro" role="alert">{{ erro }}</p>
+<p class="aviso ok" *ngIf="mensagem" role="status">{{ mensagem }}</p>
+
+<section class="caixa modelo-bloco" *ngFor="let m of modelos">
+  <div class="modelo-topo">
+    <div>
+      <span class="linha">{{ loja.nomeLinha(m.linha) }}</span>
+      <h2>{{ loja.nomeCompleto(m) }}</h2>
+      <p class="modelo-info">
+        Referência {{ loja.dinheiro(m.preco) }} · {{ resumo(m) }}
+        <span class="status {{ m.ativo ? 'DISPONIVEL' : 'CANCELADO' }}">{{ m.ativo ? 'Aparece na loja' : 'Escondido da loja' }}</span>
+      </p>
+    </div>
+    <div class="acoes-status">
+      <a class="botao" [routerLink]="['/painel/modelos', m.id]">Trocar ou editar notebook</a>
+      <a class="botao botao-escuro" routerLink="/painel/unidades/nova" [queryParams]="{ modelo: m.id }">Nova unidade</a>
+    </div>
+  </div>
+
+  <table class="tabela" *ngIf="unidadesDo(m).length > 0">
+    <thead>
+      <tr><th>Série</th><th>Estado</th><th>Bateria</th><th>Preço</th><th>Situação</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of unidadesDo(m)">
+        <td class="codigo">{{ u.numeroSerie }}</td>
+        <td>{{ u.estado }}</td>
+        <td [class.baixa]="(u.saudeBateria || 0) < 80">{{ u.saudeBateria }}%</td>
+        <td>{{ loja.dinheiro(u.preco) }}</td>
+        <td><span class="status {{ u.situacao }}">{{ painel.nomeSituacao(u.situacao) }}</span></td>
+        <td class="acoes">
+          <a [routerLink]="['/painel/unidades', u.id]">Editar</a>
+          <button type="button" class="link perigo" (click)="apagar(u)">Apagar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="vazio-modelo" *ngIf="unidadesDo(m).length == 0">Sem unidades deste modelo. Cadastre uma para ele aparecer na vitrine.</p>
+</section>

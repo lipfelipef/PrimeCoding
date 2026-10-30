@@ -152,6 +152,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .foto img { width: 100%; height: 100%; object-fit: cover; }
 .legenda-foto { font-size: 12px; color: var(--tinta-3); margin: 8px 0 0; }
 .legenda-foto a { color: var(--tinta-3); }
+.legenda-foto .credito { white-space: nowrap; }
 .notebook { width: 100%; max-width: 420px; --borda: #1e1f22; }
 .notebook.INTERMEDIARIO { --borda: #4a4e55; }
 .notebook.PRO { --borda: #c9ccd1; }
@@ -173,7 +174,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .kit { border: 1px solid var(--linha); border-radius: 12px; padding: 16px; display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 6px; }
 .kit strong { font-family: var(--titulo); font-size: 17px; }
 .kit span { font-size: 14px; color: var(--tinta-2); }
-.kit code { font-family: var(--mono); font-size: 12px; color: var(--tinta); background: var(--fundo-2); border-radius: 6px; padding: 8px; margin-top: 6px; line-height: 1.6; }
+.ferramentas { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; align-content: flex-start; }
+.ferramentas li { font-family: var(--mono); font-size: 11px; color: var(--tinta); background: var(--fundo-2); border-radius: 4px; padding: 3px 6px; white-space: nowrap; }
 .garantias { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .garantias h3 { font-size: 20px; font-weight: 600; }
 .garantias p { color: var(--tinta-2); margin: 8px 0 0; }
@@ -301,6 +303,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .caixa h2 { font-size: 16px; font-weight: 600; margin: 0 0 10px; }
 .caixa h2:not(:first-child) { margin-top: 20px; }
 .caixa p { margin: 2px 0; font-size: 14px; }
+.ficha-editavel { display: flex !important; flex-direction: column; gap: 8px; }
+.item-ficha { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto; gap: 8px; align-items: center; }
+.item-ficha input { border: 1px solid var(--linha-forte); border-radius: 8px; padding: 9px 12px; font-size: 14px; background: var(--fundo); width: 100%; }
+.ficha-editavel > .botao { align-self: flex-start; }
+.modelo-bloco { padding: 20px 20px 8px; }
+.modelo-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+.modelo-topo h2 { font-size: 20px; margin: 2px 0 6px; }
+.modelo-info { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--tinta-2); }
+.modelo-topo .acoes-status { margin-top: 0; }
+.vazio-modelo { color: var(--tinta-2); font-size: 14px; padding: 4px 0 12px; }
 .detalhe-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .acoes-status { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 .historico { list-style: none; padding: 0; margin: 0; }
@@ -322,6 +334,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 @media (max-width: 640px) {
   [id] { scroll-margin-top: 140px; }
+  .item-ficha { grid-template-columns: minmax(0, 1fr) auto; }
+  .item-ficha input:nth-child(2) { grid-row: 2; }
   .faixa { gap: 4px 16px; font-size: 12px; }
   .cabecalho-dentro { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
   .busca { order: 3; flex-basis: 100%; }

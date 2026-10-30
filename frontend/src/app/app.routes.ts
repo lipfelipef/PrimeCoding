@@ -6,9 +6,8 @@ import { PedidoFeito } from './components/loja/pedido-feito/pedido-feito';
 import { Painel } from './components/painel/painel/painel';
 import { PedidoLista } from './components/painel/pedido-lista/pedido-lista';
 import { PedidoDetalhe } from './components/painel/pedido-detalhe/pedido-detalhe';
-import { UnidadeLista } from './components/painel/unidade-lista/unidade-lista';
 import { UnidadeCadastro } from './components/painel/unidade-cadastro/unidade-cadastro';
-import { ModeloLista } from './components/painel/modelo-lista/modelo-lista';
+import { Notebooks } from './components/painel/notebooks/notebooks';
 import { ModeloCadastro } from './components/painel/modelo-cadastro/modelo-cadastro';
 
 export const routes: Routes = [
@@ -22,10 +21,11 @@ export const routes: Routes = [
       { path: '', redirectTo: 'pedidos', pathMatch: 'full' },
       { path: 'pedidos', component: PedidoLista },
       { path: 'pedidos/:id', component: PedidoDetalhe },
-      { path: 'unidades', component: UnidadeLista },
+      { path: 'notebooks', component: Notebooks },
+      { path: 'unidades', redirectTo: 'notebooks', pathMatch: 'full' },
       { path: 'unidades/nova', component: UnidadeCadastro },
       { path: 'unidades/:id', component: UnidadeCadastro },
-      { path: 'modelos', component: ModeloLista },
+      { path: 'modelos', redirectTo: 'notebooks', pathMatch: 'full' },
       { path: 'modelos/:id', component: ModeloCadastro }
     ]
   },

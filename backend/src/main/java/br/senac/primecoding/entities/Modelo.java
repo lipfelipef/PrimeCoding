@@ -35,7 +35,8 @@ public class Modelo implements Serializable {
 
     private String imagemUrl;
 
-    @OneToMany(mappedBy = "modelo", cascade = CascadeType.ALL)
+    // orphanRemoval: item tirado da ficha no painel é apagado do banco
+    @OneToMany(mappedBy = "modelo", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("ordem")
     private List<Especificacao> especificacoes = new ArrayList<>();
 

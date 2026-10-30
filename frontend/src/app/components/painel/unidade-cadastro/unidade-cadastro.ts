@@ -25,6 +25,12 @@ export class UnidadeCadastro implements OnInit {
   ngOnInit(): void {
     this.painel.modelos().subscribe((resposta) => {
       this.modelos = resposta;
+      // "Nova unidade" de um modelo já chega com ele escolhido
+      let doModelo = this.route.snapshot.queryParamMap.get('modelo');
+      if (doModelo && !this.editando) {
+        this.idModelo = Number(doModelo);
+        this.escolheuModelo();
+      }
     }, (err) => {
       this.erro = this.painel.mensagemErro(err, 'Não foi possível carregar os modelos');
     });
@@ -62,7 +68,7 @@ export class UnidadeCadastro implements OnInit {
     this.unidade.modelo = this.modelos.find(m => m.id == this.idModelo);
     let pedido = this.editando ? this.painel.atualizarUnidade(this.unidade) : this.painel.cadastrarUnidade(this.unidade);
     pedido.subscribe(() => {
-      this.router.navigate(['/painel/unidades']);
+      this.router.navigate(['/painel/notebooks']);
     }, (err) => {
       this.erro = this.painel.mensagemErro(err, 'Não foi possível gravar a unidade');
     });
