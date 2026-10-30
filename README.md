@@ -68,7 +68,7 @@ docker compose up -d --build
 
 Troque as senhas no `.env` antes de subir. O passo a passo para publicar numa VM da Azure está em [deploy/README.md](deploy/README.md).
 
-Publicado na Azure: https://172-195-104-176.sslip.io (também em http://172.195.104.176:4200)
+Publicado na Azure: https://primecoding.com.br (também em http://172.195.104.176:4200)
 
 ## Como abrir os arquivos
 

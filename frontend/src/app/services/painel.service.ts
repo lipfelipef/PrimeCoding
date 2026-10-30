@@ -123,6 +123,30 @@ export class PainelService {
     return nomes[status || ''] || status || '';
   }
 
+  // O botão diz o que aconteceu na conversa do WhatsApp, não o nome do próximo status
+  acaoDoStatus(status?: string): string {
+    let acoes: any = {
+      AGUARDANDO_ATENDIMENTO: 'Respondi e mandei o PIX ou o link',
+      AGUARDANDO_PAGAMENTO: 'Pagamento recebido',
+      EM_PREPARACAO: 'Notebook pronto',
+      PRONTO_PARA_ENVIO: 'Enviei',
+      ENVIADO: 'Cliente recebeu'
+    };
+    return acoes[status || ''] || '';
+  }
+
+  // O que o revendedor tem de fazer agora, em uma linha
+  dicaDoStatus(status?: string): string {
+    let dicas: any = {
+      AGUARDANDO_ATENDIMENTO: 'Responda o cliente no WhatsApp e mande a chave PIX ou o link do cartão.',
+      AGUARDANDO_PAGAMENTO: 'Espere o comprovante. Sem pagamento, a reserva cai sozinha no prazo.',
+      EM_PREPARACAO: 'Instale o kit e o upgrade e teste o notebook.',
+      PRONTO_PARA_ENVIO: 'Embale, poste e mande o código de rastreio pelo WhatsApp.',
+      ENVIADO: 'Confirme com o cliente quando o notebook chegar.'
+    };
+    return dicas[status || ''] || '';
+  }
+
   nomeSituacao(situacao?: string): string {
     let nomes: any = { EM_REVISAO: 'Em revisão', DISPONIVEL: 'Na vitrine', RESERVADA: 'Reservada', VENDIDA: 'Vendida' };
     return nomes[situacao || ''] || situacao || '';

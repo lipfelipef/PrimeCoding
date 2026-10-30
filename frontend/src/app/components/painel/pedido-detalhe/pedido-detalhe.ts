@@ -50,8 +50,11 @@ export class PedidoDetalhe implements OnInit {
     return new Date(texto || '').toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   }
 
+  // Abre a conversa com o cliente já citando o pedido
   linkCliente(): string {
-    return `https://wa.me/55${this.pedido?.cliente.whatsapp}`;
+    let primeiroNome = (this.pedido?.cliente.nome || '').split(' ')[0];
+    let texto = `Olá, ${primeiroNome}! Aqui é da PrimeCoding, sobre o pedido ${this.pedido?.codigo}.`;
+    return `https://wa.me/55${this.pedido?.cliente.whatsapp}?text=${encodeURIComponent(texto)}`;
   }
 
   whatsappFormatado(): string {

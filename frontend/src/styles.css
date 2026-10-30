@@ -332,6 +332,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .vazio-modelo { color: var(--tinta-2); font-size: 14px; padding: 4px 0 12px; }
 .detalhe-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .acoes-status { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.dica-status { color: var(--tinta-2); margin: 0 0 4px !important; }
+.observacao-status { margin-top: 16px; }
 .historico { list-style: none; padding: 0; margin: 0; }
 .historico li { display: flex; flex-direction: column; padding: 10px 0 10px 18px; border-left: 2px solid var(--linha-forte); position: relative; font-size: 14px; }
 .historico li::before { content: ''; position: absolute; left: -6px; top: 15px; width: 10px; height: 10px; border-radius: 50%; background: var(--tinta); }

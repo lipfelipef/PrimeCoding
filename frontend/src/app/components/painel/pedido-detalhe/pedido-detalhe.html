@@ -42,13 +42,17 @@
   </div>
 
   <section class="caixa" *ngIf="!encerrado()">
-    <h2>Mudar status</h2>
-    <label class="campo largo">Observação <small>opcional</small>
+    <h2>Próximo passo</h2>
+    <p class="dica-status">{{ painel.dicaDoStatus(pedido.status) }}</p>
+    <div class="acoes-status">
+      <a class="botao" [href]="linkCliente()" target="_blank" rel="noopener">Abrir conversa no WhatsApp</a>
+    </div>
+    <label class="campo largo observacao-status">Observação <small>opcional, fica no histórico</small>
       <input name="observacao" [(ngModel)]="observacao" maxlength="255" placeholder="PIX recebido às 14h" />
     </label>
     <div class="acoes-status">
       <button type="button" class="botao botao-escuro" (click)="mudar(painel.proximoStatus(pedido.status))">
-        Avançar para {{ painel.nomeStatus(painel.proximoStatus(pedido.status)).toLowerCase() }}
+        {{ painel.acaoDoStatus(pedido.status) }}
       </button>
       <button type="button" class="botao perigo" (click)="mudar('CANCELADO')">Cancelar pedido</button>
     </div>
