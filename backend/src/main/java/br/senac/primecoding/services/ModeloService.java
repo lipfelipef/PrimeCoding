@@ -1,13 +1,21 @@
 package br.senac.primecoding.services;
 
 import br.senac.primecoding.entities.Especificacao;
+import br.senac.primecoding.entities.FotoModelo;
 import br.senac.primecoding.entities.Modelo;
+import br.senac.primecoding.repositories.FotoModeloRepository;
 import br.senac.primecoding.repositories.ModeloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +24,9 @@ public class ModeloService {
 
     @Autowired
     private ModeloRepository modeloRepository;
+
+    @Autowired
+    private FotoModeloRepository fotoModeloRepository;
 
     public List<Modelo> findAll() {
         return modeloRepository.findAllByOrderByPrecoAsc();
@@ -72,6 +83,65 @@ public class ModeloService {
         modelo.setPreco(dados.getPreco());
         modelo.setAtivo(dados.getAtivo() == null || dados.getAtivo());
         modelo.setImagemUrl(dados.getImagemUrl());
+        return modeloRepository.save(modelo);
+    }
+
+    public FotoModelo foto(Integer id) {
+        return fotoModeloRepository.findByModeloId(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Este modelo não tem foto enviada"));
+    }
+
+    // Aceita JPEG ou PNG de até 3 MB com pelo menos 800 x 600; o painel já manda 1200 x 900
+    @Transactional
+    public Modelo gravarFoto(Integer id, MultipartFile arquivo) {
+        Modelo modelo = findById(id);
+        if (arquivo == null || arquivo.isEmpty()) {
+            throw erro("Escolha uma foto");
+        }
+        if (arquivo.getSize() > 3_000_000) {
+            throw erro("A foto pode ter até 3 MB");
+        }
+        byte[] dados;
+        try {
+            dados = arquivo.getBytes();
+        } catch (IOException e) {
+            throw erro("Não foi possível ler a foto");
+        }
+        // O tipo vem dos primeiros bytes do arquivo, não do que o navegador declara
+        String tipo;
+        if (dados.length > 3 && (dados[0] & 0xFF) == 0xFF && (dados[1] & 0xFF) == 0xD8 && (dados[2] & 0xFF) == 0xFF) {
+            tipo = "image/jpeg";
+        } else if (dados.length > 4 && (dados[0] & 0xFF) == 0x89 && dados[1] == 'P' && dados[2] == 'N' && dados[3] == 'G') {
+            tipo = "image/png";
+        } else {
+            throw erro("A foto precisa ser JPG ou PNG");
+        }
+        BufferedImage imagem;
+        try {
+            imagem = ImageIO.read(new ByteArrayInputStream(dados));
+        } catch (IOException e) {
+            imagem = null;
+        }
+        if (imagem == null) {
+            throw erro("Não foi possível abrir a foto");
+        }
+        if (imagem.getWidth() < 800 || imagem.getHeight() < 600) {
+            throw erro("A foto precisa ter pelo menos 800 x 600 pixels");
+        }
+        FotoModelo foto = fotoModeloRepository.findByModeloId(id).orElse(new FotoModelo());
+        foto.setModelo(modelo);
+        foto.setTipo(tipo);
+        foto.setDados(dados);
+        fotoModeloRepository.save(foto);
+        modelo.setFotoVersao(System.currentTimeMillis());
+        return modeloRepository.save(modelo);
+    }
+
+    @Transactional
+    public Modelo apagarFoto(Integer id) {
+        Modelo modelo = findById(id);
+        fotoModeloRepository.findByModeloId(id).ifPresent(foto -> fotoModeloRepository.delete(foto));
+        modelo.setFotoVersao(null);
         return modeloRepository.save(modelo);
     }
 

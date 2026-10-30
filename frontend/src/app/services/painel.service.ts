@@ -92,6 +92,16 @@ export class PainelService {
     return this.http.put<Modelo>(`${this.baseUrl}/modelos/${modelo.id}`, modelo, { headers: this.headers() });
   }
 
+  enviarFoto(id: any, foto: Blob): Observable<Modelo> {
+    let dados = new FormData();
+    dados.append('foto', foto, 'foto.jpg');
+    return this.http.post<Modelo>(`${this.baseUrl}/modelos/${id}/foto`, dados, { headers: this.headers() });
+  }
+
+  apagarFoto(id: any): Observable<Modelo> {
+    return this.http.delete<Modelo>(`${this.baseUrl}/modelos/${id}/foto`, { headers: this.headers() });
+  }
+
   proximoStatus(status?: string): string {
     let i = this.fluxo.indexOf(status || '');
     if (i < 0 || i == this.fluxo.length - 1) {

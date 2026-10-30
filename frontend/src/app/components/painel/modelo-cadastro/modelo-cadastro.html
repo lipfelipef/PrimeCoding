@@ -19,7 +19,27 @@
       <label class="campo">Preço de referência (R$)
         <input name="preco" type="number" min="0" step="0.01" [(ngModel)]="modelo.preco" />
       </label>
-      <label class="campo largo">Endereço da foto <small>opcional; vazio usa a foto ilustrativa da linha</small>
+      <div class="campo largo enviar-foto">
+        <span>Foto do notebook</span>
+        <div class="enviar-foto-grade">
+          <app-foto [linha]="modelo.linha" [imagemUrl]="loja.fotoDo(modelo)" [alt]="loja.nomeCompleto(modelo)"></app-foto>
+          <div>
+            <p class="nota">Ideal: <strong>1200 x 900 px</strong> (formato 4:3), JPG ou PNG, mínimo 800 x 600.
+              Foto em outro formato é cortada no centro e reduzida para 1200 x 900 antes de enviar.</p>
+            <div class="acoes-status">
+              <label class="botao botao-escuro" [class.desativado]="enviandoFoto">
+                {{ enviandoFoto ? 'Enviando...' : (modelo.fotoVersao ? 'Trocar foto' : 'Escolher foto') }}
+                <input type="file" accept="image/jpeg,image/png" (change)="escolheuFoto($event)" [disabled]="enviandoFoto" hidden />
+              </label>
+              <button type="button" class="botao perigo" *ngIf="modelo.fotoVersao" (click)="removerFoto()">Remover foto</button>
+            </div>
+            <p class="aviso ok" *ngIf="avisoFoto" role="status">{{ avisoFoto }}</p>
+            <p class="aviso erro" *ngIf="erroFoto" role="alert">{{ erroFoto }}</p>
+            <p class="nota" *ngIf="!modelo.fotoVersao">Sem foto enviada, a loja usa {{ modelo.imagemUrl ? 'o endereço abaixo' : 'a foto ilustrativa da linha' }}.</p>
+          </div>
+        </div>
+      </div>
+      <label class="campo largo">Ou o endereço de uma foto na internet <small>opcional; a foto enviada tem prioridade</small>
         <input name="imagem" [(ngModel)]="modelo.imagemUrl" placeholder="https://..." />
       </label>
       <label class="marcar">

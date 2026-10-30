@@ -21,6 +21,7 @@ export interface Modelo {
   preco: number;
   ativo: boolean;
   imagemUrl?: string;
+  fotoVersao?: number;
   especificacoes: Especificacao[];
   upgrades: Upgrade[];
 }

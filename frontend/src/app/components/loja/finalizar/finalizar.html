@@ -106,7 +106,7 @@
 
     <aside class="resumo-pedido" aria-label="Resumo do pedido">
       <div class="resumo-produto">
-        <app-foto [linha]="compra.modelo?.linha" [imagemUrl]="compra.modelo?.imagemUrl" [alt]="loja.nomeCompleto(compra.modelo)"></app-foto>
+        <app-foto [linha]="compra.modelo?.linha" [imagemUrl]="loja.fotoDo(compra.modelo)" [alt]="loja.nomeCompleto(compra.modelo)"></app-foto>
         <div>
           <strong>{{ loja.nomeCompleto(compra.modelo) }}</strong>
           <span>Estado {{ compra.unidade?.estado }} · bateria {{ compra.unidade?.saudeBateria }}%</span>

@@ -92,6 +92,17 @@ export class LojaService {
     return (linha || '').toLowerCase();
   }
 
+  // Foto enviada pelo painel; sem ela, o endereço cadastrado; sem os dois, a foto ilustrativa da linha
+  fotoDo(modelo?: Modelo): string | undefined {
+    if (!modelo) {
+      return undefined;
+    }
+    if (modelo.fotoVersao) {
+      return `${this.baseUrl}/modelos/${modelo.id}/foto?v=${modelo.fotoVersao}`;
+    }
+    return modelo.imagemUrl || undefined;
+  }
+
   nomeCompleto(modelo?: Modelo): string {
     if (!modelo) {
       return '';

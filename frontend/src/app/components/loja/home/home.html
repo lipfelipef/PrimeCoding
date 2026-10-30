@@ -25,7 +25,7 @@
     <p class="aviso erro" *ngIf="erro">{{ erro }}</p>
 
     <a class="card" *ngFor="let modelo of vitrine()" [routerLink]="['/notebook', loja.slug(modelo.linha)]">
-      <app-foto [linha]="modelo.linha" [imagemUrl]="modelo.imagemUrl" [alt]="loja.nomeCompleto(modelo)"></app-foto>
+      <app-foto [linha]="modelo.linha" [imagemUrl]="loja.fotoDo(modelo)" [alt]="loja.nomeCompleto(modelo)"></app-foto>
       <span class="linha">{{ loja.nomeLinha(modelo.linha) }}</span>
       <h2>{{ loja.nomeCompleto(modelo) }}</h2>
       <p class="resumo">{{ loja.resumo(modelo) }}</p>

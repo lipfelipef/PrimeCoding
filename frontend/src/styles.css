@@ -312,6 +312,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .caixa h2 { font-size: 16px; font-weight: 600; margin: 0 0 10px; }
 .caixa h2:not(:first-child) { margin-top: 20px; }
 .caixa p { margin: 2px 0; font-size: 14px; }
+.enviar-foto-grade { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 16px; align-items: start; font-weight: 400; }
+.enviar-foto-grade .nota { margin-top: 0; }
+.enviar-foto-grade .acoes-status { margin-top: 10px; }
+.botao.desativado { opacity: .6; cursor: wait; }
 .ficha-editavel { display: flex !important; flex-direction: column; gap: 8px; }
 .item-ficha { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto; gap: 8px; align-items: center; }
 .item-ficha input { border: 1px solid var(--linha-forte); border-radius: 8px; padding: 9px 12px; font-size: 14px; background: var(--fundo); width: 100%; }
@@ -344,6 +348,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 640px) {
   [id] { scroll-margin-top: 140px; }
   .legenda-foto .frase-legenda > span { display: block; }
+  .enviar-foto-grade { grid-template-columns: 1fr; }
   .item-ficha { grid-template-columns: minmax(0, 1fr) auto; }
   .item-ficha input:nth-child(2) { grid-row: 2; }
   .faixa { gap: 4px 16px; font-size: 12px; }

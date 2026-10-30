@@ -35,6 +35,9 @@ public class Modelo implements Serializable {
 
     private String imagemUrl;
 
+    // Muda a cada foto enviada; vai no endereço da foto para o navegador não usar a antiga
+    private Long fotoVersao;
+
     // orphanRemoval: item tirado da ficha no painel é apagado do banco
     @OneToMany(mappedBy = "modelo", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("ordem")
@@ -117,6 +120,14 @@ public class Modelo implements Serializable {
 
     public void setImagemUrl(String imagemUrl) {
         this.imagemUrl = imagemUrl;
+    }
+
+    public Long getFotoVersao() {
+        return fotoVersao;
+    }
+
+    public void setFotoVersao(Long fotoVersao) {
+        this.fotoVersao = fotoVersao;
     }
 
     public List<Especificacao> getEspecificacoes() {
