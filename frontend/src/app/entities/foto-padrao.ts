@@ -21,7 +21,7 @@ export const FOTOS_PADRAO: { [linha: string]: FotoPadrao } = {
     autor: 'Ahunt',
     licenca: 'CC0',
     fonte: 'https://commons.wikimedia.org/wiki/File:Dell_Latitude_7490_running_Ubuntu_Cinnamon_23.10.jpg',
-    ilustrativa: 'Foto ilustrativa: Dell Latitude 7490, de visual parecido.'
+    ilustrativa: 'Foto ilustrativa (Latitude 7490, parecido).'
   },
   PRO: {
     url: '/img/macbook-air-m2.jpg',

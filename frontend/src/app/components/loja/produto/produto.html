@@ -7,7 +7,7 @@
     <div class="produto-foto">
       <app-foto [linha]="modelo.linha" [imagemUrl]="modelo.imagemUrl" [alt]="loja.nomeCompleto(modelo)"></app-foto>
       <p class="legenda-foto" *ngIf="!modelo.imagemUrl && fotoPadrao()">
-        {{ fotoPadrao()!.ilustrativa }} As fotos da sua unidade chegam pelo WhatsApp.
+        <span class="frase-legenda"><span>{{ fotoPadrao()!.ilustrativa }}</span>{{ ' ' }}<span>As fotos da unidade chegam pelo WhatsApp.</span></span>
         <a class="credito" [href]="fotoPadrao()!.fonte" target="_blank" rel="noopener">Foto: {{ fotoPadrao()!.autor }}, {{ fotoPadrao()!.licenca }}</a>
       </p>
     </div>
