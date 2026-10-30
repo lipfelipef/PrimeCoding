@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -23,6 +23,9 @@ export class Finalizar implements OnInit {
   vezes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   erro = '';
   enviando = false;
+  avisoCep = '';
+  ultimoCep = '';
+  @ViewChild('campoNumero') campoNumero?: ElementRef<HTMLInputElement>;
 
   constructor(public loja: LojaService, public compra: CompraService, private router: Router) {}
 
@@ -78,6 +81,34 @@ export class Finalizar implements OnInit {
       return n.substring(0, 5) + '-' + n.substring(5);
     }
     return n;
+  }
+
+  // Com os 8 dígitos do CEP, preenche rua, bairro, cidade e UF
+  digitouCep(valor: string): void {
+    this.pedido.endereco.cep = this.mascaraCep(valor);
+    let cep = this.numeros(valor);
+    this.avisoCep = '';
+    if (cep.length != 8 || cep == this.ultimoCep) {
+      return;
+    }
+    this.ultimoCep = cep;
+    this.avisoCep = 'Buscando endereço...';
+    this.loja.buscarCep(cep).subscribe((resposta) => {
+      if (resposta.erro) {
+        this.avisoCep = 'CEP não encontrado. Preencha o endereço abaixo.';
+        return;
+      }
+      let e = this.pedido.endereco;
+      e.logradouro = resposta.logradouro || e.logradouro;
+      e.bairro = resposta.bairro || e.bairro;
+      e.cidade = resposta.localidade || e.cidade;
+      e.uf = resposta.uf || e.uf;
+      this.avisoCep = '';
+      setTimeout(() => this.campoNumero?.nativeElement.focus());
+    }, () => {
+      this.ultimoCep = '';
+      this.avisoCep = 'Não deu para buscar o CEP agora. Preencha o endereço abaixo.';
+    });
   }
 
   enviar(): void {

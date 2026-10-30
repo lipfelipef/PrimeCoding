@@ -8,7 +8,7 @@
     <a routerLink="/" class="marca" aria-label="PrimeCoding, página inicial">prime<span>coding</span></a>
     <form class="busca" (ngSubmit)="buscar()" role="search">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input type="search" name="busca" [(ngModel)]="busca" (input)="semResultado = ''"
+      <input type="search" name="busca" [(ngModel)]="busca"
              placeholder="Buscar por modelo, processador ou memória" aria-label="Buscar notebook" />
     </form>
     <nav class="links">
@@ -20,5 +20,4 @@
       </a>
     </nav>
   </div>
-  <p class="busca-aviso" *ngIf="semResultado" role="status">{{ semResultado }}</p>
 </header>

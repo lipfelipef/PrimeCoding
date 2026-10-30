@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Modelo } from '../../../entities/modelo';
 import { KitSetup } from '../../../entities/kit-setup';
 import { Unidade } from '../../../entities/unidade';
@@ -18,10 +18,14 @@ export class Home implements OnInit {
   unidades: Unidade[] = [];
   carregando = true;
   erro = '';
+  busca = '';
 
-  constructor(public loja: LojaService) {}
+  constructor(public loja: LojaService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe((params) => {
+      this.busca = params.get('busca') || '';
+    });
     this.loja.modelos().subscribe((resposta) => {
       this.modelos = resposta;
       this.carregando = false;
@@ -35,6 +39,14 @@ export class Home implements OnInit {
     this.loja.kits().subscribe((resposta) => {
       this.kits = resposta;
     });
+  }
+
+  // Sem busca mostra os três; com busca, só os que batem
+  vitrine(): Modelo[] {
+    if (this.busca == '') {
+      return this.modelos;
+    }
+    return this.loja.buscar(this.modelos, this.busca);
   }
 
   unidadesDo(modelo: Modelo): Unidade[] {

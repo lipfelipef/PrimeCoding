@@ -61,7 +61,9 @@
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--fundo); color: var(--tinta); font-family: var(--texto); font-size: 16px; line-height: 1.5; }
-h1, h2, h3 { font-family: var(--titulo); letter-spacing: -0.02em; margin: 0; }
+h1, h2, h3 { font-family: var(--titulo); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+/* Sem palavra sozinha na última linha dos textos */
+p, li, dd, span, code, legend, label { text-wrap: pretty; }
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 button, input, select, textarea { font: inherit; color: inherit; }
@@ -113,14 +115,21 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .links { display: flex; align-items: center; gap: 18px; font-size: 14px; }
 .links > a:not(.botao) { color: var(--tinta-2); text-decoration: none; }
 .links > a:not(.botao):hover { color: var(--tinta); }
-.busca-aviso { max-width: var(--largura); margin: 0 auto; padding: 0 20px 12px; font-size: 14px; color: var(--tinta-2); }
 
 /* Abertura */
 .abertura { padding: 48px 0 8px; }
-.abertura h1 { font-size: clamp(32px, 4.4vw, 52px); font-weight: 600; line-height: 1.05; letter-spacing: -0.035em; max-width: 760px; }
-.abertura p { font-size: 18px; color: var(--tinta-2); max-width: 620px; margin: 16px 0 0; }
+.abertura h1 { font-size: clamp(32px, 4.4vw, 52px); font-weight: 600; line-height: 1.05; letter-spacing: -0.035em; max-width: 880px; }
+.abertura p { font-size: 18px; color: var(--tinta-2); max-width: 720px; margin: 16px 0 0; }
+.abertura .frase { display: block; }
+
+/* Resultado da busca */
+.resultado-busca { padding-top: 32px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; scroll-margin-top: 90px; }
+.resultado-busca h2 { font-size: 24px; font-weight: 600; }
+.resultado-busca p { color: var(--tinta-2); margin: 6px 0 0; }
+.limpar-busca { font-size: 14px; color: var(--tinta-2); }
 
 /* Vitrine */
+.vitrine { scroll-margin-top: 90px; }
 .vitrine { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding-top: 32px; padding-bottom: 64px; }
 .vitrine .aviso { grid-column: 1 / -1; }
 .card { border: 1px solid var(--linha); border-radius: 16px; padding: 16px 16px 20px; display: flex; flex-direction: column; text-decoration: none; background: var(--fundo); transition: border-color .15s; }
@@ -159,10 +168,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .passos span { font-size: 14px; color: var(--tinta-2); }
 .kits { padding-top: 56px; padding-bottom: 56px; }
 .kits-lista { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
-.kit { border: 1px solid var(--linha); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+/* subgrid: nome, descrição e ferramentas alinhados entre os cards da mesma fileira */
+.kit { border: 1px solid var(--linha); border-radius: 12px; padding: 16px; display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 6px; }
 .kit strong { font-family: var(--titulo); font-size: 17px; }
 .kit span { font-size: 14px; color: var(--tinta-2); }
-.kit code { font-family: var(--mono); font-size: 12px; color: var(--tinta); background: var(--fundo-2); border-radius: 6px; padding: 8px; margin-top: auto; line-height: 1.6; }
+.kit code { font-family: var(--mono); font-size: 12px; color: var(--tinta); background: var(--fundo-2); border-radius: 6px; padding: 8px; margin-top: 6px; line-height: 1.6; }
 .garantias { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .garantias h3 { font-size: 20px; font-weight: 600; }
 .garantias p { color: var(--tinta-2); margin: 8px 0 0; }
@@ -215,6 +225,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .campo input, .campo select, .campo textarea { border: 1px solid var(--linha-forte); border-radius: 8px; padding: 10px 12px; font-size: 15px; font-weight: 400; background: var(--fundo); width: 100%; }
 .campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--tinta); outline: none; box-shadow: 0 0 0 3px rgba(35, 71, 198, .15); }
 .formulario .nota { grid-column: 1 / -1; }
+.aviso-cep { font-size: 12px; color: var(--tinta-2); }
+.nota-cep { align-self: end; margin: 0 0 12px; font-size: 13px; font-weight: 400; color: var(--tinta-2); }
 .marcar { display: flex; align-items: center; gap: 8px; font-size: 15px; grid-column: 1 / -1; }
 
 /* Finalizar */

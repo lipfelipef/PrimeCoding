@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { Modelo } from '../../../entities/modelo';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { LojaService } from '../../../services/loja.service';
 import { BotaoTema } from '../botao-tema/botao-tema';
 
@@ -11,41 +10,25 @@ import { BotaoTema } from '../botao-tema/botao-tema';
   imports: [CommonModule, FormsModule, RouterLink, BotaoTema],
   templateUrl: './cabecalho.html'
 })
-export class Cabecalho implements OnInit {
-  modelos: Modelo[] = [];
+export class Cabecalho {
   busca = '';
-  semResultado = '';
 
-  constructor(public loja: LojaService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.loja.modelos().subscribe((resposta) => {
-      this.modelos = resposta;
+  constructor(public loja: LojaService, private router: Router) {
+    // A caixa mostra o que foi buscado e se esvazia fora da busca
+    this.router.events.subscribe((evento) => {
+      if (evento instanceof NavigationEnd) {
+        this.busca = this.router.parseUrl(evento.urlAfterRedirects).queryParams['busca'] || '';
+      }
     });
   }
 
-  // Procura no nome, na marca, na linha e na ficha técnica dos modelos
+  // Os resultados aparecem na vitrine da página inicial
   buscar(): void {
-    let termo = this.normalizar(this.busca);
-    this.semResultado = '';
+    let termo = this.busca.trim();
     if (termo == '') {
+      this.router.navigate(['/']);
       return;
     }
-    for (let modelo of this.modelos) {
-      let texto = modelo.nome + ' ' + modelo.marca + ' ' + this.loja.nomeLinha(modelo.linha);
-      for (let e of modelo.especificacoes) {
-        texto += ' ' + e.valor;
-      }
-      if (this.normalizar(texto).includes(termo)) {
-        this.router.navigate(['/notebook', this.loja.slug(modelo.linha)]);
-        this.busca = '';
-        return;
-      }
-    }
-    this.semResultado = `Nenhum notebook com "${this.busca}". Tente i5, 32 GB, Mac ou Dell.`;
-  }
-
-  private normalizar(texto: string): string {
-    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    this.router.navigate(['/'], { queryParams: { busca: termo }, fragment: 'busca' });
   }
 }

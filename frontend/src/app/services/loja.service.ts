@@ -13,8 +13,14 @@ import { Pedido } from '../entities/pedido';
 })
 export class LojaService {
   baseUrl = environment.baseUrl;
+  // Vem da API (que lê do .env); o fictício só vale até a resposta chegar
+  whatsappLoja = '5511900000000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.http.get<{ whatsapp: string }>(`${this.baseUrl}/loja`).subscribe((resposta) => {
+      this.whatsappLoja = resposta.whatsapp;
+    });
+  }
 
   modelos(): Observable<Modelo[]> {
     return this.http.get<Modelo[]>(`${this.baseUrl}/modelos`);
@@ -34,6 +40,27 @@ export class LojaService {
 
   fazerPedido(pedido: Pedido): Observable<Pedido> {
     return this.http.post<Pedido>(`${this.baseUrl}/pedidos`, pedido);
+  }
+
+  // Cada palavra digitada precisa aparecer no nome, marca, linha, descrição ou ficha.
+  // Sem espaços, acentos e maiúsculas: "32gb" acha "32 GB" e "intermediario" acha "Intermediário".
+  buscar(modelos: Modelo[], termo: string): Modelo[] {
+    let palavras = this.normalizar(termo).split(' ').filter(p => p != '');
+    return modelos.filter((modelo) => {
+      let texto = [modelo.nome, modelo.marca, this.nomeLinha(modelo.linha), modelo.descricao]
+        .concat(modelo.especificacoes.map(e => e.valor)).join(' ');
+      let semEspaco = this.normalizar(texto).replace(/ /g, '');
+      return palavras.every(p => semEspaco.includes(p));
+    });
+  }
+
+  private normalizar(texto: string): string {
+    return (texto || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+  }
+
+  // ViaCEP: serviço gratuito que devolve o endereço do CEP (só o CEP sai do site)
+  buscarCep(cep: string): Observable<any> {
+    return this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`);
   }
 
   dinheiro(valor?: number): string {
@@ -90,6 +117,6 @@ export class LojaService {
   }
 
   linkWhatsapp(mensagem: string): string {
-    return `https://wa.me/${environment.whatsappLoja}?text=${encodeURIComponent(mensagem)}`;
+    return `https://wa.me/${this.whatsappLoja}?text=${encodeURIComponent(mensagem)}`;
   }
 }

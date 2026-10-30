@@ -2,15 +2,29 @@
   <section class="abertura">
     <div class="pagina">
       <h1>Notebook seminovo revisado, com seu ambiente de dev pronto.</h1>
-      <p>Três modelos escolhidos para quem programa. Cada unidade é revisada, tem a bateria medida e chega com o kit de setup instalado.</p>
+      <p>Três modelos escolhidos para quem programa.
+        <span class="frase">Cada unidade é revisada, tem a bateria medida e chega com o kit de setup instalado.</span></p>
     </div>
   </section>
 
-  <section class="pagina vitrine" aria-label="Notebooks à venda">
+  <div class="pagina resultado-busca" id="busca" *ngIf="busca && !carregando" role="status">
+    <h2 *ngIf="vitrine().length > 0">{{ vitrine().length == 1 ? '1 notebook' : vitrine().length + ' notebooks' }} para "{{ busca }}"</h2>
+    <div *ngIf="vitrine().length == 0">
+      <h2>Nenhum notebook para "{{ busca }}"</h2>
+      <p>Tente pela marca, pelo processador ou pela memória:
+        <a [routerLink]="['/']" [queryParams]="{ busca: 'i7' }" fragment="busca">i7</a>,
+        <a [routerLink]="['/']" [queryParams]="{ busca: '32 GB' }" fragment="busca">32 GB</a>,
+        <a [routerLink]="['/']" [queryParams]="{ busca: 'MacBook' }" fragment="busca">MacBook</a>.
+      </p>
+    </div>
+    <a routerLink="/" fragment="vitrine" class="limpar-busca">Ver os três notebooks</a>
+  </div>
+
+  <section class="pagina vitrine" id="vitrine" aria-label="Notebooks à venda">
     <p class="aviso" *ngIf="carregando">Carregando os notebooks...</p>
     <p class="aviso erro" *ngIf="erro">{{ erro }}</p>
 
-    <a class="card" *ngFor="let modelo of modelos" [routerLink]="['/notebook', loja.slug(modelo.linha)]">
+    <a class="card" *ngFor="let modelo of vitrine()" [routerLink]="['/notebook', loja.slug(modelo.linha)]">
       <app-foto [linha]="modelo.linha" [imagemUrl]="modelo.imagemUrl" [alt]="loja.nomeCompleto(modelo)"></app-foto>
       <span class="linha">{{ loja.nomeLinha(modelo.linha) }}</span>
       <h2>{{ loja.nomeCompleto(modelo) }}</h2>

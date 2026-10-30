@@ -27,6 +27,7 @@ services:
       DB_SENHA: ${DB_SENHA}
       ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@primecoding.com.br}
       ADMIN_SENHA: ${ADMIN_SENHA:?defina ADMIN_SENHA no arquivo .env}
+      LOJA_WHATSAPP: ${LOJA_WHATSAPP:-5511900000000}
       TZ: America/Sao_Paulo
     depends_on:
       mysql:

@@ -30,14 +30,16 @@
       <fieldset>
         <legend>Entrega</legend>
         <label class="campo">CEP
-          <input name="cep" [ngModel]="pedido.endereco.cep" (ngModelChange)="pedido.endereco.cep = mascaraCep($event)"
+          <input name="cep" [ngModel]="pedido.endereco.cep" (ngModelChange)="digitouCep($event)"
                  inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" />
+          <small class="aviso-cep" *ngIf="avisoCep" role="status">{{ avisoCep }}</small>
         </label>
+        <p class="campo nota-cep">O endereço é preenchido pelo CEP.</p>
         <label class="campo largo">Rua
           <input name="logradouro" [(ngModel)]="pedido.endereco.logradouro" autocomplete="address-line1" maxlength="120" />
         </label>
         <label class="campo">Número
-          <input name="numero" [(ngModel)]="pedido.endereco.numero" maxlength="10" />
+          <input #campoNumero name="numero" [(ngModel)]="pedido.endereco.numero" maxlength="10" />
         </label>
         <label class="campo">Complemento <small>opcional</small>
           <input name="complemento" [(ngModel)]="pedido.endereco.complemento" maxlength="60" />
