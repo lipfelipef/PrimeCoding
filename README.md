@@ -2,6 +2,8 @@
 
 E-commerce acadêmico de um revendedor autônomo de notebooks seminovos revisados. São três linhas, Entrada, Intermediário e Pro, e cada unidade é vendida com fotos reais, bateria conferida, kit de setup para programar e 90 dias de garantia. A venda é fechada pelo WhatsApp.
 
+**Site no ar: https://primecoding.com.br**
+
 Projeto de Análise e Desenvolvimento de Sistemas, Senac.
 
 ## Grupo 06
@@ -38,9 +40,25 @@ O link do UniModeler abre para quem estiver logado no site.
 |---|---|
 | [backend](backend) | API em Spring Boot 4 e Java 21: modelos, unidades, kits, pedidos e login do painel |
 | [frontend](frontend) | Site em Angular 21: vitrine, página de cada notebook, finalizar pedido e painel do revendedor |
-| [deploy](deploy) | `docker-compose.yml` com MySQL 8.4, API e site |
+| [deploy](deploy) | `docker-compose.yml` com MySQL 8.4, API, site e Caddy (HTTPS) |
 
-O cliente escolhe a unidade, o kit e o upgrade, preenche os dados e o site reserva a unidade por 48 h. A venda termina no WhatsApp, com a mensagem do pedido já pronta. O revendedor entra em `/painel` para acompanhar os pedidos, cadastrar unidades e editar os modelos. O login de demonstração é `admin@admin.com` com a senha `admin`.
+### Loja
+
+- Vitrine com os três notebooks, preço no PIX e em 12x, e busca por modelo, processador ou memória
+- Página de cada notebook: escolha da unidade (estado A ou B, saúde da bateria), do kit de setup grátis e do upgrade
+- Finalizar pedido com o endereço preenchido pelo CEP ([ViaCEP](https://viacep.com.br)) e validação em cada campo
+- O pedido reserva a unidade por 48 h e termina no WhatsApp, com a mensagem já pronta; sem pagamento no prazo, a reserva cai sozinha
+- Modo claro e escuro
+
+### Painel do revendedor (`/painel`)
+
+- **Pedidos:** cada etapa diz o que fazer e o botão registra o que aconteceu na conversa ("Pagamento recebido", "Enviei"...), com histórico e atalho para o WhatsApp do cliente
+- **Notebooks:** as três linhas com as unidades de cada uma; dá para trocar o notebook de uma linha (marca, nome, preço, ficha técnica e foto) e cadastrar unidades
+- A foto enviada é cortada em 4:3 e reduzida para 1200 x 900 no navegador
+
+Login de demonstração: `admin@admin.com` com a senha `admin`.
+
+As fotos ilustrativas dos notebooks são do [Wikimedia Commons](https://commons.wikimedia.org), com licença livre, e o crédito aparece na página de cada notebook.
 
 ### Rodar sem Docker
 
@@ -58,6 +76,7 @@ npm start
 ```
 
 Abra http://localhost:4200. Sem Docker a API usa um banco H2 em memória, que volta aos dados de exemplo toda vez que reinicia.
+
 ### Rodar com Docker
 
 ```bash
@@ -66,9 +85,9 @@ cp .env.example .env
 docker compose up -d --build
 ```
 
-Troque as senhas no `.env` antes de subir. O passo a passo para publicar numa VM da Azure está em [deploy/README.md](deploy/README.md).
+Troque as senhas no `.env` antes de subir. O passo a passo para publicar numa VM da Azure, com domínio próprio e HTTPS, está em [deploy/README.md](deploy/README.md).
 
-Publicado na Azure: https://primecoding.com.br (também em http://172.195.104.176:4200)
+Publicado numa VM da Azure: https://primecoding.com.br (também em http://172.195.104.176:4200)
 
 ## Como abrir os arquivos
 

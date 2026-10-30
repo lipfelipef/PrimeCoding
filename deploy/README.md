@@ -15,7 +15,21 @@ O compose sobe quatro containers:
 
 O site fica exposto na porta 4200 (HTTP) e, pelo Caddy, em HTTPS no nome de `SITE_DOMINIO`. A API e o banco ficam na rede interna do Docker.
 
-Sem domínio próprio, o [sslip.io](https://sslip.io) dá um nome a partir do IP: `172.195.104.176` vira `172-195-104-176.sslip.io`. Com domínio, basta apontar o registro A para o IP da VM e trocar o `SITE_DOMINIO` no `.env`. Para o certificado sair, as portas 80 e 443 precisam estar liberadas na Azure (passo 7).
+Sem domínio próprio, o [sslip.io](https://sslip.io) dá um nome a partir do IP: `172.195.104.176` vira `172-195-104-176.sslip.io`. Para o certificado sair, as portas 80 e 443 precisam estar liberadas na Azure (passo 7).
+
+### Domínio próprio (Registro.br)
+
+1. No painel do domínio, em **DNS**, abra **Configurar endereçamento** e passe para o **modo avançado** (a primeira troca leva uns minutos de transição).
+2. Crie duas entradas do tipo **A** apontando para o IP da VM: uma com o nome vazio (o domínio) e outra com o nome `www`.
+3. No `.env` da VM:
+
+   ```
+   SITE_DOMINIO=seudominio.com.br, 172-195-104-176.sslip.io
+   SITE_PRINCIPAL=seudominio.com.br
+   SITE_WWW=www.seudominio.com.br
+   ```
+
+4. `sudo docker compose up -d caddy`. O Caddy pede os certificados sozinho, e o `www` passa a redirecionar para o domínio sem `www`.
 
 ---
 
@@ -82,7 +96,7 @@ sudo docker compose up -d --build
 sudo docker compose ps
 ```
 
-Os três containers devem aparecer com status `Up`. Na primeira vez o build demora alguns minutos, porque baixa as dependências do Maven e do npm.
+Os quatro containers devem aparecer com status `Up`. Na primeira vez o build demora alguns minutos, porque baixa as dependências do Maven e do npm.
 
 ---
 
@@ -119,6 +133,7 @@ sudo docker compose up -d --build
 | `sudo docker compose ps` | Lista os containers e o status de cada um |
 | `sudo docker logs primecoding-backend` | Mostra o log da API |
 | `sudo docker logs primecoding-frontend` | Mostra o log do site |
+| `sudo docker logs primecoding-caddy` | Mostra o log do HTTPS e dos certificados |
 | `sudo docker compose down` | Para tudo, sem apagar o banco |
 | `sudo docker compose down -v` | Para tudo e apaga o banco (volta aos dados de exemplo) |
 
