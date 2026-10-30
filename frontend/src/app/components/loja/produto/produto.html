@@ -6,6 +6,10 @@
   <div class="produto-grade">
     <div class="produto-foto">
       <app-foto [linha]="modelo.linha" [imagemUrl]="modelo.imagemUrl" [alt]="loja.nomeCompleto(modelo)"></app-foto>
+      <p class="legenda-foto" *ngIf="!modelo.imagemUrl && fotoPadrao()">
+        {{ fotoPadrao()!.ilustrativa }} As fotos da sua unidade chegam pelo WhatsApp.
+        Foto: {{ fotoPadrao()!.autor }}, <a [href]="fotoPadrao()!.fonte" target="_blank" rel="noopener">{{ fotoPadrao()!.licenca }}, Wikimedia Commons</a>.
+      </p>
     </div>
 
     <div class="produto-compra">

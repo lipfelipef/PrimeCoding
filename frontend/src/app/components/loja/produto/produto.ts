@@ -8,6 +8,7 @@ import { Unidade } from '../../../entities/unidade';
 import { LojaService } from '../../../services/loja.service';
 import { CompraService } from '../../../services/compra.service';
 import { Foto } from '../foto/foto';
+import { FOTOS_PADRAO, FotoPadrao } from '../../../entities/foto-padrao';
 
 @Component({
   selector: 'app-produto',
@@ -85,6 +86,10 @@ export class Produto implements OnInit {
     }
     this.compra.escolher(this.modelo!, this.unidade, this.kit, this.upgrade);
     this.router.navigate(['/finalizar']);
+  }
+
+  fotoPadrao(): FotoPadrao | undefined {
+    return FOTOS_PADRAO[this.modelo?.linha || ''];
   }
 
   mensagemEsgotado(): string {

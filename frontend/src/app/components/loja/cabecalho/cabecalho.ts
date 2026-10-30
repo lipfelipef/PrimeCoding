@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Modelo } from '../../../entities/modelo';
 import { LojaService } from '../../../services/loja.service';
+import { BotaoTema } from '../botao-tema/botao-tema';
 
 @Component({
   selector: 'app-cabecalho',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, BotaoTema],
   templateUrl: './cabecalho.html'
 })
 export class Cabecalho implements OnInit {

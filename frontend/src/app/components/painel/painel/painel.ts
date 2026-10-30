@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { PainelService } from '../../../services/painel.service';
+import { BotaoTema } from '../../loja/botao-tema/botao-tema';
 
 // Moldura do painel: sem login mostra o formulário de entrada
 @Component({
   selector: 'app-painel',
-  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, FormsModule, RouterOutlet, RouterLink, RouterLinkActive, BotaoTema],
   templateUrl: './painel.html'
 })
 export class Painel {

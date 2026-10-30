@@ -14,7 +14,7 @@
       <label class="campo">Preço de referência (R$)
         <input name="preco" type="number" min="0" step="0.01" [(ngModel)]="modelo.preco" />
       </label>
-      <label class="campo largo">Endereço da foto <small>opcional</small>
+      <label class="campo largo">Endereço da foto <small>opcional; vazio usa a foto ilustrativa da linha</small>
         <input name="imagem" [(ngModel)]="modelo.imagemUrl" placeholder="https://..." />
       </label>
       <label class="marcar">

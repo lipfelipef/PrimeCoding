@@ -19,6 +19,11 @@
   </div>
   <div class="rodape-fim">
     <span>PrimeCoding {{ ano }} · revendedor autônomo (MEI)</span>
+    <span>Fotos ilustrativas do Wikimedia Commons:
+      <ng-container *ngFor="let f of fotos; let ultima = last">
+        <a [href]="f.fonte" target="_blank" rel="noopener">{{ f.autor }} ({{ f.licenca }})</a>{{ ultima ? '' : ', ' }}
+      </ng-container>
+    </span>
     <a routerLink="/painel">Área do revendedor</a>
   </div>
 </footer>
