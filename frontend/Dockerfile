@@ -1,8 +1,12 @@
-# Front-end do PrimeCoding servido pelo nginx.
-# Por enquanto publica as telas do protótipo; quando o site em Angular existir,
-# este Dockerfile passa a compilar o projeto e servir o resultado do build.
+# Site do PrimeCoding: compila o Angular e serve com o nginx
+FROM node:22-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY . .
+RUN npx ng build
+
 FROM nginx:1.27-alpine
-
-COPY ["05-prototipo/PrimeCoding - Telas do prototipo.html", "/usr/share/nginx/html/index.html"]
-
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80

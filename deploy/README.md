@@ -4,7 +4,15 @@ Passo a passo para publicar o PrimeCoding numa VM Linux (Ubuntu) na Azure, usand
 
 Ao final, o site fica acessível em `http://IP_DA_VM:4200`.
 
-Hoje o container publica as telas do protótipo (`05-prototipo`). Quando o site, a API e o banco existirem, eles entram como novos serviços no mesmo `docker-compose.yml`, e o processo de deploy continua o mesmo.
+O compose sobe três containers:
+
+| Container | O que é |
+|---|---|
+| `primecoding-mysql` | Banco MySQL 8.4, com os dados num volume que sobrevive a reinícios |
+| `primecoding-backend` | API em Spring Boot, que cria as tabelas e os dados de exemplo na primeira vez |
+| `primecoding-frontend` | nginx servindo o site em Angular e repassando `/api` para a API |
+
+Só o site fica exposto, na porta 4200. A API e o banco ficam na rede interna do Docker.
 
 ---
 
@@ -53,18 +61,29 @@ cd PrimeCoding/deploy
 
 ---
 
-## 5. Subir a aplicação
+## 5. Criar o .env com as senhas
+
+```bash
+sudo cp .env.example .env
+sudo nano .env
+```
+
+Troque `DB_SENHA`, `MYSQL_ROOT_SENHA` e `ADMIN_SENHA`. A `ADMIN_SENHA` é a do login do painel em `/painel`. O `.env` fica só na VM e nunca vai para o GitHub.
+
+---
+
+## 6. Subir a aplicação
 
 ```bash
 sudo docker compose up -d --build
 sudo docker compose ps
 ```
 
-O container `primecoding-frontend` deve aparecer com status `Up`.
+Os três containers devem aparecer com status `Up`. Na primeira vez o build demora alguns minutos, porque baixa as dependências do Maven e do npm.
 
 ---
 
-## 6. Liberar a porta na Azure
+## 7. Liberar a porta na Azure
 
 1. No portal da Azure, abra a VM.
 2. Vá em **Rede** → **Configurações de rede**.
@@ -94,7 +113,9 @@ sudo docker compose up -d --build
 | Comando | O que faz |
 |---|---|
 | `sudo docker compose ps` | Lista os containers e o status de cada um |
+| `sudo docker logs primecoding-backend` | Mostra o log da API |
 | `sudo docker logs primecoding-frontend` | Mostra o log do site |
-| `sudo docker compose down` | Para o site |
+| `sudo docker compose down` | Para tudo, sem apagar o banco |
+| `sudo docker compose down -v` | Para tudo e apaga o banco (volta aos dados de exemplo) |
 
 Para não gastar crédito à toa, desligue a VM pelo botão **Parar** do portal quando ela não estiver em uso. Desligar pelo Ubuntu não para a cobrança.

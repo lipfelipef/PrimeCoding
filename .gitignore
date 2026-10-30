@@ -1,6 +1,7 @@
 # dependencias e builds
 node_modules/
 dist/
+target/
 out-tsc/
 .angular/
 tmp/

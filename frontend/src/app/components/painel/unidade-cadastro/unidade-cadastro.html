@@ -1,0 +1,50 @@
+<a routerLink="/painel/unidades" class="voltar">Unidades</a>
+<h1 class="titulo">{{ editando ? 'Editar unidade ' + unidade.numeroSerie : 'Nova unidade' }}</h1>
+
+<form class="formulario caixa" (ngSubmit)="gravar()" novalidate>
+  <fieldset>
+    <label class="campo largo">Modelo
+      <select name="modelo" [(ngModel)]="idModelo" (ngModelChange)="escolheuModelo()">
+        <option [ngValue]="undefined" disabled>Escolha</option>
+        <option *ngFor="let m of modelos" [ngValue]="m.id">{{ loja.nomeLinha(m.linha) }}: {{ loja.nomeCompleto(m) }}</option>
+      </select>
+    </label>
+    <label class="campo">Número de série
+      <input name="serie" [(ngModel)]="unidade.numeroSerie" maxlength="30" placeholder="SN-ENT-0004" />
+    </label>
+    <label class="campo">Estado
+      <select name="estado" [(ngModel)]="unidade.estado">
+        <option value="A">A: sem marcas de uso</option>
+        <option value="B">B: marcas leves</option>
+      </select>
+    </label>
+    <label class="campo">Saúde da bateria (%)
+      <input name="bateria" type="number" min="0" max="100" [(ngModel)]="unidade.saudeBateria" />
+    </label>
+    <label class="campo">Ciclos da bateria
+      <input name="ciclos" type="number" min="0" [(ngModel)]="unidade.ciclosBateria" />
+    </label>
+    <label class="campo">Preço (R$)
+      <input name="preco" type="number" min="0" step="0.01" [(ngModel)]="unidade.preco" />
+    </label>
+    <label class="campo">Data de entrada
+      <input name="data" type="date" [(ngModel)]="unidade.dataEntrada" />
+    </label>
+    <label class="campo" *ngIf="!emPedido()">Situação
+      <select name="situacao" [(ngModel)]="unidade.situacao">
+        <option value="EM_REVISAO">Em revisão</option>
+        <option value="DISPONIVEL">Na vitrine</option>
+      </select>
+    </label>
+    <p class="campo nota" *ngIf="emPedido()">Situação: {{ painel.nomeSituacao(unidade.situacao) }}. Muda pelo pedido.</p>
+    <label class="campo largo">Observação <small>opcional</small>
+      <input name="observacao" [(ngModel)]="unidade.observacao" maxlength="255" placeholder="Bateria trocada em 10/2026" />
+    </label>
+  </fieldset>
+  <p class="nota">Para ir à vitrine a bateria precisa ter pelo menos 80%. O estado B costuma sair R$ 200 abaixo do A.</p>
+  <p class="aviso erro" *ngIf="erro" role="alert">{{ erro }}</p>
+  <div class="acoes-status">
+    <button type="submit" class="botao botao-escuro">Gravar</button>
+    <a class="botao" routerLink="/painel/unidades">Cancelar</a>
+  </div>
+</form>

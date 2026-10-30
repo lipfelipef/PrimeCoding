@@ -1,0 +1,67 @@
+<a routerLink="/painel/pedidos" class="voltar">Pedidos</a>
+<p class="aviso erro" *ngIf="erro">{{ erro }}</p>
+<p class="aviso ok" *ngIf="mensagem" role="status">{{ mensagem }}</p>
+
+<div *ngIf="pedido">
+  <div class="barra">
+    <div>
+      <h1 class="titulo">{{ pedido.codigo }}</h1>
+      <p class="subtitulo">Feito em {{ data(pedido.dataPedido) }}</p>
+    </div>
+    <span class="status grande {{ pedido.status }}">{{ painel.nomeStatus(pedido.status) }}</span>
+  </div>
+
+  <div class="detalhe-grade">
+    <section class="caixa">
+      <h2>Cliente</h2>
+      <p><strong>{{ pedido.cliente.nome }}</strong></p>
+      <p><a [href]="linkCliente()" target="_blank" rel="noopener">{{ whatsappFormatado() }}</a></p>
+      <p>CPF {{ pedido.cliente.documento }}</p>
+      <p *ngIf="pedido.cliente.email">{{ pedido.cliente.email }}</p>
+      <h2>Entrega</h2>
+      <p>{{ pedido.endereco.logradouro }}, {{ pedido.endereco.numero }}<span *ngIf="pedido.endereco.complemento"> - {{ pedido.endereco.complemento }}</span></p>
+      <p>{{ pedido.endereco.bairro }}, {{ pedido.endereco.cidade }} - {{ pedido.endereco.uf }}</p>
+      <p>CEP {{ pedido.endereco.cep }}</p>
+    </section>
+
+    <section class="caixa">
+      <h2>Notebook</h2>
+      <p><strong>{{ loja.nomeCompleto(pedido.itens[0].unidade.modelo) }}</strong></p>
+      <p>Unidade {{ pedido.itens[0].unidade.numeroSerie }}, estado {{ pedido.itens[0].unidade.estado }}, bateria {{ pedido.itens[0].unidade.saudeBateria }}%</p>
+      <p>Kit {{ pedido.itens[0].kit.nome }}: {{ pedido.itens[0].kit.ferramentas }}</p>
+      <p *ngIf="pedido.itens[0].upgrade">Upgrade {{ pedido.itens[0].upgrade.nome }} ({{ loja.dinheiro(pedido.itens[0].precoUpgrade) }})</p>
+      <h2>Pagamento</h2>
+      <dl class="valores">
+        <div><dt>Subtotal</dt><dd>{{ loja.dinheiro(pedido.subtotal) }}</dd></div>
+        <div *ngIf="pedido.desconto"><dt>Desconto no PIX</dt><dd>- {{ loja.dinheiro(pedido.desconto) }}</dd></div>
+        <div class="total"><dt>Total</dt><dd>{{ loja.dinheiro(pedido.total) }}</dd></div>
+      </dl>
+      <p>{{ pedido.formaPagamento == 'PIX' ? 'PIX' : 'Cartão em ' + pedido.parcelas + 'x' }}</p>
+      <p *ngIf="!encerrado()">Reserva vence em {{ data(pedido.prazoPagamento) }}</p>
+    </section>
+  </div>
+
+  <section class="caixa" *ngIf="!encerrado()">
+    <h2>Mudar status</h2>
+    <label class="campo largo">Observação <small>opcional</small>
+      <input name="observacao" [(ngModel)]="observacao" maxlength="255" placeholder="PIX recebido às 14h" />
+    </label>
+    <div class="acoes-status">
+      <button type="button" class="botao botao-escuro" (click)="mudar(painel.proximoStatus(pedido.status))">
+        Avançar para {{ painel.nomeStatus(painel.proximoStatus(pedido.status)).toLowerCase() }}
+      </button>
+      <button type="button" class="botao perigo" (click)="mudar('CANCELADO')">Cancelar pedido</button>
+    </div>
+  </section>
+
+  <section class="caixa">
+    <h2>Histórico</h2>
+    <ol class="historico">
+      <li *ngFor="let h of pedido.historico">
+        <strong>{{ painel.nomeStatus(h.status) }}</strong>
+        <span>{{ data(h.dataHora) }} · {{ h.usuario ? h.usuario.nome : 'automático' }}</span>
+        <span *ngIf="h.observacao">{{ h.observacao }}</span>
+      </li>
+    </ol>
+  </section>
+</div>

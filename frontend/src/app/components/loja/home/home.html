@@ -1,0 +1,72 @@
+<main>
+  <section class="abertura">
+    <div class="pagina">
+      <h1>Notebook seminovo revisado, com seu ambiente de dev pronto.</h1>
+      <p>Três modelos escolhidos para quem programa. Cada unidade é revisada, tem a bateria medida e chega com o kit de setup instalado.</p>
+    </div>
+  </section>
+
+  <section class="pagina vitrine" aria-label="Notebooks à venda">
+    <p class="aviso" *ngIf="carregando">Carregando os notebooks...</p>
+    <p class="aviso erro" *ngIf="erro">{{ erro }}</p>
+
+    <a class="card" *ngFor="let modelo of modelos" [routerLink]="['/notebook', loja.slug(modelo.linha)]">
+      <app-foto [linha]="modelo.linha" [imagemUrl]="modelo.imagemUrl" [alt]="loja.nomeCompleto(modelo)"></app-foto>
+      <span class="linha">{{ loja.nomeLinha(modelo.linha) }}</span>
+      <h2>{{ loja.nomeCompleto(modelo) }}</h2>
+      <p class="resumo">{{ loja.resumo(modelo) }}</p>
+      <div class="preco-card">
+        <span class="de" *ngIf="temVariosPrecos(modelo)">a partir de</span>
+        <strong>{{ loja.dinheiro(loja.precoPix(menorPreco(modelo))) }} <small>no PIX</small></strong>
+        <span>ou {{ loja.dinheiro(menorPreco(modelo)) }} em 12x de {{ loja.dinheiro(loja.parcela(menorPreco(modelo), 12)) }}</span>
+      </div>
+      <div class="selos">
+        <span class="selo verde" *ngIf="unidadesDo(modelo).length > 0">Bateria até {{ melhorBateria(modelo) }}%</span>
+        <span class="selo" *ngIf="unidadesDo(modelo).length == 1">Última unidade</span>
+        <span class="selo" *ngIf="unidadesDo(modelo).length > 1">{{ unidadesDo(modelo).length }} unidades</span>
+        <span class="selo cinza" *ngIf="unidadesDo(modelo).length == 0">Esgotado</span>
+      </div>
+    </a>
+  </section>
+
+  <section class="faixa-clara" id="como-funciona">
+    <div class="pagina">
+      <h2 class="titulo-secao">Como comprar</h2>
+      <ol class="passos">
+        <li><strong>Escolha a unidade</strong><span>Cada notebook tem sua ficha: estado, bateria e preço.</span></li>
+        <li><strong>Reserve por 48 h</strong><span>A unidade sai da vitrine enquanto você decide.</span></li>
+        <li><strong>Pague pelo WhatsApp</strong><span>PIX com 10% de desconto ou cartão em até 12x.</span></li>
+        <li><strong>Receba pronto</strong><span>O kit que você escolheu já vem instalado.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pagina kits" *ngIf="kits.length > 0">
+    <h2 class="titulo-secao">Kit de setup grátis</h2>
+    <p class="subtitulo-secao">Você escolhe um na compra e liga o notebook já com tudo instalado.</p>
+    <div class="kits-lista">
+      <div class="kit" *ngFor="let kit of kits">
+        <strong>{{ kit.nome }}</strong>
+        <span>{{ kit.descricao }}</span>
+        <code>{{ kit.ferramentas }}</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="faixa-clara" id="garantia">
+    <div class="pagina garantias">
+      <div>
+        <h3>90 dias de garantia</h3>
+        <p>Da própria loja, contando da entrega. Qualquer defeito, é só chamar no WhatsApp.</p>
+      </div>
+      <div>
+        <h3>Bateria medida</h3>
+        <p>Vai para a vitrine só com 80% ou mais de saúde. Abaixo disso, a bateria é trocada antes.</p>
+      </div>
+      <div>
+        <h3>Estado A ou B</h3>
+        <p>A é sem marcas de uso. B tem marcas leves na carcaça e custa R$ 200 a menos.</p>
+      </div>
+    </div>
+  </section>
+</main>

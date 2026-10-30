@@ -1,0 +1,16 @@
+<main class="pagina pedido-feito" *ngIf="pedido">
+  <div class="confirmacao">
+    <span class="selo verde">Unidade reservada</span>
+    <h1>Pedido {{ pedido.codigo }}</h1>
+    <p>Falta só combinar o pagamento. Mande a mensagem abaixo pelo WhatsApp e a loja responde com a chave PIX ou o link do cartão.</p>
+    <dl>
+      <div><dt>Notebook</dt><dd>{{ loja.nomeCompleto(pedido.itens[0].unidade.modelo) }}</dd></div>
+      <div><dt>Kit</dt><dd>{{ pedido.itens[0].kit.nome }}</dd></div>
+      <div *ngIf="pedido.itens[0].upgrade"><dt>Upgrade</dt><dd>{{ pedido.itens[0].upgrade.nome }}</dd></div>
+      <div><dt>Total</dt><dd>{{ loja.dinheiro(pedido.total) }}{{ pedido.formaPagamento == 'PIX' ? ' no PIX' : ' em ' + pedido.parcelas + 'x' }}</dd></div>
+      <div><dt>Reservado até</dt><dd>{{ prazo() }}</dd></div>
+    </dl>
+    <a class="botao botao-escuro botao-grande" [href]="loja.linkWhatsapp(mensagem())" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    <a class="voltar" routerLink="/">Voltar para a loja</a>
+  </div>
+</main>

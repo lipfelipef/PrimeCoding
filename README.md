@@ -32,20 +32,44 @@ Projeto de Análise e Desenvolvimento de Sistemas, Senac.
 
 O link do UniModeler abre para quem estiver logado no site.
 
-## Docker e deploy
+## O site
 
-O projeto roda em Docker. O `docker-compose.yml` fica em [deploy](deploy) e o `Dockerfile` do front-end em [frontend](frontend). Hoje o container publica as telas do protótipo; o site, a API e o banco entram como novos serviços no mesmo compose.
+| Pasta | O que tem |
+|---|---|
+| [backend](backend) | API em Spring Boot 4 e Java 21: modelos, unidades, kits, pedidos e login do painel |
+| [frontend](frontend) | Site em Angular 21: vitrine, página de cada notebook, finalizar pedido e painel do revendedor |
+| [deploy](deploy) | `docker-compose.yml` com MySQL 8.4, API e site |
 
-Publicado na Azure: http://172.195.104.176:4200
+O cliente escolhe a unidade, o kit e o upgrade, preenche os dados e o site reserva a unidade por 48 h. A venda termina no WhatsApp, com a mensagem do pedido já pronta. O revendedor entra em `/painel` para acompanhar os pedidos, cadastrar unidades e editar os modelos.
 
-Para rodar na sua máquina, com o Docker instalado:
+### Rodar sem Docker
+
+Com o Java 21 e o Node instalados, em dois terminais:
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Abra http://localhost:4200. Sem Docker a API usa um banco H2 em memória, que volta aos dados de exemplo toda vez que reinicia. O login do painel é `admin@primecoding.com.br` com a senha `admin`.
+
+### Rodar com Docker
 
 ```bash
 cd deploy
+cp .env.example .env
 docker compose up -d --build
 ```
 
-e abra http://localhost:4200. O passo a passo para publicar numa VM da Azure está em [deploy/README.md](deploy/README.md).
+Troque as senhas no `.env` antes de subir. O passo a passo para publicar numa VM da Azure está em [deploy/README.md](deploy/README.md).
+
+Publicado na Azure: http://172.195.104.176:4200
 
 ## Como abrir os arquivos
 
@@ -53,4 +77,4 @@ e abra http://localhost:4200. O passo a passo para publicar numa VM da Azure est
 - `.drawio`: em [app.diagrams.net](https://app.diagrams.net), no menu Arquivo > Abrir.
 - `.sql`: script para MySQL 8, com os três modelos, os kits, os upgrades e as unidades de exemplo.
 - `.js`: o modelo de dados no formato do UniModeler.
-- `.html`: as 14 telas do protótipo, direto no navegador.
+- `.html`: as 14 telas do protótipo, direto no navegador. O site real seguiu outro visual; o protótipo ficou como registro do planejamento.

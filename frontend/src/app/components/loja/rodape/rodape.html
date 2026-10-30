@@ -1,0 +1,24 @@
+<footer class="rodape">
+  <div class="rodape-dentro">
+    <div>
+      <a routerLink="/" class="marca">prime<span>coding</span></a>
+      <p>Notebooks seminovos revisados para quem estuda e trabalha com programação.</p>
+    </div>
+    <div>
+      <h3>Notebooks</h3>
+      <a routerLink="/notebook/entrada">Entrada</a>
+      <a routerLink="/notebook/intermediario">Intermediário</a>
+      <a routerLink="/notebook/pro">Pro</a>
+    </div>
+    <div>
+      <h3>Atendimento</h3>
+      <a [href]="loja.linkWhatsapp('Olá! Tenho uma dúvida.')" target="_blank" rel="noopener">WhatsApp</a>
+      <a routerLink="/" fragment="como-funciona">Como comprar</a>
+      <a routerLink="/" fragment="garantia">Garantia</a>
+    </div>
+  </div>
+  <div class="rodape-fim">
+    <span>PrimeCoding {{ ano }} · revendedor autônomo (MEI)</span>
+    <a routerLink="/painel">Área do revendedor</a>
+  </div>
+</footer>

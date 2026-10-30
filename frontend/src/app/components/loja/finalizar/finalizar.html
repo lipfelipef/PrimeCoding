@@ -1,0 +1,104 @@
+<main class="pagina finalizar" *ngIf="compra.temEscolha()">
+  <nav class="trilha" aria-label="Você está em">
+    <a routerLink="/">Início</a> <span>/</span>
+    <a [routerLink]="['/notebook', loja.slug(compra.modelo?.linha)]">{{ loja.nomeLinha(compra.modelo?.linha) }}</a>
+    <span>/</span> Finalizar pedido
+  </nav>
+  <h1>Finalizar pedido</h1>
+
+  <div class="finalizar-grade">
+    <form class="formulario" (ngSubmit)="enviar()" novalidate>
+      <fieldset>
+        <legend>Seus dados</legend>
+        <label class="campo largo">Nome completo
+          <input name="nome" [(ngModel)]="pedido.cliente.nome" autocomplete="name" maxlength="100" />
+        </label>
+        <label class="campo">WhatsApp
+          <input name="whatsapp" [ngModel]="pedido.cliente.whatsapp"
+                 (ngModelChange)="pedido.cliente.whatsapp = mascaraWhatsapp($event)" inputmode="tel"
+                 autocomplete="tel-national" placeholder="(11) 91234-5678" />
+        </label>
+        <label class="campo">CPF
+          <input name="cpf" [ngModel]="pedido.cliente.documento"
+                 (ngModelChange)="pedido.cliente.documento = mascaraCpf($event)" inputmode="numeric" placeholder="000.000.000-00" />
+        </label>
+        <label class="campo largo">E-mail <small>opcional</small>
+          <input name="email" type="email" [(ngModel)]="pedido.cliente.email" autocomplete="email" maxlength="120" />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Entrega</legend>
+        <label class="campo">CEP
+          <input name="cep" [ngModel]="pedido.endereco.cep" (ngModelChange)="pedido.endereco.cep = mascaraCep($event)"
+                 inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" />
+        </label>
+        <label class="campo largo">Rua
+          <input name="logradouro" [(ngModel)]="pedido.endereco.logradouro" autocomplete="address-line1" maxlength="120" />
+        </label>
+        <label class="campo">Número
+          <input name="numero" [(ngModel)]="pedido.endereco.numero" maxlength="10" />
+        </label>
+        <label class="campo">Complemento <small>opcional</small>
+          <input name="complemento" [(ngModel)]="pedido.endereco.complemento" maxlength="60" />
+        </label>
+        <label class="campo">Bairro
+          <input name="bairro" [(ngModel)]="pedido.endereco.bairro" maxlength="60" />
+        </label>
+        <label class="campo">Cidade
+          <input name="cidade" [(ngModel)]="pedido.endereco.cidade" autocomplete="address-level2" maxlength="60" />
+        </label>
+        <label class="campo curto">UF
+          <input name="uf" [(ngModel)]="pedido.endereco.uf" autocomplete="address-level1" maxlength="2" />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pagamento</legend>
+        <div class="pagamentos">
+          <label class="opcao-pagamento" [class.marcada]="pedido.formaPagamento == 'PIX'">
+            <input type="radio" name="forma" value="PIX" [(ngModel)]="pedido.formaPagamento" />
+            <strong>PIX</strong>
+            <span>10% de desconto: {{ loja.dinheiro(loja.precoPix(compra.subtotal())) }}</span>
+          </label>
+          <label class="opcao-pagamento" [class.marcada]="pedido.formaPagamento == 'CARTAO'">
+            <input type="radio" name="forma" value="CARTAO" [(ngModel)]="pedido.formaPagamento" />
+            <strong>Cartão de crédito</strong>
+            <span>Até 12x sem juros</span>
+          </label>
+        </div>
+        <label class="campo" *ngIf="pedido.formaPagamento == 'CARTAO'">Parcelas
+          <select name="parcelas" [(ngModel)]="pedido.parcelas">
+            <option *ngFor="let v of vezes" [ngValue]="v">{{ v }}x de {{ loja.dinheiro(loja.parcela(compra.subtotal(), v)) }}</option>
+          </select>
+        </label>
+        <p class="nota">O link do cartão ou a chave PIX chegam pelo WhatsApp. Nenhum dado de pagamento passa pelo site.</p>
+      </fieldset>
+
+      <p class="aviso erro" *ngIf="erro" role="alert">{{ erro }}</p>
+      <button type="submit" class="botao botao-escuro botao-grande" [disabled]="enviando">
+        {{ enviando ? 'Reservando...' : 'Reservar e chamar no WhatsApp' }}
+      </button>
+    </form>
+
+    <aside class="resumo-pedido" aria-label="Resumo do pedido">
+      <div class="resumo-produto">
+        <app-foto [linha]="compra.modelo?.linha" [imagemUrl]="compra.modelo?.imagemUrl" [alt]="loja.nomeCompleto(compra.modelo)"></app-foto>
+        <div>
+          <strong>{{ loja.nomeCompleto(compra.modelo) }}</strong>
+          <span>Estado {{ compra.unidade?.estado }} · bateria {{ compra.unidade?.saudeBateria }}%</span>
+          <span>Unidade {{ compra.unidade?.numeroSerie }}</span>
+        </div>
+      </div>
+      <dl>
+        <div><dt>Notebook</dt><dd>{{ loja.dinheiro(compra.unidade?.preco) }}</dd></div>
+        <div><dt>Kit {{ compra.kit?.nome }}</dt><dd>grátis</dd></div>
+        <div *ngIf="compra.upgrade"><dt>{{ compra.upgrade.nome }}</dt><dd>{{ loja.dinheiro(compra.upgrade.preco) }}</dd></div>
+        <div *ngIf="desconto() > 0" class="verde"><dt>Desconto no PIX</dt><dd>- {{ loja.dinheiro(desconto()) }}</dd></div>
+        <div class="total"><dt>Total</dt><dd>{{ loja.dinheiro(total()) }}</dd></div>
+      </dl>
+      <p class="nota" *ngIf="pedido.formaPagamento == 'CARTAO'">{{ pedido.parcelas }}x de {{ loja.dinheiro(loja.parcela(total(), pedido.parcelas)) }} sem juros</p>
+      <p class="nota">A unidade fica reservada para você por 48 h.</p>
+    </aside>
+  </div>
+</main>

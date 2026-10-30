@@ -1,0 +1,33 @@
+<div class="barra">
+  <div>
+    <h1 class="titulo">Pedidos</h1>
+    <p class="subtitulo">{{ filtrados().length }} de {{ list.length }} pedidos</p>
+  </div>
+  <label class="campo filtro">Mostrar
+    <select name="filtro" [(ngModel)]="filtro">
+      <option value="ABERTOS">Em aberto</option>
+      <option value="TODOS">Todos</option>
+      <option *ngFor="let s of painel.fluxo" [value]="s">{{ painel.nomeStatus(s) }}</option>
+      <option value="CANCELADO">Cancelado</option>
+    </select>
+  </label>
+</div>
+
+<p class="aviso erro" *ngIf="erro">{{ erro }}</p>
+
+<table class="tabela" *ngIf="filtrados().length > 0">
+  <thead>
+    <tr><th>Pedido</th><th>Data</th><th>Cliente</th><th>Notebook</th><th>Total</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of filtrados()">
+      <td><a [routerLink]="['/painel/pedidos', p.id]" class="codigo">{{ p.codigo }}</a></td>
+      <td>{{ data(p.dataPedido) }}</td>
+      <td>{{ p.cliente.nome }}</td>
+      <td>{{ loja.nomeCompleto(p.itens[0].unidade.modelo) }}</td>
+      <td>{{ loja.dinheiro(p.total) }}</td>
+      <td><span class="status {{ p.status }}">{{ painel.nomeStatus(p.status) }}</span></td>
+    </tr>
+  </tbody>
+</table>
+<p class="vazio" *ngIf="carregou && filtrados().length == 0">Nenhum pedido neste filtro. Os pedidos feitos no site aparecem aqui.</p>

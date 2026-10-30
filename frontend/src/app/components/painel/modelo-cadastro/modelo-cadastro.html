@@ -1,0 +1,37 @@
+<a routerLink="/painel/modelos" class="voltar">Modelos</a>
+<p class="aviso erro" *ngIf="erro && !modelo">{{ erro }}</p>
+
+<div *ngIf="modelo">
+  <h1 class="titulo">{{ loja.nomeLinha(modelo.linha) }}: {{ loja.nomeCompleto(modelo) }}</h1>
+  <form class="formulario caixa" (ngSubmit)="gravar()" novalidate>
+    <fieldset>
+      <label class="campo largo">Nome
+        <input name="nome" [(ngModel)]="modelo.nome" maxlength="100" />
+      </label>
+      <label class="campo largo">Descrição
+        <textarea name="descricao" rows="3" [(ngModel)]="modelo.descricao" maxlength="500"></textarea>
+      </label>
+      <label class="campo">Preço de referência (R$)
+        <input name="preco" type="number" min="0" step="0.01" [(ngModel)]="modelo.preco" />
+      </label>
+      <label class="campo largo">Endereço da foto <small>opcional</small>
+        <input name="imagem" [(ngModel)]="modelo.imagemUrl" placeholder="https://..." />
+      </label>
+      <label class="marcar">
+        <input type="checkbox" name="ativo" [(ngModel)]="modelo.ativo" /> Aparece na loja
+      </label>
+    </fieldset>
+    <p class="aviso erro" *ngIf="erro" role="alert">{{ erro }}</p>
+    <div class="acoes-status">
+      <button type="submit" class="botao botao-escuro">Gravar</button>
+      <a class="botao" routerLink="/painel/modelos">Cancelar</a>
+    </div>
+  </form>
+
+  <section class="caixa">
+    <h2>Ficha técnica</h2>
+    <table class="tabela">
+      <tr *ngFor="let e of modelo.especificacoes"><th>{{ e.nome }}</th><td>{{ e.valor }}</td></tr>
+    </table>
+  </section>
+</div>

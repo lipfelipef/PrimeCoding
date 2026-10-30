@@ -1,0 +1,7 @@
+<div class="foto">
+  <img *ngIf="imagemUrl" [src]="imagemUrl" [alt]="alt" />
+  <div *ngIf="!imagemUrl" class="notebook {{ linha }}" role="img" [attr.aria-label]="alt">
+    <div class="tela"></div>
+    <div class="base"></div>
+  </div>
+</div>

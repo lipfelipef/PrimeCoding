@@ -1,0 +1,93 @@
+<main class="pagina produto" *ngIf="modelo">
+  <nav class="trilha" aria-label="Você está em">
+    <a routerLink="/">Início</a> <span>/</span> {{ loja.nomeLinha(modelo.linha) }}
+  </nav>
+
+  <div class="produto-grade">
+    <div class="produto-foto">
+      <app-foto [linha]="modelo.linha" [imagemUrl]="modelo.imagemUrl" [alt]="loja.nomeCompleto(modelo)"></app-foto>
+    </div>
+
+    <div class="produto-compra">
+      <span class="linha">{{ loja.nomeLinha(modelo.linha) }} · {{ modelo.marca }}</span>
+      <h1>{{ loja.nomeCompleto(modelo) }}</h1>
+      <p class="descricao">{{ modelo.descricao }}</p>
+
+      <div *ngIf="unidades.length > 0">
+        <h2 class="rotulo">Escolha a unidade</h2>
+        <div class="opcoes-unidade" role="radiogroup" aria-label="Unidades disponíveis">
+          <button type="button" class="opcao-unidade" *ngFor="let u of unidades" role="radio"
+                  [attr.aria-checked]="unidade?.id == u.id" [class.marcada]="unidade?.id == u.id" (click)="unidade = u"
+                  [attr.aria-label]="'Estado ' + u.estado + ', bateria ' + u.saudeBateria + '%, ' + loja.dinheiro(u.preco)">
+            <span class="opcao-topo">
+              <strong>Estado {{ u.estado }}</strong>
+              <span>{{ loja.dinheiro(u.preco) }}</span>
+            </span>
+            <span class="bateria">
+              <span class="bateria-texto">Bateria {{ u.saudeBateria }}% · {{ u.ciclosBateria }} ciclos</span>
+              <span class="barra"><span [style.width.%]="u.saudeBateria"></span></span>
+            </span>
+            <span class="serie">Unidade {{ u.numeroSerie }}</span>
+          </button>
+        </div>
+
+        <h2 class="rotulo">Kit de setup grátis</h2>
+        <div class="fichas" role="radiogroup" aria-label="Kit de setup">
+          <button type="button" class="ficha" *ngFor="let k of kits" role="radio" [attr.aria-checked]="kit?.id == k.id"
+                  [class.marcada]="kit?.id == k.id" (click)="kit = k; aviso = ''">{{ k.nome }}</button>
+        </div>
+        <p class="kit-detalhe" *ngIf="kit">Vem instalado: {{ kit.ferramentas }}.</p>
+
+        <div *ngIf="modelo.upgrades.length > 0">
+          <h2 class="rotulo">Upgrade</h2>
+          <div class="lista-upgrade" role="radiogroup" aria-label="Upgrade">
+            <button type="button" class="opcao-upgrade" role="radio" [attr.aria-checked]="!upgrade" [class.marcada]="!upgrade" (click)="upgrade = undefined">
+              <span>Sem upgrade</span>
+            </button>
+            <button type="button" class="opcao-upgrade" *ngFor="let up of modelo.upgrades" role="radio"
+                    [attr.aria-checked]="upgrade?.id == up.id" [class.marcada]="upgrade?.id == up.id" (click)="upgrade = up">
+              <span>{{ up.nome }}</span>
+              <strong>+ {{ loja.dinheiro(up.preco) }}</strong>
+            </button>
+          </div>
+        </div>
+
+        <div class="preco-produto">
+          <strong>{{ loja.dinheiro(loja.precoPix(total())) }} <small>no PIX</small></strong>
+          <span>ou {{ loja.dinheiro(total()) }} em 12x de {{ loja.dinheiro(loja.parcela(total(), 12)) }} sem juros no cartão</span>
+        </div>
+
+        <button type="button" class="botao botao-escuro botao-grande" (click)="continuar()">Continuar para o pedido</button>
+        <p class="aviso erro" *ngIf="aviso" role="alert">{{ aviso }}</p>
+
+        <ul class="garantias-curtas">
+          <li>90 dias de garantia</li>
+          <li>Preparo em até {{ diasPreparo() }} dias úteis</li>
+          <li>Reserva de 48 h para pagar</li>
+        </ul>
+      </div>
+
+      <div class="esgotado" *ngIf="unidades.length == 0">
+        <strong>Sem unidade revisada agora.</strong>
+        <p>Chegam unidades novas toda semana. Peça para ser avisado pelo WhatsApp.</p>
+        <a class="botao botao-escuro" [href]="loja.linkWhatsapp(mensagemEsgotado())" target="_blank" rel="noopener">Me avise quando chegar</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="ficha-tecnica">
+    <h2 class="titulo-secao">Ficha técnica</h2>
+    <table>
+      <tr *ngFor="let e of modelo.especificacoes">
+        <th>{{ e.nome }}</th>
+        <td>{{ e.valor }}</td>
+      </tr>
+    </table>
+  </section>
+</main>
+
+<main class="pagina produto" *ngIf="naoAchou">
+  <h1>Notebook não encontrado</h1>
+  <p class="descricao">Este modelo não está à venda agora.</p>
+  <a class="botao botao-escuro" routerLink="/">Ver os notebooks</a>
+</main>

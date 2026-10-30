@@ -1,0 +1,23 @@
+<div class="faixa">
+  <span>Garantia de 90 dias</span>
+  <span>Bateria acima de 80% ou trocada</span>
+  <span>12x sem juros ou 10% off no PIX</span>
+</div>
+<header class="cabecalho">
+  <div class="cabecalho-dentro">
+    <a routerLink="/" class="marca" aria-label="PrimeCoding, página inicial">prime<span>coding</span></a>
+    <form class="busca" (ngSubmit)="buscar()" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" name="busca" [(ngModel)]="busca" (input)="semResultado = ''"
+             placeholder="Buscar por modelo, processador ou memória" aria-label="Buscar notebook" />
+    </form>
+    <nav class="links">
+      <a routerLink="/" fragment="como-funciona">Como comprar</a>
+      <a class="botao botao-escuro" [href]="loja.linkWhatsapp('Olá! Vim pelo site da PrimeCoding.')" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.2z"/></svg>
+        Falar com a loja
+      </a>
+    </nav>
+  </div>
+  <p class="busca-aviso" *ngIf="semResultado" role="status">{{ semResultado }}</p>
+</header>
