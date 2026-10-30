@@ -50,6 +50,8 @@ services:
     container_name: primecoding-caddy
     environment:
       SITE_DOMINIO: ${SITE_DOMINIO:-localhost}
+      SITE_PRINCIPAL: ${SITE_PRINCIPAL:-localhost}
+      SITE_WWW: ${SITE_WWW:-www.localhost}
     ports:
       - "80:80"
       - "443:443"
