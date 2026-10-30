@@ -25,8 +25,8 @@ services:
       DB_URL: jdbc:mysql://mysql:3306/primecoding?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo
       DB_USUARIO: primecoding
       DB_SENHA: ${DB_SENHA}
-      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@primecoding.com.br}
-      ADMIN_SENHA: ${ADMIN_SENHA:?defina ADMIN_SENHA no arquivo .env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@admin.com}
+      ADMIN_SENHA: ${ADMIN_SENHA:-admin}
       LOJA_WHATSAPP: ${LOJA_WHATSAPP:-5511900000000}
       TZ: America/Sao_Paulo
     depends_on:

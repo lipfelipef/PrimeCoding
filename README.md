@@ -40,7 +40,7 @@ O link do UniModeler abre para quem estiver logado no site.
 | [frontend](frontend) | Site em Angular 21: vitrine, página de cada notebook, finalizar pedido e painel do revendedor |
 | [deploy](deploy) | `docker-compose.yml` com MySQL 8.4, API e site |
 
-O cliente escolhe a unidade, o kit e o upgrade, preenche os dados e o site reserva a unidade por 48 h. A venda termina no WhatsApp, com a mensagem do pedido já pronta. O revendedor entra em `/painel` para acompanhar os pedidos, cadastrar unidades e editar os modelos.
+O cliente escolhe a unidade, o kit e o upgrade, preenche os dados e o site reserva a unidade por 48 h. A venda termina no WhatsApp, com a mensagem do pedido já pronta. O revendedor entra em `/painel` para acompanhar os pedidos, cadastrar unidades e editar os modelos. O login de demonstração é `admin@admin.com` com a senha `admin`.
 
 ### Rodar sem Docker
 
@@ -57,8 +57,7 @@ npm install
 npm start
 ```
 
-Abra http://localhost:4200. Sem Docker a API usa um banco H2 em memória, que volta aos dados de exemplo toda vez que reinicia. O login do painel é `admin@primecoding.com.br` com a senha `admin`.
-
+Abra http://localhost:4200. Sem Docker a API usa um banco H2 em memória, que volta aos dados de exemplo toda vez que reinicia.
 ### Rodar com Docker
 
 ```bash

@@ -68,7 +68,7 @@ sudo cp .env.example .env
 sudo nano .env
 ```
 
-Troque `DB_SENHA`, `MYSQL_ROOT_SENHA` e `ADMIN_SENHA`. A `ADMIN_SENHA` é a do login do painel em `/painel`. O `.env` fica só na VM e nunca vai para o GitHub.
+Troque `DB_SENHA` e `MYSQL_ROOT_SENHA`. O login do painel em `/painel` é o de demonstração (`admin@admin.com` e `admin`), definido por `ADMIN_EMAIL` e `ADMIN_SENHA`. O `.env` fica só na VM e nunca vai para o GitHub.
 
 ---
 

@@ -68,6 +68,8 @@ a { color: inherit; }
 img { max-width: 100%; display: block; }
 button, input, select, textarea { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+/* O cabeçalho fixo tem ~73 px: quem chega por âncora (#como-funciona) para abaixo dele */
+[id] { scroll-margin-top: 96px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
 .pagina { max-width: var(--largura); margin: 0 auto; padding: 0 20px; }
@@ -123,13 +125,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .abertura .frase { display: block; }
 
 /* Resultado da busca */
-.resultado-busca { padding-top: 32px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; scroll-margin-top: 90px; }
+.resultado-busca { padding-top: 32px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .resultado-busca h2 { font-size: 24px; font-weight: 600; }
 .resultado-busca p { color: var(--tinta-2); margin: 6px 0 0; }
 .limpar-busca { font-size: 14px; color: var(--tinta-2); }
 
 /* Vitrine */
-.vitrine { scroll-margin-top: 90px; }
 .vitrine { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding-top: 32px; padding-bottom: 64px; }
 .vitrine .aviso { grid-column: 1 / -1; }
 .card { border: 1px solid var(--linha); border-radius: 16px; padding: 16px 16px 20px; display: flex; flex-direction: column; text-decoration: none; background: var(--fundo); transition: border-color .15s; }
@@ -320,6 +321,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .resumo-pedido { order: -1; }
 }
 @media (max-width: 640px) {
+  [id] { scroll-margin-top: 140px; }
   .faixa { gap: 4px 16px; font-size: 12px; }
   .cabecalho-dentro { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
   .busca { order: 3; flex-basis: 100%; }
