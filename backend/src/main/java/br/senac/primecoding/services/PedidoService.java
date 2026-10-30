@@ -20,6 +20,9 @@ public class PedidoService {
     public static final List<String> FLUXO = List.of("AGUARDANDO_ATENDIMENTO", "AGUARDANDO_PAGAMENTO",
             "EM_PREPARACAO", "PRONTO_PARA_ENVIO", "ENVIADO", "ENTREGUE");
 
+    private static final List<String> UFS = List.of("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
+            "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
+
     @Autowired
     private PedidoRepository pedidoRepository;
 
@@ -171,16 +174,17 @@ public class PedidoService {
         if (dados == null) {
             throw erro("Informe seus dados");
         }
-        if (dados.getNome() == null || dados.getNome().trim().length() < 3) {
-            throw erro("Informe seu nome completo");
+        if (dados.getNome() == null || dados.getNome().trim().split("\\s+").length < 2) {
+            throw erro("Informe nome e sobrenome");
         }
         String whatsapp = Documentos.somenteNumeros(dados.getWhatsapp());
         if (whatsapp.length() < 10 || whatsapp.length() > 11) {
             throw erro("Informe o WhatsApp com DDD");
         }
+        // Projeto acadêmico: qualquer CPF com 11 dígitos, sem conferir os verificadores
         String cpf = Documentos.somenteNumeros(dados.getDocumento());
-        if (!Documentos.cpfValido(cpf)) {
-            throw erro("CPF inválido");
+        if (cpf.length() != 11) {
+            throw erro("O CPF tem 11 dígitos");
         }
         String email = dados.getEmail();
         if (email != null && !email.trim().isEmpty() && !email.contains("@")) {
@@ -213,8 +217,8 @@ public class PedidoService {
             throw erro("Preencha o endereço completo");
         }
         String uf = dados.getUf() == null ? "" : dados.getUf().trim().toUpperCase();
-        if (uf.length() != 2) {
-            throw erro("Informe a UF com 2 letras");
+        if (!UFS.contains(uf)) {
+            throw erro("UF inválida");
         }
         Endereco endereco = new Endereco();
         endereco.setCliente(cliente);

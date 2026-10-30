@@ -25,6 +25,10 @@ export class Finalizar implements OnInit {
   enviando = false;
   avisoCep = '';
   ultimoCep = '';
+  campos = ['nome', 'whatsapp', 'cpf', 'email', 'cep', 'logradouro', 'numero', 'bairro', 'cidade', 'uf'];
+  tocados: string[] = [];
+  ufs = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR',
+    'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
   @ViewChild('campoNumero') campoNumero?: ElementRef<HTMLInputElement>;
 
   constructor(public loja: LojaService, public compra: CompraService, private router: Router) {}
@@ -111,19 +115,93 @@ export class Finalizar implements OnInit {
     });
   }
 
-  enviar(): void {
-    this.erro = '';
+  // Regra de cada campo; devolve a mensagem de erro ou '' quando está certo
+  regra(campo: string): string {
     let c = this.pedido.cliente;
     let e = this.pedido.endereco;
-    if (c.nome.trim() == '' || c.whatsapp == '' || c.documento == '') {
-      this.erro = 'Preencha nome, WhatsApp e CPF.';
+    switch (campo) {
+      case 'nome': {
+        let nome = c.nome.trim();
+        if (nome == '') {
+          return 'Informe seu nome.';
+        }
+        if (!/^[A-Za-zÀ-ÿ' .-]+$/.test(nome)) {
+          return 'Use só letras no nome.';
+        }
+        if (nome.split(/\s+/).filter(p => p.length >= 2).length < 2) {
+          return 'Informe nome e sobrenome.';
+        }
+        return '';
+      }
+      case 'whatsapp': {
+        let n = this.numeros(c.whatsapp);
+        if (n == '') {
+          return 'Informe o WhatsApp.';
+        }
+        if (n.length < 10) {
+          return 'Informe o DDD e o número completo.';
+        }
+        return '';
+      }
+      case 'cpf': {
+        // Projeto acadêmico: aceita qualquer CPF com 11 dígitos, sem conferir os verificadores
+        let n = this.numeros(c.documento);
+        if (n == '') {
+          return 'Informe o CPF.';
+        }
+        if (n.length != 11) {
+          return 'O CPF tem 11 dígitos.';
+        }
+        return '';
+      }
+      case 'email': {
+        let email = (c.email || '').trim();
+        if (email != '' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+          return 'E-mail inválido. Exemplo: nome@gmail.com';
+        }
+        return '';
+      }
+      case 'cep':
+        return this.numeros(e.cep).length == 8 ? '' : 'Informe o CEP com 8 dígitos.';
+      case 'logradouro':
+        return e.logradouro.trim().length >= 2 ? '' : 'Informe a rua.';
+      case 'numero':
+        return e.numero.trim() != '' ? '' : 'Informe o número (ou S/N).';
+      case 'bairro':
+        return e.bairro.trim().length >= 2 ? '' : 'Informe o bairro.';
+      case 'cidade':
+        return e.cidade.trim().length >= 2 ? '' : 'Informe a cidade.';
+      case 'uf':
+        if (e.uf.trim() == '') {
+          return 'Informe a UF.';
+        }
+        return this.ufs.includes(e.uf.trim().toUpperCase()) ? '' : 'UF inválida. Exemplo: SP';
+    }
+    return '';
+  }
+
+  // O erro só aparece depois que a pessoa passou pelo campo ou tentou enviar
+  erroDe(campo: string): string {
+    return this.tocados.includes(campo) ? this.regra(campo) : '';
+  }
+
+  tocar(campo: string): void {
+    if (!this.tocados.includes(campo)) {
+      this.tocados.push(campo);
+    }
+  }
+
+  enviar(): void {
+    this.erro = '';
+    this.tocados = [...this.campos];
+    let primeiro = this.campos.find(campo => this.regra(campo) != '');
+    if (primeiro) {
+      this.erro = 'Confira os campos marcados em vermelho.';
+      let elemento = document.querySelector<HTMLInputElement>(`.finalizar [name=${primeiro}]`);
+      elemento?.focus();
       return;
     }
-    if (e.cep == '' || e.logradouro.trim() == '' || e.numero.trim() == '' || e.bairro.trim() == ''
-        || e.cidade.trim() == '' || e.uf.trim() == '') {
-      this.erro = 'Preencha o endereço de entrega.';
-      return;
-    }
+    this.pedido.endereco.uf = this.pedido.endereco.uf.trim().toUpperCase();
     this.pedido.itens = [{
       unidade: { id: this.compra.unidade!.id, numeroSerie: '', estado: '', situacao: '' },
       kit: this.compra.kit!,

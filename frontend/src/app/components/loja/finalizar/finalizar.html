@@ -11,47 +11,68 @@
       <fieldset>
         <legend>Seus dados</legend>
         <label class="campo largo">Nome completo
-          <input name="nome" [(ngModel)]="pedido.cliente.nome" autocomplete="name" maxlength="100" />
+          <input name="nome" [(ngModel)]="pedido.cliente.nome" (blur)="tocar('nome')" autocomplete="name" maxlength="100"
+                 [class.invalido]="erroDe('nome')" [attr.aria-invalid]="!!erroDe('nome')" />
+          <small class="erro-campo" *ngIf="erroDe('nome')">{{ erroDe('nome') }}</small>
         </label>
         <label class="campo">WhatsApp
-          <input name="whatsapp" [ngModel]="pedido.cliente.whatsapp"
+          <input name="whatsapp" [ngModel]="pedido.cliente.whatsapp" (blur)="tocar('whatsapp')"
                  (ngModelChange)="pedido.cliente.whatsapp = mascaraWhatsapp($event)" inputmode="tel"
-                 autocomplete="tel-national" placeholder="(11) 91234-5678" />
+                 autocomplete="tel-national" placeholder="(11) 91234-5678"
+                 [class.invalido]="erroDe('whatsapp')" [attr.aria-invalid]="!!erroDe('whatsapp')" />
+          <small class="erro-campo" *ngIf="erroDe('whatsapp')">{{ erroDe('whatsapp') }}</small>
         </label>
         <label class="campo">CPF
-          <input name="cpf" [ngModel]="pedido.cliente.documento"
-                 (ngModelChange)="pedido.cliente.documento = mascaraCpf($event)" inputmode="numeric" placeholder="000.000.000-00" />
+          <input name="cpf" [ngModel]="pedido.cliente.documento" (blur)="tocar('cpf')"
+                 (ngModelChange)="pedido.cliente.documento = mascaraCpf($event)" inputmode="numeric" placeholder="000.000.000-00"
+                 [class.invalido]="erroDe('cpf')" [attr.aria-invalid]="!!erroDe('cpf')" />
+          <small class="erro-campo" *ngIf="erroDe('cpf')">{{ erroDe('cpf') }}</small>
         </label>
         <label class="campo largo">E-mail <small>opcional</small>
-          <input name="email" type="email" [(ngModel)]="pedido.cliente.email" autocomplete="email" maxlength="120" />
+          <input name="email" type="email" [(ngModel)]="pedido.cliente.email" (blur)="tocar('email')" autocomplete="email" maxlength="120"
+                 [class.invalido]="erroDe('email')" [attr.aria-invalid]="!!erroDe('email')" />
+          <small class="erro-campo" *ngIf="erroDe('email')">{{ erroDe('email') }}</small>
         </label>
       </fieldset>
 
       <fieldset>
         <legend>Entrega</legend>
         <label class="campo">CEP
-          <input name="cep" [ngModel]="pedido.endereco.cep" (ngModelChange)="digitouCep($event)"
-                 inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" />
+          <input name="cep" [ngModel]="pedido.endereco.cep" (ngModelChange)="digitouCep($event)" (blur)="tocar('cep')"
+                 inputmode="numeric" autocomplete="postal-code" placeholder="00000-000"
+                 [class.invalido]="erroDe('cep')" [attr.aria-invalid]="!!erroDe('cep')" />
+          <small class="erro-campo" *ngIf="erroDe('cep')">{{ erroDe('cep') }}</small>
           <small class="aviso-cep" *ngIf="avisoCep" role="status">{{ avisoCep }}</small>
         </label>
         <p class="campo nota-cep">O endereço é preenchido pelo CEP.</p>
         <label class="campo largo">Rua
-          <input name="logradouro" [(ngModel)]="pedido.endereco.logradouro" autocomplete="address-line1" maxlength="120" />
+          <input name="logradouro" [(ngModel)]="pedido.endereco.logradouro" (blur)="tocar('logradouro')" autocomplete="address-line1" maxlength="120"
+                 [class.invalido]="erroDe('logradouro')" [attr.aria-invalid]="!!erroDe('logradouro')" />
+          <small class="erro-campo" *ngIf="erroDe('logradouro')">{{ erroDe('logradouro') }}</small>
         </label>
         <label class="campo">Número
-          <input #campoNumero name="numero" [(ngModel)]="pedido.endereco.numero" maxlength="10" />
+          <input #campoNumero name="numero" [(ngModel)]="pedido.endereco.numero" (blur)="tocar('numero')" maxlength="10"
+                 [class.invalido]="erroDe('numero')" [attr.aria-invalid]="!!erroDe('numero')" />
+          <small class="erro-campo" *ngIf="erroDe('numero')">{{ erroDe('numero') }}</small>
         </label>
         <label class="campo">Complemento <small>opcional</small>
           <input name="complemento" [(ngModel)]="pedido.endereco.complemento" maxlength="60" />
         </label>
         <label class="campo">Bairro
-          <input name="bairro" [(ngModel)]="pedido.endereco.bairro" maxlength="60" />
+          <input name="bairro" [(ngModel)]="pedido.endereco.bairro" (blur)="tocar('bairro')" maxlength="60"
+                 [class.invalido]="erroDe('bairro')" [attr.aria-invalid]="!!erroDe('bairro')" />
+          <small class="erro-campo" *ngIf="erroDe('bairro')">{{ erroDe('bairro') }}</small>
         </label>
         <label class="campo">Cidade
-          <input name="cidade" [(ngModel)]="pedido.endereco.cidade" autocomplete="address-level2" maxlength="60" />
+          <input name="cidade" [(ngModel)]="pedido.endereco.cidade" (blur)="tocar('cidade')" autocomplete="address-level2" maxlength="60"
+                 [class.invalido]="erroDe('cidade')" [attr.aria-invalid]="!!erroDe('cidade')" />
+          <small class="erro-campo" *ngIf="erroDe('cidade')">{{ erroDe('cidade') }}</small>
         </label>
         <label class="campo curto">UF
-          <input name="uf" [(ngModel)]="pedido.endereco.uf" autocomplete="address-level1" maxlength="2" />
+          <input name="uf" [ngModel]="pedido.endereco.uf" (ngModelChange)="pedido.endereco.uf = $event.toUpperCase()" (blur)="tocar('uf')"
+                 autocomplete="address-level1" maxlength="2"
+                 [class.invalido]="erroDe('uf')" [attr.aria-invalid]="!!erroDe('uf')" />
+          <small class="erro-campo" *ngIf="erroDe('uf')">{{ erroDe('uf') }}</small>
         </label>
       </fieldset>
 

@@ -16,36 +16,4 @@ public class Documentos {
         }
         return resultado;
     }
-
-    private static boolean todosIguais(String valor) {
-        for (int i = 1; i < valor.length(); i++) {
-            if (valor.charAt(i) != valor.charAt(0)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static boolean cpfValido(String cpf) {
-        if (cpf == null || cpf.length() != 11 || todosIguais(cpf)) {
-            return false;
-        }
-        int soma = 0;
-        for (int i = 0; i < 9; i++) {
-            soma += (cpf.charAt(i) - '0') * (10 - i);
-        }
-        int dv1 = (soma * 10) % 11;
-        if (dv1 == 10) {
-            dv1 = 0;
-        }
-        soma = 0;
-        for (int i = 0; i < 10; i++) {
-            soma += (cpf.charAt(i) - '0') * (11 - i);
-        }
-        int dv2 = (soma * 10) % 11;
-        if (dv2 == 10) {
-            dv2 = 0;
-        }
-        return dv1 == cpf.charAt(9) - '0' && dv2 == cpf.charAt(10) - '0';
-    }
 }
