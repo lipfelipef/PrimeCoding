@@ -80,15 +80,15 @@ public class DBService {
         modeloRepository.save(intermediario);
         modeloRepository.save(pro);
 
-        kitSetupRepository.save(new KitSetup("Estudante", "O básico para a faculdade de TI",
+        kitSetupRepository.save(new KitSetup("Estudante", "O básico para a faculdade",
                 "Git, VS Code, Java (JDK 21), Python e navegadores"));
         kitSetupRepository.save(new KitSetup("Back-end", "APIs, bancos e containers",
                 "Git, Docker, WSL (no Windows), Java (JDK 21), Node.js, Postman e MySQL"));
         kitSetupRepository.save(new KitSetup("Front-end", "Sites e aplicações web",
                 "Git, VS Code, Node.js, extensões de front-end e navegadores de teste"));
-        kitSetupRepository.save(new KitSetup("Dados", "Análise de dados e ciência de dados",
+        kitSetupRepository.save(new KitSetup("Dados", "Análise e ciência de dados",
                 "Git, Python, Jupyter, pandas e VS Code"));
-        kitSetupRepository.save(new KitSetup("Mobile", "Apps para Android e iPhone",
+        kitSetupRepository.save(new KitSetup("Mobile", "Apps Android e iPhone",
                 "Git, Android Studio, Flutter e, no MacBook, Xcode"));
 
         // Estado B custa R$ 200 a menos (RN04)

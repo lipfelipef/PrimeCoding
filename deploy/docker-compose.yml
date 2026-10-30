@@ -44,5 +44,24 @@ services:
       - backend
     restart: unless-stopped
 
+  # Porta 443 com HTTPS; a 80 só redireciona para a 443
+  caddy:
+    image: caddy:2.10-alpine
+    container_name: primecoding-caddy
+    environment:
+      SITE_DOMINIO: ${SITE_DOMINIO:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-dados:/data
+      - caddy-config:/config
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
 volumes:
   mysql-dados:
+  caddy-dados:
+  caddy-config:

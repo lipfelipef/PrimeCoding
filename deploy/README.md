@@ -2,17 +2,20 @@
 
 Passo a passo para publicar o PrimeCoding numa VM Linux (Ubuntu) na Azure, usando Docker Compose.
 
-Ao final, o site fica acessível em `http://IP_DA_VM:4200`.
+Ao final, o site fica acessível em `http://IP_DA_VM:4200` e em `https://SITE_DOMINIO`.
 
-O compose sobe três containers:
+O compose sobe quatro containers:
 
 | Container | O que é |
 |---|---|
 | `primecoding-mysql` | Banco MySQL 8.4, com os dados num volume que sobrevive a reinícios |
 | `primecoding-backend` | API em Spring Boot, que cria as tabelas e os dados de exemplo na primeira vez |
 | `primecoding-frontend` | nginx servindo o site em Angular e repassando `/api` para a API |
+| `primecoding-caddy` | HTTPS nas portas 80 e 443, com certificado do Let's Encrypt renovado sozinho |
 
-Só o site fica exposto, na porta 4200. A API e o banco ficam na rede interna do Docker.
+O site fica exposto na porta 4200 (HTTP) e, pelo Caddy, em HTTPS no nome de `SITE_DOMINIO`. A API e o banco ficam na rede interna do Docker.
+
+Sem domínio próprio, o [sslip.io](https://sslip.io) dá um nome a partir do IP: `172.195.104.176` vira `172-195-104-176.sslip.io`. Com domínio, basta apontar o registro A para o IP da VM e trocar o `SITE_DOMINIO` no `.env`. Para o certificado sair, as portas 80 e 443 precisam estar liberadas na Azure (passo 7).
 
 ---
 
@@ -68,7 +71,7 @@ sudo cp .env.example .env
 sudo nano .env
 ```
 
-Troque `DB_SENHA` e `MYSQL_ROOT_SENHA`. O login do painel em `/painel` é o de demonstração (`admin@admin.com` e `admin`), definido por `ADMIN_EMAIL` e `ADMIN_SENHA`. O `.env` fica só na VM e nunca vai para o GitHub.
+Troque `DB_SENHA` e `MYSQL_ROOT_SENHA`, ponha em `SITE_DOMINIO` o nome do site (o do sslip.io ou o domínio próprio) e em `LOJA_WHATSAPP` o número da loja. O login do painel em `/painel` é o de demonstração (`admin@admin.com` e `admin`), definido por `ADMIN_EMAIL` e `ADMIN_SENHA`. O `.env` fica só na VM e nunca vai para o GitHub.
 
 ---
 
@@ -90,6 +93,7 @@ Os três containers devem aparecer com status `Up`. Na primeira vez o build demo
 3. Clique em **+ Criar regra de porta** → **Regra de porta de entrada**.
 4. Preencha **Intervalos de portas de destino:** `4200`, **Protocolo:** `TCP`, **Ação:** `Permitir` e **Nome:** `primecoding-site`.
 5. Clique em **Adicionar**.
+6. Repita com `80,443` e o nome `primecoding-https`, para o HTTPS.
 
 Agora acesse `http://IP_DA_VM:4200` no navegador.
 

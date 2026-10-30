@@ -1,0 +1,6 @@
+# HTTPS do site: o Caddy pede e renova o certificado no Let's Encrypt sozinho.
+# SITE_DOMINIO vem do .env (hoje 172-195-104-176.sslip.io; depois, o domínio próprio).
+{$SITE_DOMINIO} {
+	encode gzip
+	reverse_proxy frontend:80
+}
