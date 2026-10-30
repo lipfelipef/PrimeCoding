@@ -85,11 +85,11 @@ public class DBService {
         kitSetupRepository.save(new KitSetup("Back-end", "APIs, bancos e containers",
                 "Git, Docker, WSL, Java 21, Node.js, Postman, MySQL"));
         kitSetupRepository.save(new KitSetup("Front-end", "Sites e aplicações web",
-                "Git, VS Code, Node.js, extensões de front-end, navegadores de teste"));
+                "Git, VS Code, Node.js, extensões web, navegadores"));
         kitSetupRepository.save(new KitSetup("Dados", "Análise e ciência de dados",
                 "Git, Python, Jupyter, pandas, VS Code"));
         kitSetupRepository.save(new KitSetup("Mobile", "Apps Android e iPhone",
-                "Git, Android Studio, Flutter, Xcode (no MacBook)"));
+                "Git, Android Studio, Flutter, Xcode (Mac)"));
 
         // Estado B custa R$ 200 a menos (RN04)
         unidade(entrada, "SN-ENT-0001", "A", 92, 210, 2899.00, "DISPONIVEL", "2026-10-20");
