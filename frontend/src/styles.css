@@ -236,6 +236,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--tinta); outline: none; box-shadow: 0 0 0 3px rgba(35, 71, 198, .15); }
 .formulario .nota { grid-column: 1 / -1; }
 .aviso-cep { font-size: 12px; color: var(--tinta-2); }
+.campo input[readonly], .campo select:disabled, .campo input:disabled { background: var(--fundo-2); color: var(--tinta-2); cursor: not-allowed; }
+.marcar-pequeno { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--tinta-2); cursor: pointer; }
+.marcar-pequeno input { width: auto; accent-color: var(--tinta); }
+.campo select.invalido,
 .campo input.invalido, .campo input.invalido:focus { border-color: var(--vermelho); box-shadow: 0 0 0 3px color-mix(in srgb, var(--vermelho) 18%, transparent); }
 .campo .erro-campo { font-size: 12px; font-weight: 500; color: var(--vermelho); }
 .nota-cep { align-self: end; margin: 0 0 12px; font-size: 13px; font-weight: 400; color: var(--tinta-2); }

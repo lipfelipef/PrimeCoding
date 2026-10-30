@@ -20,6 +20,18 @@ public class PedidoService {
     public static final List<String> FLUXO = List.of("AGUARDANDO_ATENDIMENTO", "AGUARDANDO_PAGAMENTO",
             "EM_PREPARACAO", "PRONTO_PARA_ENVIO", "ENVIADO", "ENTREGUE");
 
+    // Letras com acento, espaço, apóstrofo e hífen (nomes e cidades)
+    private static final String LETRAS = "[A-Za-zÀ-ÖØ-öø-ÿ' -]";
+
+    // O mesmo da tela para rua, bairro e complemento: letras, dígitos e . , ' º ª ° / -
+    private static final String ENDERECO = "[A-Za-zÀ-ÖØ-öø-ÿ0-9 .,'ºª°/-]";
+
+    // DDDs que existem no Brasil (Anatel)
+    private static final List<Integer> DDDS = List.of(11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 28,
+            31, 32, 33, 34, 35, 37, 38, 41, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 54, 55, 61, 62, 63, 64, 65,
+            66, 67, 68, 69, 71, 73, 74, 75, 77, 79, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91, 92, 93, 94, 95, 96,
+            97, 98, 99);
+
     private static final List<String> UFS = List.of("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
             "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
 
@@ -174,32 +186,52 @@ public class PedidoService {
         if (dados == null) {
             throw erro("Informe seus dados");
         }
-        if (dados.getNome() == null || dados.getNome().trim().split("\\s+").length < 2) {
+        String nome = dados.getNome() == null ? "" : dados.getNome().trim().replaceAll("\\s+", " ");
+        if (nome.length() > 100 || !nome.matches(LETRAS + "+")) {
+            throw erro("Use só letras no nome");
+        }
+        if (nome.split(" ").length < 2 || contaPalavras(nome, 2) < 2) {
             throw erro("Informe nome e sobrenome");
         }
-        String whatsapp = Documentos.somenteNumeros(dados.getWhatsapp());
+        // Só dígitos e a máscara: "(11) 91234-5678"; letra no meio é recusada, não apagada
+        String whatsappDigitado = dados.getWhatsapp() == null ? "" : dados.getWhatsapp().trim();
+        if (!whatsappDigitado.matches("[0-9() -]{10,15}")) {
+            throw erro("Informe o WhatsApp com DDD, só números");
+        }
+        String whatsapp = Documentos.somenteNumeros(whatsappDigitado);
         if (whatsapp.length() < 10 || whatsapp.length() > 11) {
             throw erro("Informe o WhatsApp com DDD");
         }
+        if (!DDDS.contains(Integer.parseInt(whatsapp.substring(0, 2)))) {
+            throw erro("O DDD " + whatsapp.substring(0, 2) + " não existe");
+        }
+        if (whatsapp.length() == 11 && whatsapp.charAt(2) != '9') {
+            throw erro("Celular com 9 dígitos começa com 9");
+        }
+        if (whatsapp.length() == 10 && "2345".indexOf(whatsapp.charAt(2)) < 0) {
+            throw erro("Número fixo começa com 2, 3, 4 ou 5");
+        }
         // Projeto acadêmico: qualquer CPF com 11 dígitos, sem conferir os verificadores
-        String cpf = Documentos.somenteNumeros(dados.getDocumento());
-        if (cpf.length() != 11) {
+        String cpfDigitado = dados.getDocumento() == null ? "" : dados.getDocumento().trim();
+        if (!cpfDigitado.matches("\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}")) {
             throw erro("O CPF tem 11 dígitos");
         }
-        String email = dados.getEmail();
-        if (email != null && !email.trim().isEmpty() && !email.contains("@")) {
+        String cpf = Documentos.somenteNumeros(cpfDigitado);
+        String email = dados.getEmail() == null ? "" : dados.getEmail().trim();
+        if (!email.isEmpty() && (email.length() > 120
+                || !email.matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.[A-Za-z]{2,}"))) {
             throw erro("E-mail inválido");
         }
         Cliente cliente = clienteRepository.findByWhatsapp(whatsapp).orElse(new Cliente());
         if (cliente.getId() == null) {
             cliente.setDataCadastro(LocalDateTime.now());
         }
-        cliente.setNome(dados.getNome().trim());
+        cliente.setNome(nome);
         cliente.setWhatsapp(whatsapp);
         cliente.setTipoDocumento("CPF");
         cliente.setDocumento(cpf);
-        if (email != null && !email.trim().isEmpty()) {
-            cliente.setEmail(email.trim().toLowerCase());
+        if (!email.isEmpty()) {
+            cliente.setEmail(email.toLowerCase());
         }
         return clienteRepository.save(cliente);
     }
@@ -208,13 +240,31 @@ public class PedidoService {
         if (dados == null) {
             throw erro("Informe o endereço de entrega");
         }
-        String cep = Documentos.somenteNumeros(dados.getCep());
-        if (cep.length() != 8) {
+        String cepDigitado = dados.getCep() == null ? "" : dados.getCep().trim();
+        if (!cepDigitado.matches("\\d{5}-?\\d{3}")) {
             throw erro("CEP inválido");
         }
-        if (vazio(dados.getLogradouro()) || vazio(dados.getNumero()) || vazio(dados.getBairro())
-                || vazio(dados.getCidade())) {
-            throw erro("Preencha o endereço completo");
+        String cep = Documentos.somenteNumeros(cepDigitado);
+        String logradouro = texto(dados.getLogradouro());
+        if (logradouro.isEmpty() || logradouro.length() > 120 || !logradouro.matches(ENDERECO + "+")
+                || contaLetras(logradouro) < 3) {
+            throw erro("Rua inválida");
+        }
+        String numero = texto(dados.getNumero()).toUpperCase();
+        if (!numero.matches("\\d{1,6}|S/N")) {
+            throw erro("Número inválido: use só dígitos ou S/N");
+        }
+        String complemento = texto(dados.getComplemento());
+        if (complemento.length() > 60 || (!complemento.isEmpty() && !complemento.matches(ENDERECO + "+"))) {
+            throw erro("Complemento inválido");
+        }
+        String bairro = texto(dados.getBairro());
+        if (bairro.isEmpty() || bairro.length() > 60 || !bairro.matches(ENDERECO + "+") || contaLetras(bairro) < 2) {
+            throw erro("Bairro inválido");
+        }
+        String cidade = texto(dados.getCidade());
+        if (cidade.length() < 2 || cidade.length() > 60 || !cidade.matches(LETRAS + "+")) {
+            throw erro("Cidade inválida");
         }
         String uf = dados.getUf() == null ? "" : dados.getUf().trim().toUpperCase();
         if (!UFS.contains(uf)) {
@@ -223,11 +273,11 @@ public class PedidoService {
         Endereco endereco = new Endereco();
         endereco.setCliente(cliente);
         endereco.setCep(cep.substring(0, 5) + "-" + cep.substring(5));
-        endereco.setLogradouro(dados.getLogradouro().trim());
-        endereco.setNumero(dados.getNumero().trim());
-        endereco.setComplemento(dados.getComplemento());
-        endereco.setBairro(dados.getBairro().trim());
-        endereco.setCidade(dados.getCidade().trim());
+        endereco.setLogradouro(logradouro);
+        endereco.setNumero(numero);
+        endereco.setComplemento(complemento.isEmpty() ? null : complemento);
+        endereco.setBairro(bairro);
+        endereco.setCidade(cidade);
         endereco.setUf(uf);
         return enderecoRepository.save(endereco);
     }
@@ -238,8 +288,24 @@ public class PedidoService {
         return prefixo + String.format("%04d", numero);
     }
 
-    private boolean vazio(String valor) {
-        return valor == null || valor.trim().isEmpty();
+    // Texto sem espaço nas pontas e sem espaço repetido no meio
+    private String texto(String valor) {
+        return valor == null ? "" : valor.trim().replaceAll("\\s+", " ");
+    }
+
+    private int contaLetras(String valor) {
+        return valor.replaceAll("[^A-Za-zÀ-ÖØ-öø-ÿ]", "").length();
+    }
+
+    // Quantas palavras têm pelo menos "minimo" letras
+    private int contaPalavras(String valor, int minimo) {
+        int total = 0;
+        for (String palavra : valor.split(" ")) {
+            if (contaLetras(palavra) >= minimo) {
+                total++;
+            }
+        }
+        return total;
     }
 
     private ResponseStatusException erro(String mensagem) {
