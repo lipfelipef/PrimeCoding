@@ -185,6 +185,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .garantias { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .garantias h3 { font-size: 20px; font-weight: 600; }
 .garantias p { color: var(--tinta-2); margin: 8px 0 0; }
+/* Quando não cabe numa linha, quebra entre as frases e não no meio delas */
+.garantias .frase { display: inline-block; text-wrap: balance; }
 
 /* Página do produto */
 .produto { padding-top: 20px; padding-bottom: 64px; }

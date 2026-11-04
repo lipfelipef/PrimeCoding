@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-// Mesmos dados do script do banco, gravados só quando o banco está vazio
+// Mesmos modelos e kits do script do banco, gravados só quando o banco está vazio
 @Service
 public class DBService {
 
@@ -91,14 +91,22 @@ public class DBService {
         kitSetupRepository.save(new KitSetup("Mobile", "Apps Android e iPhone",
                 "Git, VS Code, Android Studio, Flutter, Xcode (Mac)"));
 
-        // Estado B custa R$ 200 a menos (RN04)
+        // 5 unidades de cada notebook; estado B custa R$ 200 a menos (RN04)
         unidade(entrada, "SN-ENT-0001", "A", 92, 210, 2899.00, "DISPONIVEL", "2026-10-20");
         unidade(entrada, "SN-ENT-0002", "A", 88, 340, 2899.00, "DISPONIVEL", "2026-10-20");
         unidade(entrada, "SN-ENT-0003", "B", 85, 410, 2699.00, "DISPONIVEL", "2026-10-22");
+        unidade(entrada, "SN-ENT-0004", "A", 90, 260, 2899.00, "DISPONIVEL", "2026-10-28");
+        unidade(entrada, "SN-ENT-0005", "B", 83, 480, 2699.00, "DISPONIVEL", "2026-10-30");
         unidade(intermediario, "SN-INT-0001", "A", 95, 120, 4999.00, "DISPONIVEL", "2026-10-21");
         unidade(intermediario, "SN-INT-0002", "B", 90, 260, 4799.00, "DISPONIVEL", "2026-10-23");
+        unidade(intermediario, "SN-INT-0003", "A", 93, 180, 4999.00, "DISPONIVEL", "2026-10-28");
+        unidade(intermediario, "SN-INT-0004", "A", 89, 300, 4999.00, "DISPONIVEL", "2026-10-30");
+        unidade(intermediario, "SN-INT-0005", "B", 86, 390, 4799.00, "DISPONIVEL", "2026-11-03");
         unidade(pro, "SN-PRO-0001", "A", 96, 85, 6999.00, "DISPONIVEL", "2026-10-24");
-        unidade(pro, "SN-PRO-0002", "A", 91, 150, 6999.00, "EM_REVISAO", "2026-10-27");
+        unidade(pro, "SN-PRO-0002", "A", 91, 150, 6999.00, "DISPONIVEL", "2026-10-27");
+        unidade(pro, "SN-PRO-0003", "A", 94, 110, 6999.00, "DISPONIVEL", "2026-10-29");
+        unidade(pro, "SN-PRO-0004", "B", 88, 230, 6799.00, "DISPONIVEL", "2026-10-31");
+        unidade(pro, "SN-PRO-0005", "A", 97, 40, 6999.00, "DISPONIVEL", "2026-11-03");
     }
 
     private void especificar(Modelo modelo, String nome, String valor) {
