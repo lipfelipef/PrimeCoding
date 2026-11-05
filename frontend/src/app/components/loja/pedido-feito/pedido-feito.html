@@ -2,7 +2,6 @@
   <div class="confirmacao">
     <span class="selo verde">Notebook reservado</span>
     <h1>Pedido {{ loja.numeroPedido(pedido.codigo) }}</h1>
-    <p><span class="frase">Falta combinar o pagamento e a entrega.</span>{{ ' ' }}<span class="frase">Mande a mensagem abaixo pelo WhatsApp!</span></p>
     <dl>
       <div><dt>Notebook</dt><dd>{{ loja.nomeCompleto(pedido.itens[0].unidade.modelo) }}</dd></div>
       <div><dt>Kit</dt><dd>{{ pedido.itens[0].kit.nome }}</dd></div>
