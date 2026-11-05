@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 // Mesmos modelos e kits do script do banco, gravados só quando o banco está vazio
 @Service
@@ -50,8 +51,8 @@ public class DBService {
         especificar(entrada, "Portas", "2 USB-C (1 Thunderbolt 4), 2 USB-A, HDMI, rede RJ45 e fone");
         especificar(entrada, "Sistema", "Windows 11 Pro");
         especificar(entrada, "Teclado", "ABNT2 (português do Brasil)");
-        entrada.getUpgrades().add(new Upgrade(entrada, "Memória para 32 GB", 450.00, 1));
-        entrada.getUpgrades().add(new Upgrade(entrada, "SSD de 1 TB", 350.00, 1));
+        entrada.getUpgrades().add(new Upgrade(entrada, "Memória para 32 GB", 450.00, 1, "UPGRADE"));
+        entrada.getUpgrades().add(new Upgrade(entrada, "SSD de 1 TB", 350.00, 1, "UPGRADE"));
 
         Modelo intermediario = new Modelo("INTERMEDIARIO", "Latitude 5430", "Dell",
                 "Para estágio e back-end: 32 GB para Docker, máquinas virtuais e IDE abertos ao mesmo tempo.",
@@ -63,7 +64,7 @@ public class DBService {
         especificar(intermediario, "Portas", "2 USB-C Thunderbolt 4, 2 USB-A, HDMI, rede RJ45, leitor microSD e fone");
         especificar(intermediario, "Sistema", "Windows 11 Pro");
         especificar(intermediario, "Teclado", "ABNT2 (português do Brasil)");
-        intermediario.getUpgrades().add(new Upgrade(intermediario, "SSD de 2 TB", 650.00, 1));
+        intermediario.getUpgrades().add(new Upgrade(intermediario, "SSD de 2 TB", 650.00, 1, "UPGRADE"));
 
         Modelo pro = new Modelo("PRO", "MacBook Air 13 (M2)", "Apple",
                 "Para quem quer bateria para o dia todo, silêncio total e desenvolvimento para iPhone com Xcode.",
@@ -75,6 +76,13 @@ public class DBService {
         especificar(pro, "Portas", "2 Thunderbolt / USB 4, MagSafe 3 e fone");
         especificar(pro, "Sistema", "macOS");
         especificar(pro, "Teclado", "ABNT2 (português do Brasil)");
+
+        // Os mesmos acessórios nos três: vão na caixa, sem atrasar o preparo
+        for (Modelo modelo : List.of(entrada, intermediario, pro)) {
+            modelo.getUpgrades().add(new Upgrade(modelo, "Mouse sem fio", 89.00, 0, "ACESSORIO"));
+            modelo.getUpgrades().add(new Upgrade(modelo, "Suporte de notebook dobrável", 99.00, 0, "ACESSORIO"));
+            modelo.getUpgrades().add(new Upgrade(modelo, "Hub USB-C 7 em 1 (HDMI, USB-A e leitor SD)", 149.00, 0, "ACESSORIO"));
+        }
 
         modeloRepository.save(entrada);
         modeloRepository.save(intermediario);

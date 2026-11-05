@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-// Upgrades permitidos por modelo; o Pro não tem nenhum (RN12)
+// Upgrades e acessórios de cada modelo; o Pro só tem acessórios (memória e SSD soldados)
 @Entity
 @Table(name = "upgrade")
 public class Upgrade implements Serializable {
@@ -28,7 +28,15 @@ public class Upgrade implements Serializable {
 
     private Integer diasExtras;
 
+    // UPGRADE (peça instalada no notebook) ou ACESSORIO (vai junto na caixa)
+    private String tipo;
+
     public Upgrade() {
+    }
+
+    public Upgrade(Modelo modelo, String nome, Double preco, Integer diasExtras, String tipo) {
+        this(modelo, nome, preco, diasExtras);
+        this.tipo = tipo;
     }
 
     public Upgrade(Modelo modelo, String nome, Double preco, Integer diasExtras) {
@@ -76,5 +84,14 @@ public class Upgrade implements Serializable {
 
     public void setDiasExtras(Integer diasExtras) {
         this.diasExtras = diasExtras;
+    }
+
+    // Banco antigo sem a coluna: tudo era upgrade
+    public String getTipo() {
+        return tipo == null ? "UPGRADE" : tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

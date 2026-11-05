@@ -25,10 +25,10 @@
         </div>
         <p class="kit-detalhe" *ngIf="kit">Vem instalado: {{ kit.ferramentas }}.</p>
 
-        <div *ngIf="modelo.upgrades.length > 0">
-          <h2 class="rotulo">Upgrades <small>opcionais, dá para escolher mais de um</small></h2>
-          <div class="lista-upgrade" role="group" aria-label="Upgrades">
-            <button type="button" class="opcao-upgrade" *ngFor="let up of modelo.upgrades" role="checkbox"
+        <div *ngFor="let grupo of grupos">
+          <h2 class="rotulo">{{ grupo.titulo }} <small>{{ grupo.dica }}</small></h2>
+          <div class="lista-upgrade" role="group" [attr.aria-label]="grupo.titulo">
+            <button type="button" class="opcao-upgrade" *ngFor="let up of grupo.itens" role="checkbox"
                     [attr.aria-checked]="temUpgrade(up)" [class.marcada]="temUpgrade(up)" (click)="alternarUpgrade(up)">
               <span>{{ up.nome }}</span>
               <strong>+ {{ loja.dinheiro(up.preco) }}</strong>

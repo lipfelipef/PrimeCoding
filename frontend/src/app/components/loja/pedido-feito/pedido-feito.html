@@ -6,7 +6,7 @@
     <dl>
       <div><dt>Notebook</dt><dd>{{ loja.nomeCompleto(pedido.itens[0].unidade.modelo) }}</dd></div>
       <div><dt>Kit</dt><dd>{{ pedido.itens[0].kit.nome }}</dd></div>
-      <div *ngIf="pedido.itens[0].upgrades?.length"><dt>{{ pedido.itens[0].upgrades!.length > 1 ? 'Upgrades' : 'Upgrade' }}</dt><dd>{{ loja.lista(pedido.itens[0].upgrades!) }}</dd></div>
+      <div *ngIf="pedido.itens[0].upgrades?.length"><dt>Adicionais</dt><dd>{{ loja.lista(pedido.itens[0].upgrades!) }}</dd></div>
       <div><dt>Total</dt><dd>{{ loja.dinheiro(pedido.total) }}{{ pedido.formaPagamento == 'PIX' ? ' no PIX' : ' em ' + pedido.parcelas + 'x' }}</dd></div>
       <div><dt>Reservado até</dt><dd>{{ prazo() }}</dd></div>
     </dl>

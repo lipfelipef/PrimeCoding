@@ -22,6 +22,7 @@ export class Produto implements OnInit {
   unidade?: Unidade;
   kit?: KitSetup;
   upgrades: Upgrade[] = [];
+  grupos: { titulo: string; dica: string; itens: Upgrade[] }[] = [];
   naoAchou = false;
   aviso = '';
 
@@ -44,6 +45,7 @@ export class Produto implements OnInit {
     this.naoAchou = false;
     this.loja.modeloPorLinha(linha).subscribe((resposta) => {
       this.modelo = resposta;
+      this.grupos = this.montarGrupos(resposta.upgrades || []);
       this.title.setTitle(this.loja.nomeCompleto(resposta) + ' seminovo | PrimeCoding');
       this.loja.unidadesDisponiveis().subscribe((lista) => {
         // O cliente não escolhe a unidade: a loja separa a de bateria melhor (mesma ordem da API)
@@ -68,6 +70,14 @@ export class Produto implements OnInit {
 
   diasPreparo(): number {
     return 2 + this.upgrades.reduce((dias, up) => dias + (up.diasExtras || 0), 0);
+  }
+
+  // Upgrades (instalados no notebook) e acessórios (vão na caixa), cada um com seu título
+  montarGrupos(todos: Upgrade[]): { titulo: string; dica: string; itens: Upgrade[] }[] {
+    return [
+      { titulo: 'Upgrades', dica: 'instalados antes do envio', itens: todos.filter(u => u.tipo != 'ACESSORIO') },
+      { titulo: 'Acessórios', dica: 'vão junto na caixa', itens: todos.filter(u => u.tipo == 'ACESSORIO') }
+    ].filter(g => g.itens.length > 0);
   }
 
   temUpgrade(up: Upgrade): boolean {

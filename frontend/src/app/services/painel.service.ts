@@ -140,7 +140,7 @@ export class PainelService {
     let dicas: any = {
       AGUARDANDO_ATENDIMENTO: 'Responda o cliente no WhatsApp e mande a chave PIX ou o link do cartão.',
       AGUARDANDO_PAGAMENTO: 'Espere o comprovante. Sem pagamento, a reserva cai sozinha no prazo.',
-      EM_PREPARACAO: 'Instale o kit e o upgrade e teste o notebook.',
+      EM_PREPARACAO: 'Instale o kit e os upgrades, teste o notebook e separe os acessórios.',
       PRONTO_PARA_ENVIO: 'Embale, poste e mande o código de rastreio pelo WhatsApp.',
       ENVIADO: 'Confirme com o cliente quando o notebook chegar.'
     };

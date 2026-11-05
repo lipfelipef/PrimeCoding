@@ -10,6 +10,7 @@ export interface Upgrade {
   nome: string;
   preco: number;
   diasExtras?: number;
+  tipo?: string;
 }
 
 export interface Modelo {
