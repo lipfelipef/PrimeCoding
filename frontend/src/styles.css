@@ -264,6 +264,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* Pedido feito */
 .pedido-feito { padding-top: 48px; padding-bottom: 80px; }
+/* Quebra só entre as frases, e cada frase com linhas equilibradas (sem palavra sozinha no fim) */
+.confirmacao .frase { display: inline-block; text-wrap: balance; }
 .confirmacao { max-width: 520px; margin: 0 auto; }
 .confirmacao h1 { font-size: 34px; font-weight: 600; margin: 12px 0 10px; }
 .confirmacao > p { color: var(--tinta-2); margin: 0; }

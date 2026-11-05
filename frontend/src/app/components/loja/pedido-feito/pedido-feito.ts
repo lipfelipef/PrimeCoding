@@ -34,7 +34,7 @@ export class PedidoFeito implements OnInit {
     let p = this.pedido!;
     let item = p.itens[0];
     let pagamento = p.formaPagamento == 'PIX' ? 'PIX' : `cartão em ${p.parcelas}x`;
-    let texto = `Olá! Fiz o pedido ${p.codigo} no site.\n`
+    let texto = `Olá! Fiz o pedido ${this.loja.numeroPedido(p.codigo)} no site.\n`
       + `${this.loja.nomeCompleto(item.unidade.modelo)}, unidade ${item.unidade.numeroSerie}\n`
       + `Kit ${item.kit.nome}` + (item.upgrades?.length ? `, com ${this.loja.lista(item.upgrades)}` : '') + '\n'
       + `Pagamento: ${pagamento}, total ${this.loja.dinheiro(p.total)}\n`

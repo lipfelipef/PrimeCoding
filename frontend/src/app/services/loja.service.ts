@@ -62,6 +62,12 @@ export class LojaService {
     return (valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
+  // "PC-2026-0001" vira "nº 1": o código completo fica só no banco
+  numeroPedido(codigo?: string): string {
+    let numero = Number((codigo || '').split('-').pop());
+    return isNaN(numero) ? codigo || '' : 'nº ' + numero;
+  }
+
   // "Memória para 32 GB e SSD de 1 TB"
   lista(itens: { nome: string }[]): string {
     let nomes = itens.map(i => i.nome);

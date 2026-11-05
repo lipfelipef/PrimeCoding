@@ -5,7 +5,7 @@
 <div *ngIf="pedido">
   <div class="barra">
     <div>
-      <h1 class="titulo">{{ pedido.codigo }}</h1>
+      <h1 class="titulo">Pedido {{ loja.numeroPedido(pedido.codigo) }}</h1>
       <p class="subtitulo">Feito em {{ data(pedido.dataPedido) }}</p>
     </div>
     <span class="status grande {{ pedido.status }}">{{ painel.nomeStatus(pedido.status) }}</span>

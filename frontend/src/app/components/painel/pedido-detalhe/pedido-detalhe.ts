@@ -32,7 +32,7 @@ export class PedidoDetalhe implements OnInit {
   }
 
   mudar(status: string): void {
-    if (status == 'CANCELADO' && !confirm(`Cancelar o pedido ${this.pedido?.codigo}? A unidade volta para a vitrine.`)) {
+    if (status == 'CANCELADO' && !confirm(`Cancelar o pedido ${this.loja.numeroPedido(this.pedido?.codigo)}? A unidade volta para a vitrine.`)) {
       return;
     }
     this.erro = '';
@@ -53,7 +53,7 @@ export class PedidoDetalhe implements OnInit {
   // Abre a conversa com o cliente já citando o pedido
   linkCliente(): string {
     let primeiroNome = (this.pedido?.cliente.nome || '').split(' ')[0];
-    let texto = `Olá, ${primeiroNome}! Aqui é da PrimeCoding, sobre o pedido ${this.pedido?.codigo}.`;
+    let texto = `Olá, ${primeiroNome}! Aqui é da PrimeCoding, sobre o pedido ${this.loja.numeroPedido(this.pedido?.codigo)}.`;
     return `https://wa.me/55${this.pedido?.cliente.whatsapp}?text=${encodeURIComponent(texto)}`;
   }
 

@@ -21,7 +21,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of filtrados()">
-      <td><a [routerLink]="['/painel/pedidos', p.id]" class="codigo">{{ p.codigo }}</a></td>
+      <td><a [routerLink]="['/painel/pedidos', p.id]" class="codigo">{{ loja.numeroPedido(p.codigo) }}</a></td>
       <td>{{ data(p.dataPedido) }}</td>
       <td>{{ p.cliente.nome }}</td>
       <td>{{ loja.nomeCompleto(p.itens[0].unidade.modelo) }}</td>
