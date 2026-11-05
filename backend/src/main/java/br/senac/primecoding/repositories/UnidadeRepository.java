@@ -15,4 +15,7 @@ public interface UnidadeRepository extends JpaRepository<Unidade, Integer> {
     List<Unidade> findBySituacaoOrderByPrecoDescSaudeBateriaDesc(String situacao);
 
     Optional<Unidade> findByNumeroSerie(String numeroSerie);
+
+    // A loja reserva sozinha a unidade de bateria melhor do modelo
+    Optional<Unidade> findFirstByModeloIdAndSituacaoOrderBySaudeBateriaDescIdAsc(Integer modeloId, String situacao);
 }

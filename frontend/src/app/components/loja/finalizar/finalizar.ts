@@ -320,7 +320,8 @@ export class Finalizar implements OnInit {
     e.bairro = e.bairro.trim();
     e.cidade = e.cidade.trim();
     this.pedido.itens = [{
-      unidade: { id: this.compra.unidade!.id, numeroSerie: '', estado: '', situacao: '' },
+      // A loja separa a unidade de bateria melhor deste modelo
+      unidade: { modelo: this.compra.modelo, numeroSerie: '', estado: '', situacao: '' },
       kit: this.compra.kit!,
       upgrades: this.compra.upgrades
     }];

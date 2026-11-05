@@ -200,16 +200,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .produto-compra h1 { font-size: 34px; font-weight: 600; line-height: 1.1; margin: 4px 0 10px; }
 .descricao { color: var(--tinta-2); margin: 0 0 8px; }
 .rotulo { font-family: var(--texto); font-size: 15px; font-weight: 600; letter-spacing: 0; margin: 24px 0 10px; }
-.opcoes-unidade { display: grid; gap: 8px; }
-.opcao-unidade, .opcao-upgrade, .ficha { background: var(--fundo); border: 1px solid var(--linha-forte); border-radius: 10px; cursor: pointer; text-align: left; }
-.opcao-unidade:hover, .opcao-upgrade:hover, .ficha:hover { border-color: var(--tinta-2); }
+.opcao-upgrade, .ficha { background: var(--fundo); border: 1px solid var(--linha-forte); border-radius: 10px; cursor: pointer; text-align: left; }
+.opcao-upgrade:hover, .ficha:hover { border-color: var(--tinta-2); }
 .marcada, .marcada:hover { border-color: var(--tinta); box-shadow: inset 0 0 0 1px var(--tinta); }
-.opcao-unidade { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
-.opcao-topo { display: flex; justify-content: space-between; font-size: 15px; }
-.bateria { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--tinta-2); }
-.barra { display: block; height: 5px; background: var(--linha); border-radius: 3px; overflow: hidden; }
-.barra span { display: block; height: 100%; background: var(--verde); }
-.serie { font-family: var(--mono); font-size: 12px; color: var(--tinta-3); }
 .fichas { display: flex; flex-wrap: wrap; gap: 8px; }
 .ficha { padding: 8px 14px; font-size: 14px; border-radius: 8px; }
 .kit-detalhe { font-size: 13px; color: var(--tinta-2); margin: 10px 0 0; }

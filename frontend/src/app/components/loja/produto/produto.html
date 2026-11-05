@@ -18,23 +18,6 @@
       <p class="descricao">{{ modelo.descricao }}</p>
 
       <div *ngIf="unidades.length > 0">
-        <h2 class="rotulo">Escolha a unidade</h2>
-        <div class="opcoes-unidade" role="radiogroup" aria-label="Unidades disponíveis">
-          <button type="button" class="opcao-unidade" *ngFor="let u of unidades" role="radio"
-                  [attr.aria-checked]="unidade?.id == u.id" [class.marcada]="unidade?.id == u.id" (click)="unidade = u"
-                  [attr.aria-label]="'Estado ' + u.estado + ', bateria ' + u.saudeBateria + '%, ' + loja.dinheiro(u.preco)">
-            <span class="opcao-topo">
-              <strong>Estado {{ u.estado }}</strong>
-              <span>{{ loja.dinheiro(u.preco) }}</span>
-            </span>
-            <span class="bateria">
-              <span class="bateria-texto">Bateria {{ u.saudeBateria }}% · {{ u.ciclosBateria }} ciclos</span>
-              <span class="barra"><span [style.width.%]="u.saudeBateria"></span></span>
-            </span>
-            <span class="serie">Unidade {{ u.numeroSerie }}</span>
-          </button>
-        </div>
-
         <h2 class="rotulo">Kit de setup grátis</h2>
         <div class="fichas" role="radiogroup" aria-label="Kit de setup">
           <button type="button" class="ficha" *ngFor="let k of kits" role="radio" [attr.aria-checked]="kit?.id == k.id"
@@ -62,6 +45,7 @@
         <p class="aviso erro" *ngIf="aviso" role="alert">{{ aviso }}</p>
 
         <ul class="garantias-curtas">
+          <li>Bateria acima de 80%</li>
           <li>90 dias de garantia</li>
           <li>Preparo em até {{ diasPreparo() }} dias úteis</li>
           <li>Reserva de 48 h para pagar</li>

@@ -46,11 +46,9 @@ export class Produto implements OnInit {
       this.modelo = resposta;
       this.title.setTitle(this.loja.nomeCompleto(resposta) + ' seminovo | PrimeCoding');
       this.loja.unidadesDisponiveis().subscribe((lista) => {
-        // Mostra só as 3 de bateria melhor; quando uma sai, a próxima do estoque aparece
+        // O cliente não escolhe a unidade: a loja separa a de bateria melhor (mesma ordem da API)
         this.unidades = lista.filter(u => u.modelo?.id == resposta.id)
-          .sort((a, b) => (b.saudeBateria || 0) - (a.saudeBateria || 0))
-          .slice(0, 3);
-        // Já deixa marcada a unidade com a melhor bateria
+          .sort((a, b) => (b.saudeBateria || 0) - (a.saudeBateria || 0) || (a.id || 0) - (b.id || 0));
         if (this.unidades.length > 0) {
           this.unidade = this.unidades[0];
         }
@@ -87,15 +85,11 @@ export class Produto implements OnInit {
 
   continuar(): void {
     this.aviso = '';
-    if (!this.unidade) {
-      this.aviso = 'Escolha uma unidade.';
-      return;
-    }
     if (!this.kit) {
       this.aviso = 'Escolha o kit de setup que vem instalado.';
       return;
     }
-    this.compra.escolher(this.modelo!, this.unidade, this.kit, this.upgrades);
+    this.compra.escolher(this.modelo!, this.unidade!, this.kit, this.upgrades);
     this.router.navigate(['/finalizar']);
   }
 

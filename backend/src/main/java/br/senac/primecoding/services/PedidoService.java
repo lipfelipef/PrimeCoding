@@ -152,12 +152,20 @@ public class PedidoService {
     }
 
     private ItemPedido montarItem(ItemPedido dados) {
-        if (dados.getUnidade() == null || dados.getUnidade().getId() == null) {
-            throw erro("Escolha a unidade");
-        }
-        Unidade unidade = unidadeRepository.findById(dados.getUnidade().getId()).orElse(null);
-        if (unidade == null || !unidade.getSituacao().equals("DISPONIVEL")) {
-            throw erro("Esta unidade acabou de ser reservada por outra pessoa. Escolha outra.");
+        // O cliente escolhe o notebook; a loja separa a unidade de bateria melhor
+        Unidade pedida = dados.getUnidade();
+        Unidade unidade;
+        if (pedida != null && pedida.getId() != null) {
+            unidade = unidadeRepository.findById(pedida.getId()).orElse(null);
+            if (unidade == null || !unidade.getSituacao().equals("DISPONIVEL")) {
+                throw erro("Esta unidade acabou de ser reservada por outra pessoa. Escolha outra.");
+            }
+        } else if (pedida != null && pedida.getModelo() != null && pedida.getModelo().getId() != null) {
+            unidade = unidadeRepository.findFirstByModeloIdAndSituacaoOrderBySaudeBateriaDescIdAsc(
+                    pedida.getModelo().getId(), "DISPONIVEL").orElseThrow(
+                    () -> erro("Este notebook acabou de esgotar. Peça para ser avisado pelo WhatsApp."));
+        } else {
+            throw erro("Escolha o notebook");
         }
         if (dados.getKit() == null || dados.getKit().getId() == null) {
             throw erro("Escolha o kit de setup");
