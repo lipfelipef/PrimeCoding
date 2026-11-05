@@ -18,9 +18,10 @@
         </label>
         <label class="campo">WhatsApp
           <input name="whatsapp" [value]="pedido.cliente.whatsapp" (input)="digitou($event, 'whatsapp')" (blur)="tocar('whatsapp')"
-                 inputmode="numeric" autocomplete="tel-national" maxlength="15" placeholder="(11) 91234-5678"
+                 inputmode="numeric" autocomplete="tel-national" maxlength="19" placeholder="(11) 91234-5678"
                  [class.invalido]="erroDe('whatsapp')" [attr.aria-invalid]="!!erroDe('whatsapp')" />
           <small class="erro-campo" *ngIf="erroDe('whatsapp')">{{ erroDe('whatsapp') }}</small>
+          <small class="aviso-campo" *ngIf="avisoDdd55()">55 é o DDD de Santa Maria (RS). Se você digitou o código do Brasil, troque pelo DDD da sua cidade.</small>
         </label>
         <label class="campo">CPF
           <input name="cpf" [value]="pedido.cliente.documento" (input)="digitou($event, 'cpf')" (blur)="tocar('cpf')"

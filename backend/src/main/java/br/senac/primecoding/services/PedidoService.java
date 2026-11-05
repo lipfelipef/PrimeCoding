@@ -202,10 +202,14 @@ public class PedidoService {
         }
         // Só dígitos e a máscara: "(11) 91234-5678"; letra no meio é recusada, não apagada
         String whatsappDigitado = dados.getWhatsapp() == null ? "" : dados.getWhatsapp().trim();
-        if (!whatsappDigitado.matches("[0-9() -]{10,15}")) {
+        if (!whatsappDigitado.matches("\\+?[0-9() -]{10,19}")) {
             throw erro("Informe o WhatsApp com DDD, só números");
         }
         String whatsapp = Documentos.somenteNumeros(whatsappDigitado);
+        // O código do Brasil não é guardado: o link do painel já põe o 55 na frente
+        if (whatsapp.length() > 11 && whatsapp.startsWith("55")) {
+            whatsapp = whatsapp.substring(2);
+        }
         if (whatsapp.length() < 10 || whatsapp.length() > 11) {
             throw erro("Informe o WhatsApp com DDD");
         }

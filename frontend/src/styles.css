@@ -248,6 +248,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .campo select.invalido,
 .campo input.invalido, .campo input.invalido:focus { border-color: var(--vermelho); box-shadow: 0 0 0 3px color-mix(in srgb, var(--vermelho) 18%, transparent); }
 .campo .erro-campo { font-size: 12px; font-weight: 500; color: var(--vermelho); }
+.campo .aviso-campo { font-size: 12px; font-weight: 500; color: var(--tinta-2); }
 .nota-cep { align-self: end; margin: 0 0 12px; font-size: 13px; font-weight: 400; color: var(--tinta-2); }
 .marcar { display: flex; align-items: center; gap: 8px; font-size: 15px; grid-column: 1 / -1; }
 

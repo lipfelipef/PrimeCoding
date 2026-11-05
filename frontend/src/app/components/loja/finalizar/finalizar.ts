@@ -114,7 +114,12 @@ export class Finalizar implements OnInit {
   }
 
   mascaraWhatsapp(valor: string): string {
-    let n = this.numeros(valor).substring(0, 11);
+    let n = this.numeros(valor);
+    // Quem cola "+55 11 91234-5678" põe o código do Brasil na frente: ele sai, fica DDD e número
+    if (n.length > 11 && n.startsWith('55')) {
+      n = n.substring(2);
+    }
+    n = n.substring(0, 11);
     if (n.length <= 2) {
       return n.length ? '(' + n : '';
     }
@@ -284,6 +289,11 @@ export class Finalizar implements OnInit {
   }
 
   // O erro só aparece depois que a pessoa passou pelo campo ou tentou enviar
+  // 55 é DDD de verdade (Santa Maria, RS), mas quase sempre é o código do Brasil digitado no lugar do DDD
+  avisoDdd55(): boolean {
+    return this.numeros(this.pedido.cliente.whatsapp).startsWith('55') && !this.erroDe('whatsapp');
+  }
+
   erroDe(campo: string): string {
     return this.tocados.includes(campo) ? this.regra(campo) : '';
   }
