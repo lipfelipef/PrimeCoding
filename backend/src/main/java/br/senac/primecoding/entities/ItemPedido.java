@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-// Cada item é uma unidade com seu kit e, no máximo, um upgrade (RN08, RN11, RN12)
+// Cada item é uma unidade com seu kit e os upgrades escolhidos (RN08, RN11, RN12)
 @Entity
 @Table(name = "item_pedido")
 public class ItemPedido implements Serializable {
@@ -29,9 +31,11 @@ public class ItemPedido implements Serializable {
     @JoinColumn(name = "id_kit", nullable = false)
     private KitSetup kit;
 
-    @ManyToOne
-    @JoinColumn(name = "id_upgrade")
-    private Upgrade upgrade;
+    @ManyToMany
+    @JoinTable(name = "item_pedido_upgrade",
+            joinColumns = @JoinColumn(name = "id_item_pedido"),
+            inverseJoinColumns = @JoinColumn(name = "id_upgrade"))
+    private List<Upgrade> upgrades = new ArrayList<>();
 
     private Double precoUnidade;
 
@@ -72,12 +76,12 @@ public class ItemPedido implements Serializable {
         this.kit = kit;
     }
 
-    public Upgrade getUpgrade() {
-        return upgrade;
+    public List<Upgrade> getUpgrades() {
+        return upgrades;
     }
 
-    public void setUpgrade(Upgrade upgrade) {
-        this.upgrade = upgrade;
+    public void setUpgrades(List<Upgrade> upgrades) {
+        this.upgrades = upgrades;
     }
 
     public Double getPrecoUnidade() {

@@ -43,13 +43,10 @@
         <p class="kit-detalhe" *ngIf="kit">Vem instalado: {{ kit.ferramentas }}.</p>
 
         <div *ngIf="modelo.upgrades.length > 0">
-          <h2 class="rotulo">Upgrade</h2>
-          <div class="lista-upgrade" role="radiogroup" aria-label="Upgrade">
-            <button type="button" class="opcao-upgrade" role="radio" [attr.aria-checked]="!upgrade" [class.marcada]="!upgrade" (click)="upgrade = undefined">
-              <span>Sem upgrade</span>
-            </button>
-            <button type="button" class="opcao-upgrade" *ngFor="let up of modelo.upgrades" role="radio"
-                    [attr.aria-checked]="upgrade?.id == up.id" [class.marcada]="upgrade?.id == up.id" (click)="upgrade = up">
+          <h2 class="rotulo">Upgrades <small>opcionais, dá para escolher mais de um</small></h2>
+          <div class="lista-upgrade" role="group" aria-label="Upgrades">
+            <button type="button" class="opcao-upgrade" *ngFor="let up of modelo.upgrades" role="checkbox"
+                    [attr.aria-checked]="temUpgrade(up)" [class.marcada]="temUpgrade(up)" (click)="alternarUpgrade(up)">
               <span>{{ up.nome }}</span>
               <strong>+ {{ loja.dinheiro(up.preco) }}</strong>
             </button>

@@ -29,7 +29,7 @@
       <p><strong>{{ loja.nomeCompleto(pedido.itens[0].unidade.modelo) }}</strong></p>
       <p>Unidade {{ pedido.itens[0].unidade.numeroSerie }}, estado {{ pedido.itens[0].unidade.estado }}, bateria {{ pedido.itens[0].unidade.saudeBateria }}%</p>
       <p>Kit {{ pedido.itens[0].kit.nome }}: {{ pedido.itens[0].kit.ferramentas }}</p>
-      <p *ngIf="pedido.itens[0].upgrade">Upgrade {{ pedido.itens[0].upgrade.nome }} ({{ loja.dinheiro(pedido.itens[0].precoUpgrade) }})</p>
+      <p *ngIf="pedido.itens[0].upgrades?.length">{{ pedido.itens[0].upgrades!.length > 1 ? 'Upgrades' : 'Upgrade' }} {{ loja.lista(pedido.itens[0].upgrades!) }} ({{ loja.dinheiro(pedido.itens[0].precoUpgrade) }})</p>
       <h2>Pagamento</h2>
       <dl class="valores">
         <div><dt>Subtotal</dt><dd>{{ loja.dinheiro(pedido.subtotal) }}</dd></div>

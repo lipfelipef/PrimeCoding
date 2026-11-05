@@ -129,7 +129,7 @@
       <dl>
         <div><dt>Notebook</dt><dd>{{ loja.dinheiro(compra.unidade?.preco) }}</dd></div>
         <div><dt>Kit {{ compra.kit?.nome }}</dt><dd>grátis</dd></div>
-        <div *ngIf="compra.upgrade"><dt>{{ compra.upgrade.nome }}</dt><dd>{{ loja.dinheiro(compra.upgrade.preco) }}</dd></div>
+        <div *ngFor="let up of compra.upgrades"><dt>{{ up.nome }}</dt><dd>{{ loja.dinheiro(up.preco) }}</dd></div>
         <div *ngIf="desconto() > 0" class="verde"><dt>Desconto no PIX</dt><dd>- {{ loja.dinheiro(desconto()) }}</dd></div>
         <div class="total"><dt>Total</dt><dd>{{ loja.dinheiro(total()) }}</dd></div>
       </dl>

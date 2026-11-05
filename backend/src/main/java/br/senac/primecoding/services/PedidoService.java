@@ -170,13 +170,20 @@ public class PedidoService {
         item.setKit(kit);
         item.setPrecoUnidade(unidade.getPreco());
         item.setPrecoUpgrade(0.0);
-        if (dados.getUpgrade() != null && dados.getUpgrade().getId() != null) {
-            Upgrade upgrade = upgradeRepository.findById(dados.getUpgrade().getId()).orElse(null);
-            if (upgrade == null || !upgrade.getModelo().getId().equals(unidade.getModelo().getId())) {
-                throw erro("Este upgrade não serve para este modelo");
+        // Pode juntar mais de um upgrade, mas cada um entra uma vez só
+        if (dados.getUpgrades() != null) {
+            for (Upgrade escolhido : dados.getUpgrades()) {
+                Upgrade upgrade = escolhido == null || escolhido.getId() == null ? null
+                        : upgradeRepository.findById(escolhido.getId()).orElse(null);
+                if (upgrade == null || !upgrade.getModelo().getId().equals(unidade.getModelo().getId())) {
+                    throw erro("Este upgrade não serve para este modelo");
+                }
+                if (item.getUpgrades().contains(upgrade)) {
+                    throw erro("O mesmo upgrade foi escolhido duas vezes");
+                }
+                item.getUpgrades().add(upgrade);
+                item.setPrecoUpgrade(item.getPrecoUpgrade() + upgrade.getPreco());
             }
-            item.setUpgrade(upgrade);
-            item.setPrecoUpgrade(upgrade.getPreco());
         }
         return item;
     }

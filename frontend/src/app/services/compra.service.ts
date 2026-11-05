@@ -12,14 +12,14 @@ export class CompraService {
   modelo?: Modelo;
   unidade?: Unidade;
   kit?: KitSetup;
-  upgrade?: Upgrade;
+  upgrades: Upgrade[] = [];
   pedidoFeito?: Pedido;
 
-  escolher(modelo: Modelo, unidade: Unidade, kit: KitSetup, upgrade?: Upgrade): void {
+  escolher(modelo: Modelo, unidade: Unidade, kit: KitSetup, upgrades: Upgrade[]): void {
     this.modelo = modelo;
     this.unidade = unidade;
     this.kit = kit;
-    this.upgrade = upgrade;
+    this.upgrades = [...upgrades];
     this.pedidoFeito = undefined;
   }
 
@@ -29,8 +29,8 @@ export class CompraService {
 
   subtotal(): number {
     let total = this.unidade?.preco || 0;
-    if (this.upgrade) {
-      total += this.upgrade.preco;
+    for (const up of this.upgrades) {
+      total += up.preco;
     }
     return total;
   }
@@ -39,6 +39,6 @@ export class CompraService {
     this.modelo = undefined;
     this.unidade = undefined;
     this.kit = undefined;
-    this.upgrade = undefined;
+    this.upgrades = [];
   }
 }

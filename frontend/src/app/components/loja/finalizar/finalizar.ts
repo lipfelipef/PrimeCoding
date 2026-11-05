@@ -312,7 +312,7 @@ export class Finalizar implements OnInit {
     this.pedido.itens = [{
       unidade: { id: this.compra.unidade!.id, numeroSerie: '', estado: '', situacao: '' },
       kit: this.compra.kit!,
-      upgrade: this.compra.upgrade
+      upgrades: this.compra.upgrades
     }];
     if (this.pedido.formaPagamento == 'PIX') {
       this.pedido.parcelas = 1;

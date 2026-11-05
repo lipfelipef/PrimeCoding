@@ -26,7 +26,7 @@ export interface ItemPedido {
   id?: number;
   unidade: Unidade;
   kit: KitSetup;
-  upgrade?: Upgrade;
+  upgrades?: Upgrade[];
   precoUnidade?: number;
   precoUpgrade?: number;
 }

@@ -67,6 +67,12 @@ export class LojaService {
     return (valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
+  // "Memória para 32 GB e SSD de 1 TB"
+  lista(itens: { nome: string }[]): string {
+    let nomes = itens.map(i => i.nome);
+    return nomes.length > 1 ? nomes.slice(0, -1).join(', ') + ' e ' + nomes[nomes.length - 1] : nomes.join('');
+  }
+
   // 10% de desconto no PIX (RN06)
   precoPix(valor: number): number {
     return Math.round(valor * 90) / 100;

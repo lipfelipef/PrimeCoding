@@ -21,7 +21,7 @@ export class Produto implements OnInit {
   kits: KitSetup[] = [];
   unidade?: Unidade;
   kit?: KitSetup;
-  upgrade?: Upgrade;
+  upgrades: Upgrade[] = [];
   naoAchou = false;
   aviso = '';
 
@@ -40,21 +40,19 @@ export class Produto implements OnInit {
   carregar(linha: string): void {
     this.modelo = undefined;
     this.unidade = undefined;
-    this.upgrade = undefined;
+    this.upgrades = [];
     this.naoAchou = false;
     this.loja.modeloPorLinha(linha).subscribe((resposta) => {
       this.modelo = resposta;
       this.title.setTitle(this.loja.nomeCompleto(resposta) + ' seminovo | PrimeCoding');
       this.loja.unidadesDisponiveis().subscribe((lista) => {
-        this.unidades = lista.filter(u => u.modelo?.id == resposta.id);
+        // Mostra só as 3 de bateria melhor; quando uma sai, a próxima do estoque aparece
+        this.unidades = lista.filter(u => u.modelo?.id == resposta.id)
+          .sort((a, b) => (b.saudeBateria || 0) - (a.saudeBateria || 0))
+          .slice(0, 3);
         // Já deixa marcada a unidade com a melhor bateria
         if (this.unidades.length > 0) {
           this.unidade = this.unidades[0];
-          for (let u of this.unidades) {
-            if ((u.saudeBateria || 0) > (this.unidade.saudeBateria || 0)) {
-              this.unidade = u;
-            }
-          }
         }
       });
     }, (err) => {
@@ -64,14 +62,27 @@ export class Produto implements OnInit {
 
   total(): number {
     let valor = this.unidade?.preco || this.modelo?.preco || 0;
-    if (this.upgrade) {
-      valor += this.upgrade.preco;
+    for (const up of this.upgrades) {
+      valor += up.preco;
     }
     return valor;
   }
 
   diasPreparo(): number {
-    return 2 + (this.upgrade?.diasExtras || 0);
+    return 2 + this.upgrades.reduce((dias, up) => dias + (up.diasExtras || 0), 0);
+  }
+
+  temUpgrade(up: Upgrade): boolean {
+    return this.upgrades.some(u => u.id == up.id);
+  }
+
+  // Liga e desliga cada upgrade; dá para levar mais de um
+  alternarUpgrade(up: Upgrade): void {
+    if (this.temUpgrade(up)) {
+      this.upgrades = this.upgrades.filter(u => u.id != up.id);
+    } else {
+      this.upgrades = [...this.upgrades, up];
+    }
   }
 
   continuar(): void {
@@ -84,7 +95,7 @@ export class Produto implements OnInit {
       this.aviso = 'Escolha o kit de setup que vem instalado.';
       return;
     }
-    this.compra.escolher(this.modelo!, this.unidade, this.kit, this.upgrade);
+    this.compra.escolher(this.modelo!, this.unidade, this.kit, this.upgrades);
     this.router.navigate(['/finalizar']);
   }
 

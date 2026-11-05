@@ -216,6 +216,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .lista-upgrade { display: grid; gap: 8px; }
 .opcao-upgrade { display: flex; justify-content: space-between; padding: 11px 14px; font-size: 14px; }
 .opcao-upgrade strong { font-weight: 600; }
+.opcao-upgrade > span { display: flex; align-items: center; gap: 10px; }
+.opcao-upgrade > span::before { content: ''; flex: none; box-sizing: border-box; width: 18px; height: 18px; border: 1.5px solid var(--tinta-2); border-radius: 4px; font-size: 13px; font-weight: 700; line-height: 15px; text-align: center; }
+.opcao-upgrade.marcada > span::before { content: '\2713'; background: var(--tinta); border-color: var(--tinta); color: var(--fundo); }
+.rotulo small { font-weight: 400; font-size: 13px; color: var(--tinta-2); margin-left: 6px; }
 .preco-produto { display: flex; flex-direction: column; margin: 28px 0 16px; padding-top: 20px; border-top: 1px solid var(--linha); }
 .preco-produto strong { font-size: 32px; }
 .preco-produto span { font-size: 14px; color: var(--tinta-2); }
