@@ -138,7 +138,7 @@ export class PainelService {
   // O que o revendedor tem de fazer agora, em uma linha
   dicaDoStatus(status?: string): string {
     let dicas: any = {
-      AGUARDANDO_ATENDIMENTO: 'Responda o cliente no WhatsApp e mande a chave PIX ou o link do cartão.',
+      AGUARDANDO_ATENDIMENTO: 'Responda o cliente no WhatsApp, peça o endereço de entrega e o CPF e mande a chave PIX ou o link do cartão.',
       AGUARDANDO_PAGAMENTO: 'Espere o comprovante. Sem pagamento, a reserva cai sozinha no prazo.',
       EM_PREPARACAO: 'Instale o kit e os upgrades, teste o notebook e separe os acessórios.',
       PRONTO_PARA_ENVIO: 'Embale, poste e mande o código de rastreio pelo WhatsApp.',

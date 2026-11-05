@@ -24,8 +24,9 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
 
+    // O endereço é combinado pelo WhatsApp; a coluna fica para quem quiser registrar
     @ManyToOne
-    @JoinColumn(name = "id_endereco", nullable = false)
+    @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
     private LocalDateTime dataPedido;

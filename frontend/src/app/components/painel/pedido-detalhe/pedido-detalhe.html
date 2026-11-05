@@ -16,12 +16,8 @@
       <h2>Cliente</h2>
       <p><strong>{{ pedido.cliente.nome }}</strong></p>
       <p><a [href]="linkCliente()" target="_blank" rel="noopener">{{ whatsappFormatado() }}</a></p>
-      <p>CPF {{ pedido.cliente.documento }}</p>
-      <p *ngIf="pedido.cliente.email">{{ pedido.cliente.email }}</p>
       <h2>Entrega</h2>
-      <p>{{ pedido.endereco.logradouro }}, {{ pedido.endereco.numero }}<span *ngIf="pedido.endereco.complemento"> - {{ pedido.endereco.complemento }}</span></p>
-      <p>{{ pedido.endereco.bairro }}, {{ pedido.endereco.cidade }} - {{ pedido.endereco.uf }}</p>
-      <p>CEP {{ pedido.endereco.cep }}</p>
+      <p>Endereço e CPF combinados pelo WhatsApp.</p>
     </section>
 
     <section class="caixa">

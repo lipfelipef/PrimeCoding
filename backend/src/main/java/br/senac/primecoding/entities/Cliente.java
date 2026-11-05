@@ -23,10 +23,11 @@ public class Cliente implements Serializable {
 
     private String email;
 
-    @Column(nullable = false, length = 4)
-    private String tipoDocumento = "CPF";
+    // CPF e e-mail não são pedidos no site: a loja pega pelo WhatsApp quando for emitir a nota
+    @Column(length = 4)
+    private String tipoDocumento;
 
-    @Column(nullable = false, length = 18)
+    @Column(length = 18)
     private String documento;
 
     private LocalDateTime dataCadastro;

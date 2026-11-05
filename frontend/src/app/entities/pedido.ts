@@ -8,7 +8,7 @@ export interface Cliente {
   nome: string;
   whatsapp: string;
   email?: string;
-  documento: string;
+  documento?: string;
 }
 
 export interface Endereco {
@@ -43,7 +43,7 @@ export interface Pedido {
   id?: number;
   codigo?: string;
   cliente: Cliente;
-  endereco: Endereco;
+  endereco?: Endereco;
   dataPedido?: string;
   formaPagamento: string;
   parcelas: number;

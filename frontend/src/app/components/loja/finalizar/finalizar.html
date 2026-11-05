@@ -23,71 +23,7 @@
           <small class="erro-campo" *ngIf="erroDe('whatsapp')">{{ erroDe('whatsapp') }}</small>
           <small class="aviso-campo" *ngIf="avisoDdd55()">55 é o DDD de Santa Maria (RS). Se você digitou o código do Brasil, troque pelo DDD da sua cidade.</small>
         </label>
-        <label class="campo">CPF
-          <input name="cpf" [value]="pedido.cliente.documento" (input)="digitou($event, 'cpf')" (blur)="tocar('cpf')"
-                 inputmode="numeric" maxlength="14" placeholder="000.000.000-00"
-                 [class.invalido]="erroDe('cpf')" [attr.aria-invalid]="!!erroDe('cpf')" />
-          <small class="erro-campo" *ngIf="erroDe('cpf')">{{ erroDe('cpf') }}</small>
-        </label>
-        <label class="campo largo">E-mail <small>opcional</small>
-          <input name="email" type="email" [value]="pedido.cliente.email" (input)="digitou($event, 'email')" (blur)="tocar('email')"
-                 inputmode="email" autocomplete="email" maxlength="120" placeholder="nome@gmail.com"
-                 [class.invalido]="erroDe('email')" [attr.aria-invalid]="!!erroDe('email')" />
-          <small class="erro-campo" *ngIf="erroDe('email')">{{ erroDe('email') }}</small>
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <legend>Entrega</legend>
-        <label class="campo">CEP
-          <input name="cep" [value]="pedido.endereco.cep" (input)="digitou($event, 'cep')" (blur)="tocar('cep')"
-                 inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000"
-                 [class.invalido]="erroDe('cep')" [attr.aria-invalid]="!!erroDe('cep')" />
-          <small class="erro-campo" *ngIf="erroDe('cep')">{{ erroDe('cep') }}</small>
-          <small class="aviso-cep" *ngIf="avisoCep" role="status">{{ avisoCep }}</small>
-        </label>
-        <p class="campo nota-cep">O endereço é preenchido pelo CEP.</p>
-        <label class="campo largo">Rua
-          <input name="logradouro" [value]="pedido.endereco.logradouro" (input)="digitou($event, 'logradouro')" (blur)="tocar('logradouro')"
-                 autocomplete="address-line1" maxlength="120"
-                 [class.invalido]="erroDe('logradouro')" [attr.aria-invalid]="!!erroDe('logradouro')" />
-          <small class="erro-campo" *ngIf="erroDe('logradouro')">{{ erroDe('logradouro') }}</small>
-        </label>
-        <div class="campo">
-          <label for="campo-numero">Número</label>
-          <input #campoNumero id="campo-numero" name="numero" [value]="semNumero ? '' : pedido.endereco.numero" [disabled]="semNumero"
-                 (input)="digitou($event, 'numero')" (blur)="tocar('numero')" inputmode="numeric" maxlength="6"
-                 [placeholder]="semNumero ? 'S/N' : ''"
-                 [class.invalido]="erroDe('numero')" [attr.aria-invalid]="!!erroDe('numero')" />
-          <label class="marcar-pequeno">
-            <input type="checkbox" name="semNumero" [(ngModel)]="semNumero" (ngModelChange)="marcouSemNumero()" /> Sem número
-          </label>
-          <small class="erro-campo" *ngIf="erroDe('numero')">{{ erroDe('numero') }}</small>
-        </div>
-        <label class="campo">Complemento <small>opcional</small>
-          <input name="complemento" [value]="pedido.endereco.complemento" (input)="digitou($event, 'complemento')"
-                 maxlength="60" placeholder="Apto 12, bloco B" />
-        </label>
-        <label class="campo">Bairro
-          <input name="bairro" [value]="pedido.endereco.bairro" (input)="digitou($event, 'bairro')" (blur)="tocar('bairro')" maxlength="60"
-                 [class.invalido]="erroDe('bairro')" [attr.aria-invalid]="!!erroDe('bairro')" />
-          <small class="erro-campo" *ngIf="erroDe('bairro')">{{ erroDe('bairro') }}</small>
-        </label>
-        <label class="campo">Cidade
-          <input name="cidade" [value]="pedido.endereco.cidade" (input)="digitou($event, 'cidade')" (blur)="tocar('cidade')"
-                 autocomplete="address-level2" maxlength="60" [readOnly]="cepPreencheu"
-                 [class.invalido]="erroDe('cidade')" [attr.aria-invalid]="!!erroDe('cidade')" />
-          <small class="erro-campo" *ngIf="erroDe('cidade')">{{ erroDe('cidade') }}</small>
-        </label>
-        <label class="campo curto">UF
-          <select name="uf" [(ngModel)]="pedido.endereco.uf" (blur)="tocar('uf')" (change)="tocar('uf')" [disabled]="cepPreencheu"
-                  autocomplete="address-level1" [class.invalido]="erroDe('uf')" [attr.aria-invalid]="!!erroDe('uf')">
-            <option value="">Escolha</option>
-            <option *ngFor="let uf of ufs" [value]="uf">{{ uf }}</option>
-          </select>
-          <small class="erro-campo" *ngIf="erroDe('uf')">{{ erroDe('uf') }}</small>
-        </label>
-        <p class="nota" *ngIf="cepPreencheu">Cidade e UF vêm do CEP. Para mudar, troque o CEP.</p>
+        <p class="nota">Endereço de entrega e CPF para a nota a loja combina com você pelo WhatsApp.</p>
       </fieldset>
 
       <fieldset>

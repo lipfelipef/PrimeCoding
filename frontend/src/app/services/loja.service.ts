@@ -58,11 +58,6 @@ export class LojaService {
     return (texto || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
   }
 
-  // ViaCEP: serviço gratuito que devolve o endereço do CEP (só o CEP sai do site)
-  buscarCep(cep: string): Observable<any> {
-    return this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`);
-  }
-
   dinheiro(valor?: number): string {
     return (valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }

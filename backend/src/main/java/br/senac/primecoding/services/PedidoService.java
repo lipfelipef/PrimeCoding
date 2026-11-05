@@ -20,11 +20,8 @@ public class PedidoService {
     public static final List<String> FLUXO = List.of("AGUARDANDO_ATENDIMENTO", "AGUARDANDO_PAGAMENTO",
             "EM_PREPARACAO", "PRONTO_PARA_ENVIO", "ENVIADO", "ENTREGUE");
 
-    // Letras com acento, espaço, apóstrofo e hífen (nomes e cidades)
+    // Letras com acento, espaço, apóstrofo e hífen (nomes)
     private static final String LETRAS = "[A-Za-zÀ-ÖØ-öø-ÿ' -]";
-
-    // O mesmo da tela para rua, bairro e complemento: letras, dígitos e . , ' º ª ° / -
-    private static final String ENDERECO = "[A-Za-zÀ-ÖØ-öø-ÿ0-9 .,'ºª°/-]";
 
     // DDDs que existem no Brasil (Anatel)
     private static final List<Integer> DDDS = List.of(11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 28,
@@ -32,17 +29,11 @@ public class PedidoService {
             66, 67, 68, 69, 71, 73, 74, 75, 77, 79, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91, 92, 93, 94, 95, 96,
             97, 98, 99);
 
-    private static final List<String> UFS = List.of("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
-            "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
-
     @Autowired
     private PedidoRepository pedidoRepository;
 
     @Autowired
     private ClienteRepository clienteRepository;
-
-    @Autowired
-    private EnderecoRepository enderecoRepository;
 
     @Autowired
     private UnidadeRepository unidadeRepository;
@@ -72,7 +63,6 @@ public class PedidoService {
 
         Pedido pedido = new Pedido();
         pedido.setCliente(gravarCliente(dados.getCliente()));
-        pedido.setEndereco(gravarEndereco(dados.getEndereco(), pedido.getCliente()));
         pedido.setDataPedido(LocalDateTime.now());
         pedido.setPrazoPagamento(pedido.getDataPedido().plusHours(48));
         pedido.setStatus("AGUARDANDO_ATENDIMENTO");
@@ -230,86 +220,19 @@ public class PedidoService {
         if (whatsapp.length() == 10 && "2345".indexOf(whatsapp.charAt(2)) < 0) {
             throw erro("Número fixo começa com 2, 3, 4 ou 5");
         }
-        // Projeto acadêmico: qualquer CPF com 11 dígitos, sem conferir os verificadores
-        String cpfDigitado = dados.getDocumento() == null ? "" : dados.getDocumento().trim();
-        if (!cpfDigitado.matches("\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}")) {
-            throw erro("O CPF tem 11 dígitos");
-        }
-        String cpf = Documentos.somenteNumeros(cpfDigitado);
-        String email = dados.getEmail() == null ? "" : dados.getEmail().trim();
-        if (!email.isEmpty() && (email.length() > 120
-                || !email.matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.[A-Za-z]{2,}"))) {
-            throw erro("E-mail inválido");
-        }
         Cliente cliente = clienteRepository.findByWhatsapp(whatsapp).orElse(new Cliente());
         if (cliente.getId() == null) {
             cliente.setDataCadastro(LocalDateTime.now());
         }
         cliente.setNome(nome);
         cliente.setWhatsapp(whatsapp);
-        cliente.setTipoDocumento("CPF");
-        cliente.setDocumento(cpf);
-        if (!email.isEmpty()) {
-            cliente.setEmail(email.toLowerCase());
-        }
         return clienteRepository.save(cliente);
-    }
-
-    private Endereco gravarEndereco(Endereco dados, Cliente cliente) {
-        if (dados == null) {
-            throw erro("Informe o endereço de entrega");
-        }
-        String cepDigitado = dados.getCep() == null ? "" : dados.getCep().trim();
-        if (!cepDigitado.matches("\\d{5}-?\\d{3}")) {
-            throw erro("CEP inválido");
-        }
-        String cep = Documentos.somenteNumeros(cepDigitado);
-        String logradouro = texto(dados.getLogradouro());
-        if (logradouro.isEmpty() || logradouro.length() > 120 || !logradouro.matches(ENDERECO + "+")
-                || contaLetras(logradouro) < 3) {
-            throw erro("Rua inválida");
-        }
-        String numero = texto(dados.getNumero()).toUpperCase();
-        if (!numero.matches("\\d{1,6}|S/N")) {
-            throw erro("Número inválido: use só dígitos ou S/N");
-        }
-        String complemento = texto(dados.getComplemento());
-        if (complemento.length() > 60 || (!complemento.isEmpty() && !complemento.matches(ENDERECO + "+"))) {
-            throw erro("Complemento inválido");
-        }
-        String bairro = texto(dados.getBairro());
-        if (bairro.isEmpty() || bairro.length() > 60 || !bairro.matches(ENDERECO + "+") || contaLetras(bairro) < 2) {
-            throw erro("Bairro inválido");
-        }
-        String cidade = texto(dados.getCidade());
-        if (cidade.length() < 2 || cidade.length() > 60 || !cidade.matches(LETRAS + "+")) {
-            throw erro("Cidade inválida");
-        }
-        String uf = dados.getUf() == null ? "" : dados.getUf().trim().toUpperCase();
-        if (!UFS.contains(uf)) {
-            throw erro("UF inválida");
-        }
-        Endereco endereco = new Endereco();
-        endereco.setCliente(cliente);
-        endereco.setCep(cep.substring(0, 5) + "-" + cep.substring(5));
-        endereco.setLogradouro(logradouro);
-        endereco.setNumero(numero);
-        endereco.setComplemento(complemento.isEmpty() ? null : complemento);
-        endereco.setBairro(bairro);
-        endereco.setCidade(cidade);
-        endereco.setUf(uf);
-        return enderecoRepository.save(endereco);
     }
 
     private String novoCodigo() {
         String prefixo = "PC-" + LocalDateTime.now().getYear() + "-";
         long numero = pedidoRepository.countByCodigoStartingWith(prefixo) + 1;
         return prefixo + String.format("%04d", numero);
-    }
-
-    // Texto sem espaço nas pontas e sem espaço repetido no meio
-    private String texto(String valor) {
-        return valor == null ? "" : valor.trim().replaceAll("\\s+", " ");
     }
 
     private int contaLetras(String valor) {
