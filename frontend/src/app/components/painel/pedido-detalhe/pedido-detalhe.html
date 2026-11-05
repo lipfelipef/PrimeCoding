@@ -11,38 +11,31 @@
     <span class="status grande {{ pedido.status }}">{{ painel.nomeStatus(pedido.status) }}</span>
   </div>
 
-  <div class="detalhe-grade">
-    <section class="caixa">
-      <h2>Cliente</h2>
-      <p><strong>{{ pedido.cliente.nome }}</strong></p>
-      <p><a [href]="linkCliente()" target="_blank" rel="noopener">{{ whatsappFormatado() }}</a></p>
-      <h2>Entrega</h2>
-      <p>Endereço e CPF combinados pelo WhatsApp.</p>
-    </section>
-
-    <section class="caixa">
-      <h2>Notebook</h2>
-      <p><strong>{{ loja.nomeCompleto(pedido.itens[0].unidade.modelo) }}</strong></p>
-      <p>Unidade {{ pedido.itens[0].unidade.numeroSerie }}, estado {{ pedido.itens[0].unidade.estado }}, bateria {{ pedido.itens[0].unidade.saudeBateria }}%</p>
-      <p>Kit {{ pedido.itens[0].kit.nome }}: {{ pedido.itens[0].kit.ferramentas }}</p>
-      <p *ngIf="pedido.itens[0].upgrades?.length">Adicionais: {{ loja.lista(pedido.itens[0].upgrades!) }} ({{ loja.dinheiro(pedido.itens[0].precoUpgrade) }})</p>
-      <h2>Pagamento</h2>
-      <dl class="valores">
-        <div><dt>Subtotal</dt><dd>{{ loja.dinheiro(pedido.subtotal) }}</dd></div>
-        <div *ngIf="pedido.desconto"><dt>Desconto no PIX</dt><dd>- {{ loja.dinheiro(pedido.desconto) }}</dd></div>
-        <div class="total"><dt>Total</dt><dd>{{ loja.dinheiro(pedido.total) }}</dd></div>
-      </dl>
-      <p>{{ pedido.formaPagamento == 'PIX' ? 'PIX' : 'Cartão em ' + pedido.parcelas + 'x' }}</p>
-      <p *ngIf="!encerrado()">Sem resposta, o pedido cai sozinho em {{ data(pedido.prazoPagamento) }}</p>
-    </section>
-  </div>
+  <section class="caixa">
+    <h2>Cliente</h2>
+    <p><strong>{{ pedido.cliente.nome }}</strong></p>
+    <p><a [href]="linkCliente()" target="_blank" rel="noopener">{{ whatsappFormatado() }}</a></p>
+    <h2>Notebook</h2>
+    <p><strong>{{ loja.nomeCompleto(pedido.itens[0].unidade.modelo) }}</strong></p>
+    <p>Unidade {{ pedido.itens[0].unidade.numeroSerie }}, estado {{ pedido.itens[0].unidade.estado }}, bateria {{ pedido.itens[0].unidade.saudeBateria }}%</p>
+    <p>Kit {{ pedido.itens[0].kit.nome }}: {{ pedido.itens[0].kit.ferramentas }}</p>
+    <p *ngIf="pedido.itens[0].upgrades?.length">Adicionais: {{ loja.lista(pedido.itens[0].upgrades!) }} ({{ loja.dinheiro(pedido.itens[0].precoUpgrade) }})</p>
+    <h2>Pagamento</h2>
+    <dl class="valores">
+      <div><dt>Subtotal</dt><dd>{{ loja.dinheiro(pedido.subtotal) }}</dd></div>
+      <div *ngIf="pedido.desconto"><dt>Desconto no PIX</dt><dd>- {{ loja.dinheiro(pedido.desconto) }}</dd></div>
+      <div class="total"><dt>Total</dt><dd>{{ loja.dinheiro(pedido.total) }}</dd></div>
+    </dl>
+    <p>{{ pedido.formaPagamento == 'PIX' ? 'PIX' : 'Cartão em ' + pedido.parcelas + 'x' }}</p>
+    <p *ngIf="!encerrado()">Sem resposta, o pedido cai sozinho em {{ data(pedido.prazoPagamento) }}</p>
+  </section>
 
   <section class="caixa">
     <h2>{{ encerrado() ? painel.nomeStatus(pedido.status) + ' em ' + data(fimDoPedido()) : 'Como terminou a conversa?' }}</h2>
     <div class="acoes-status">
       <a class="botao" [href]="linkCliente()" target="_blank" rel="noopener">Abrir conversa no WhatsApp</a>
       <ng-container *ngIf="!encerrado()">
-        <button type="button" class="botao botao-escuro" (click)="mudar('VENDIDO')">Venda concluída</button>
+        <button type="button" class="botao" (click)="mudar('VENDIDO')">Venda concluída</button>
         <button type="button" class="botao perigo" (click)="mudar('CANCELADO')">Cancelar pedido</button>
       </ng-container>
     </div>

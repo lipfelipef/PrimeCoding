@@ -324,7 +324,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .modelo-info { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--tinta-2); }
 .modelo-topo .acoes-status { margin-top: 0; }
 .vazio-modelo { color: var(--tinta-2); font-size: 14px; padding: 4px 0 12px; }
-.detalhe-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.caixa .valores { max-width: 420px; }
 .acoes-status { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 .entrar { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--fundo-2); padding: 20px; }
 .entrar-caixa { background: var(--fundo); border: 1px solid var(--linha); border-radius: 16px; padding: 32px; width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: 14px; }
@@ -353,7 +353,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .pagina { padding: 0 16px; }
   .abertura { padding-top: 32px; }
   .abertura p { font-size: 16px; }
-  .vitrine, .kits-lista, .passos, .garantias, .detalhe-grade, .rodape-dentro { grid-template-columns: 1fr; }
+  .vitrine, .kits-lista, .passos, .garantias, .rodape-dentro { grid-template-columns: 1fr; }
   .formulario fieldset, .pagamentos { grid-template-columns: 1fr; }
   .produto-foto .foto:not(.com-imagem) { padding: 32px; }
   .produto-compra h1 { font-size: 28px; }
