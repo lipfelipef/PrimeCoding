@@ -48,8 +48,34 @@ class PedidoServiceTests {
 		assertEquals("DISPONIVEL", unidadeRepository.findByNumeroSerie("SN-ENT-0002").get().getSituacao());
 
 		// O que ainda está no prazo não muda
-		assertEquals("AGUARDANDO_ATENDIMENTO", pedidoService.findById(noPrazo.getId()).getStatus());
+		assertEquals("EM_ABERTO", pedidoService.findById(noPrazo.getId()).getStatus());
 		assertEquals("RESERVADA", unidadeRepository.findByNumeroSerie("SN-ENT-0003").get().getSituacao());
+	}
+
+	// Venda concluída: a unidade fica vendida e o pedido não muda mais
+	@Test
+	@Transactional
+	void vendaConcluidaMarcaUnidadeVendida() {
+		Pedido pedido = novoPedido("SN-INT-0002", "11987651111");
+		assertEquals("EM_ABERTO", pedido.getStatus());
+
+		pedidoService.mudarStatus(pedido.getId(), "VENDIDO", null, null);
+
+		assertEquals("VENDIDO", pedidoService.findById(pedido.getId()).getStatus());
+		assertEquals("VENDIDA", unidadeRepository.findByNumeroSerie("SN-INT-0002").get().getSituacao());
+		// Encerrado: nem cancelar nem vender de novo
+		assertThrows(Exception.class, () -> pedidoService.mudarStatus(pedido.getId(), "CANCELADO", null, null));
+		assertEquals("VENDIDA", unidadeRepository.findByNumeroSerie("SN-INT-0002").get().getSituacao());
+	}
+
+	// Só existem vendido e cancelado a partir de em aberto
+	@Test
+	@Transactional
+	void statusQueNaoExisteMaisERecusado() {
+		Pedido pedido = novoPedido("SN-INT-0003", "11987652222");
+		assertThrows(Exception.class, () -> pedidoService.mudarStatus(pedido.getId(), "EM_PREPARACAO", null, null));
+		assertEquals("EM_ABERTO", pedidoService.findById(pedido.getId()).getStatus());
+		assertEquals("RESERVADA", unidadeRepository.findByNumeroSerie("SN-INT-0003").get().getSituacao());
 	}
 
 	private Pedido novoPedido(String serie, String whatsapp) {
@@ -63,19 +89,9 @@ class PedidoServiceTests {
 		Cliente cliente = new Cliente();
 		cliente.setNome("Maria da Silva");
 		cliente.setWhatsapp(whatsapp);
-		cliente.setDocumento("11111111111");
-
-		Endereco endereco = new Endereco();
-		endereco.setCep("01310-100");
-		endereco.setLogradouro("Avenida Paulista");
-		endereco.setNumero("1000");
-		endereco.setBairro("Bela Vista");
-		endereco.setCidade("São Paulo");
-		endereco.setUf("SP");
 
 		Pedido pedido = new Pedido();
 		pedido.setCliente(cliente);
-		pedido.setEndereco(endereco);
 		pedido.setFormaPagamento("PIX");
 		pedido.getItens().add(item);
 		return pedidoService.gravar(pedido);

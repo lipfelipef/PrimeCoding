@@ -17,8 +17,10 @@ import java.util.List;
 public class PedidoService {
 
     // Ordem do fluxo do pedido; cancelar vale em qualquer ponto antes da entrega
-    public static final List<String> FLUXO = List.of("AGUARDANDO_ATENDIMENTO", "AGUARDANDO_PAGAMENTO",
-            "EM_PREPARACAO", "PRONTO_PARA_ENVIO", "ENVIADO", "ENTREGUE");
+    // A negociação acontece no WhatsApp; o painel só registra como ela terminou
+    public static final String EM_ABERTO = "EM_ABERTO";
+    public static final String VENDIDO = "VENDIDO";
+    public static final String CANCELADO = "CANCELADO";
 
     // Letras com acento, espaço, apóstrofo e hífen (nomes)
     private static final String LETRAS = "[A-Za-zÀ-ÖØ-öø-ÿ' -]";
@@ -65,7 +67,7 @@ public class PedidoService {
         pedido.setCliente(gravarCliente(dados.getCliente()));
         pedido.setDataPedido(LocalDateTime.now());
         pedido.setPrazoPagamento(pedido.getDataPedido().plusHours(48));
-        pedido.setStatus("AGUARDANDO_ATENDIMENTO");
+        pedido.setStatus(EM_ABERTO);
         pedido.setCodigo(novoCodigo());
 
         // 12x sem juros no cartão ou 10% de desconto no PIX (RN06)
@@ -101,14 +103,11 @@ public class PedidoService {
     @Transactional
     public Pedido mudarStatus(Integer id, String novoStatus, String observacao, Usuario usuario) {
         Pedido pedido = findById(id);
-        String atual = pedido.getStatus();
-        if (atual.equals("ENTREGUE") || atual.equals("CANCELADO")) {
+        if (!pedido.getStatus().equals(EM_ABERTO)) {
             throw erro("Este pedido já foi encerrado");
         }
-        boolean cancelar = "CANCELADO".equals(novoStatus);
-        boolean proximo = FLUXO.indexOf(novoStatus) == FLUXO.indexOf(atual) + 1;
-        if (!cancelar && !proximo) {
-            throw erro("O próximo passo deste pedido é " + FLUXO.get(FLUXO.indexOf(atual) + 1));
+        if (!VENDIDO.equals(novoStatus) && !CANCELADO.equals(novoStatus)) {
+            throw erro("O pedido em aberto vira vendido ou cancelado");
         }
         aplicarStatus(pedido, novoStatus, observacao, usuario);
         return pedidoRepository.save(pedido);
@@ -119,9 +118,9 @@ public class PedidoService {
     @Transactional
     public void cancelarVencidos() {
         List<Pedido> vencidos = pedidoRepository.findByStatusInAndPrazoPagamentoBefore(
-                List.of("AGUARDANDO_ATENDIMENTO", "AGUARDANDO_PAGAMENTO"), LocalDateTime.now());
+                List.of(EM_ABERTO), LocalDateTime.now());
         for (Pedido pedido : vencidos) {
-            aplicarStatus(pedido, "CANCELADO", "Prazo de 48 h para pagamento vencido", null);
+            aplicarStatus(pedido, CANCELADO, "Prazo de 48 h vencido", null);
             pedidoRepository.save(pedido);
         }
     }
@@ -131,10 +130,10 @@ public class PedidoService {
         pedido.getHistorico().add(new HistoricoStatus(pedido, usuario, status, observacao));
         for (ItemPedido item : pedido.getItens()) {
             Unidade unidade = item.getUnidade();
-            if (status.equals("CANCELADO")) {
+            if (status.equals(CANCELADO)) {
                 unidade.setSituacao("DISPONIVEL");
-            } else if (status.equals("EM_PREPARACAO")) {
-                // Pagamento confirmado: a unidade é do cliente
+            } else if (status.equals(VENDIDO)) {
+                // Venda fechada no WhatsApp: a unidade é do cliente
                 unidade.setSituacao("VENDIDA");
             }
             unidadeRepository.save(unidade);

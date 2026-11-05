@@ -33,35 +33,18 @@
         <div class="total"><dt>Total</dt><dd>{{ loja.dinheiro(pedido.total) }}</dd></div>
       </dl>
       <p>{{ pedido.formaPagamento == 'PIX' ? 'PIX' : 'Cartão em ' + pedido.parcelas + 'x' }}</p>
-      <p *ngIf="!encerrado()">Reserva vence em {{ data(pedido.prazoPagamento) }}</p>
+      <p *ngIf="!encerrado()">Sem resposta, o pedido cai sozinho em {{ data(pedido.prazoPagamento) }}</p>
     </section>
   </div>
 
-  <section class="caixa" *ngIf="!encerrado()">
-    <h2>Próximo passo</h2>
-    <p class="dica-status">{{ painel.dicaDoStatus(pedido.status) }}</p>
+  <section class="caixa">
+    <h2>{{ encerrado() ? painel.nomeStatus(pedido.status) + ' em ' + data(fimDoPedido()) : 'Como terminou a conversa?' }}</h2>
     <div class="acoes-status">
       <a class="botao" [href]="linkCliente()" target="_blank" rel="noopener">Abrir conversa no WhatsApp</a>
+      <ng-container *ngIf="!encerrado()">
+        <button type="button" class="botao botao-escuro" (click)="mudar('VENDIDO')">Venda concluída</button>
+        <button type="button" class="botao perigo" (click)="mudar('CANCELADO')">Cancelar pedido</button>
+      </ng-container>
     </div>
-    <label class="campo largo observacao-status">Observação <small>opcional, fica no histórico</small>
-      <input name="observacao" [(ngModel)]="observacao" maxlength="255" placeholder="PIX recebido às 14h" />
-    </label>
-    <div class="acoes-status">
-      <button type="button" class="botao botao-escuro" (click)="mudar(painel.proximoStatus(pedido.status))">
-        {{ painel.acaoDoStatus(pedido.status) }}
-      </button>
-      <button type="button" class="botao perigo" (click)="mudar('CANCELADO')">Cancelar pedido</button>
-    </div>
-  </section>
-
-  <section class="caixa">
-    <h2>Histórico</h2>
-    <ol class="historico">
-      <li *ngFor="let h of pedido.historico">
-        <strong>{{ painel.nomeStatus(h.status) }}</strong>
-        <span>{{ data(h.dataHora) }} · {{ h.usuario ? h.usuario.nome : 'automático' }}</span>
-        <span *ngIf="h.observacao">{{ h.observacao }}</span>
-      </li>
-    </ol>
   </section>
 </div>

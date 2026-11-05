@@ -305,9 +305,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .tabela .baixa { color: var(--vermelho); }
 .status { display: inline-block; font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 4px; background: var(--fundo-2); color: var(--tinta-2); white-space: nowrap; }
 .status.grande { font-size: 14px; padding: 6px 12px; }
-.status.AGUARDANDO_ATENDIMENTO, .status.AGUARDANDO_PAGAMENTO, .status.RESERVADA { background: var(--ambar-fundo); color: var(--ambar-texto); }
-.status.EM_PREPARACAO, .status.PRONTO_PARA_ENVIO, .status.ENVIADO { background: var(--azul-fundo); color: var(--azul-texto); }
-.status.ENTREGUE, .status.DISPONIVEL { background: var(--verde-fundo); color: var(--verde-texto); }
+.status.EM_ABERTO, .status.RESERVADA { background: var(--ambar-fundo); color: var(--ambar-texto); }
+.status.VENDIDO, .status.DISPONIVEL { background: var(--verde-fundo); color: var(--verde-texto); }
 .status.CANCELADO { background: var(--fundo-2); color: var(--tinta-3); }
 .status.VENDIDA { background: var(--tinta); color: var(--fundo); }
 .caixa { border: 1px solid var(--linha); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
@@ -330,12 +329,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .vazio-modelo { color: var(--tinta-2); font-size: 14px; padding: 4px 0 12px; }
 .detalhe-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .acoes-status { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
-.dica-status { color: var(--tinta-2); margin: 0 0 4px !important; }
-.observacao-status { margin-top: 16px; }
-.historico { list-style: none; padding: 0; margin: 0; }
-.historico li { display: flex; flex-direction: column; padding: 10px 0 10px 18px; border-left: 2px solid var(--linha-forte); position: relative; font-size: 14px; }
-.historico li::before { content: ''; position: absolute; left: -6px; top: 15px; width: 10px; height: 10px; border-radius: 50%; background: var(--tinta); }
-.historico span { color: var(--tinta-2); font-size: 13px; }
 .entrar { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--fundo-2); padding: 20px; }
 .entrar-caixa { background: var(--fundo); border: 1px solid var(--linha); border-radius: 16px; padding: 32px; width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: 14px; }
 .entrar-caixa h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }

@@ -13,7 +13,7 @@ import { LojaService } from '../../../services/loja.service';
 })
 export class PedidoLista implements OnInit {
   list: Pedido[] = [];
-  filtro = 'ABERTOS';
+  filtro = 'EM_ABERTO';
   erro = '';
   carregou = false;
 
@@ -31,9 +31,6 @@ export class PedidoLista implements OnInit {
   filtrados(): Pedido[] {
     if (this.filtro == 'TODOS') {
       return this.list;
-    }
-    if (this.filtro == 'ABERTOS') {
-      return this.list.filter(p => p.status != 'ENTREGUE' && p.status != 'CANCELADO');
     }
     return this.list.filter(p => p.status == this.filtro);
   }

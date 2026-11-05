@@ -5,10 +5,10 @@
   </div>
   <label class="campo filtro">Mostrar
     <select name="filtro" [(ngModel)]="filtro">
-      <option value="ABERTOS">Em aberto</option>
+      <option value="EM_ABERTO">Em aberto</option>
+      <option value="VENDIDO">Vendidos</option>
+      <option value="CANCELADO">Cancelados</option>
       <option value="TODOS">Todos</option>
-      <option *ngFor="let s of painel.fluxo" [value]="s">{{ painel.nomeStatus(s) }}</option>
-      <option value="CANCELADO">Cancelado</option>
     </select>
   </label>
 </div>

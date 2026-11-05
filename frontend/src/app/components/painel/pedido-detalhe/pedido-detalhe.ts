@@ -13,7 +13,6 @@ import { LojaService } from '../../../services/loja.service';
 })
 export class PedidoDetalhe implements OnInit {
   pedido?: Pedido;
-  observacao = '';
   erro = '';
   mensagem = '';
 
@@ -28,22 +27,30 @@ export class PedidoDetalhe implements OnInit {
   }
 
   encerrado(): boolean {
-    return this.pedido?.status == 'ENTREGUE' || this.pedido?.status == 'CANCELADO';
+    return this.pedido?.status == 'VENDIDO' || this.pedido?.status == 'CANCELADO';
   }
 
   mudar(status: string): void {
+    if (status == 'VENDIDO' && !confirm(`Concluir a venda do pedido ${this.loja.numeroPedido(this.pedido?.codigo)}? A unidade sai do estoque.`)) {
+      return;
+    }
     if (status == 'CANCELADO' && !confirm(`Cancelar o pedido ${this.loja.numeroPedido(this.pedido?.codigo)}? A unidade volta para a vitrine.`)) {
       return;
     }
     this.erro = '';
     this.mensagem = '';
-    this.painel.mudarStatus(this.pedido?.id, status, this.observacao).subscribe((resposta) => {
+    this.painel.mudarStatus(this.pedido?.id, status).subscribe((resposta) => {
       this.pedido = resposta;
-      this.observacao = '';
       this.mensagem = 'Status alterado para ' + this.painel.nomeStatus(status).toLowerCase();
     }, (err) => {
       this.erro = this.painel.mensagemErro(err, 'Não foi possível mudar o status');
     });
+  }
+
+  // Quando o pedido foi vendido ou cancelado (último registro do histórico)
+  fimDoPedido(): string | undefined {
+    let historico = this.pedido?.historico || [];
+    return historico.length ? historico[historico.length - 1].dataHora : undefined;
   }
 
   data(texto?: string): string {

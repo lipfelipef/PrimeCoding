@@ -14,7 +14,6 @@ import { Modelo } from '../entities/modelo';
 export class PainelService {
   baseUrl = environment.baseUrl;
   usuarioLogado?: Usuario;
-  fluxo = ['AGUARDANDO_ATENDIMENTO', 'AGUARDANDO_PAGAMENTO', 'EM_PREPARACAO', 'PRONTO_PARA_ENVIO', 'ENVIADO', 'ENTREGUE'];
 
   constructor(private http: HttpClient) {
     let salvo = this.lerSessao();
@@ -55,8 +54,8 @@ export class PainelService {
     return this.http.get<Pedido>(`${this.baseUrl}/pedidos/${id}`, { headers: this.headers() });
   }
 
-  mudarStatus(id: any, status: string, observacao: string): Observable<Pedido> {
-    return this.http.put<Pedido>(`${this.baseUrl}/pedidos/${id}/status`, { status: status, observacao: observacao },
+  mudarStatus(id: any, status: string): Observable<Pedido> {
+    return this.http.put<Pedido>(`${this.baseUrl}/pedidos/${id}/status`, { status: status },
       { headers: this.headers() });
   }
 
@@ -102,49 +101,9 @@ export class PainelService {
     return this.http.delete<Modelo>(`${this.baseUrl}/modelos/${id}/foto`, { headers: this.headers() });
   }
 
-  proximoStatus(status?: string): string {
-    let i = this.fluxo.indexOf(status || '');
-    if (i < 0 || i == this.fluxo.length - 1) {
-      return '';
-    }
-    return this.fluxo[i + 1];
-  }
-
   nomeStatus(status?: string): string {
-    let nomes: any = {
-      AGUARDANDO_ATENDIMENTO: 'Aguardando atendimento',
-      AGUARDANDO_PAGAMENTO: 'Aguardando pagamento',
-      EM_PREPARACAO: 'Em preparação',
-      PRONTO_PARA_ENVIO: 'Pronto para envio',
-      ENVIADO: 'Enviado',
-      ENTREGUE: 'Entregue',
-      CANCELADO: 'Cancelado'
-    };
+    let nomes: any = { EM_ABERTO: 'Em aberto', VENDIDO: 'Vendido', CANCELADO: 'Cancelado' };
     return nomes[status || ''] || status || '';
-  }
-
-  // O botão diz o que aconteceu na conversa do WhatsApp, não o nome do próximo status
-  acaoDoStatus(status?: string): string {
-    let acoes: any = {
-      AGUARDANDO_ATENDIMENTO: 'Respondi e mandei o PIX ou o link',
-      AGUARDANDO_PAGAMENTO: 'Pagamento recebido',
-      EM_PREPARACAO: 'Notebook pronto',
-      PRONTO_PARA_ENVIO: 'Enviei',
-      ENVIADO: 'Cliente recebeu'
-    };
-    return acoes[status || ''] || '';
-  }
-
-  // O que o revendedor tem de fazer agora, em uma linha
-  dicaDoStatus(status?: string): string {
-    let dicas: any = {
-      AGUARDANDO_ATENDIMENTO: 'Responda o cliente no WhatsApp, peça o endereço de entrega e o CPF e mande a chave PIX ou o link do cartão.',
-      AGUARDANDO_PAGAMENTO: 'Espere o comprovante. Sem pagamento, a reserva cai sozinha no prazo.',
-      EM_PREPARACAO: 'Instale o kit e os upgrades, teste o notebook e separe os acessórios.',
-      PRONTO_PARA_ENVIO: 'Embale, poste e mande o código de rastreio pelo WhatsApp.',
-      ENVIADO: 'Confirme com o cliente quando o notebook chegar.'
-    };
-    return dicas[status || ''] || '';
   }
 
   nomeSituacao(situacao?: string): string {
