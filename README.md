@@ -97,4 +97,4 @@ Publicado numa VM da Azure: https://primecoding.com.br (também em http://172.19
 - `.drawio`: em [app.diagrams.net](https://app.diagrams.net), no menu Arquivo > Abrir.
 - `.sql`: script para MySQL 8, com os três modelos, os kits, os upgrades e as unidades de exemplo.
 - `.js`: o modelo de dados no formato do UniModeler.
-- `.html`: as 14 telas do protótipo, direto no navegador. O site real seguiu outro visual; o protótipo ficou como registro do planejamento..
+- `.html`: as 14 telas do protótipo, direto no navegador. O site real seguiu outro visual; o protótipo ficou como registro do planejamento.
