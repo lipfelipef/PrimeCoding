@@ -45,7 +45,12 @@ export class Notebooks implements OnInit {
     for (let situacao of ['DISPONIVEL', 'EM_REVISAO', 'RESERVADA', 'VENDIDA']) {
       let total = this.unidadesDo(modelo).filter(u => u.situacao == situacao).length;
       if (total > 0) {
-        partes.push(total + ' ' + this.painel.nomeSituacao(situacao).toLowerCase());
+        let nome = this.painel.nomeSituacao(situacao).toLowerCase();
+        // "2 vendidas", "2 reservadas"; "na vitrine" e "em revisão" não mudam
+        if (total > 1 && (situacao == 'RESERVADA' || situacao == 'VENDIDA')) {
+          nome += 's';
+        }
+        partes.push(total + ' ' + nome);
       }
     }
     if (partes.length == 0) {
